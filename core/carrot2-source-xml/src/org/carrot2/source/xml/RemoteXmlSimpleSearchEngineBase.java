@@ -22,6 +22,7 @@ import org.carrot2.core.attribute.AttributeNames;
 import org.carrot2.source.SearchEngineResponse;
 import org.carrot2.source.SimpleSearchEngine;
 import org.carrot2.util.attribute.Bindable;
+import org.carrot2.util.attribute.Group;
 import org.carrot2.util.resource.IResource;
 
 /**

@@ -56,16 +56,15 @@ public class ByFieldClusteringAlgorithm extends ProcessingComponentBase implemen
      * value returned by {@link #buildClusterLabel(Object)}. If the field value is a collection,
      * the document will be assigned to all clusters corresponding to the values in the
      * collection. Note that arrays will not be 'unfolded' in this way.
-     * 
-     * @label Field name
-     * @level Basic
-     * @group Field
      */
     @Processing
     @Input
     @Attribute
     @Required
     @NotBlank
+    @Level(AttributeLevel.BASIC)
+    @Group("Fields")
+    @Label("Field name")
     public String fieldName = Document.SOURCES;
 
     /**
@@ -123,5 +122,4 @@ public class ByFieldClusteringAlgorithm extends ProcessingComponentBase implemen
     {
         return fieldValue.toString();
     }
-    
 }

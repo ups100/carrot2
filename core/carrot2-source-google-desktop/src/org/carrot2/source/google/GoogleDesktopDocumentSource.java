@@ -40,9 +40,7 @@ public class GoogleDesktopDocumentSource extends RemoteXmlSimpleSearchEngineBase
      * Desktop API documentation</a> for further instructions on how to determine the
      * query URL on other systems.
      * 
-     * @see <a
-     *      href="http://code.google.com/apis/desktop/docs/queryapi.html#httpxml">Google
-     *      API</a>
+     * @see <a href="http://code.google.com/apis/desktop/docs/queryapi.html#httpxml">Google API</a>
      * @label Query URL
      * @level Advanced
      * @group Service
