@@ -58,6 +58,7 @@ import com.google.common.collect.Ordering;
  * Systems, May/June, 3 (vol. 20), 2005, pp. 48—54."</i>.
  */
 @Bindable(prefix = "LingoClusteringAlgorithm", inherit = CommonAttributes.class)
+@Label("Lingo Clustering")
 public class LingoClusteringAlgorithm extends ProcessingComponentBase implements
     IClusteringAlgorithm
 {

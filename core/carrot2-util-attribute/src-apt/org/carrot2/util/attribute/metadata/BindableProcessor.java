@@ -148,7 +148,16 @@ public final class BindableProcessor extends AbstractProcessor
         final String javaDoc = processJavaDoc(type, tags);
         final BindableMetadata metadata = new BindableMetadata();
         extractTitleDescription(metadata, javaDoc);
-        metadata.setLabel(tags.get("label"));
+        
+        if (tags.get("label") != null) {
+            messager.printMessage(Kind.WARNING, 
+                "Replace @label javadoc with a @Label annotation in: " +
+                    type.getQualifiedName());
+        }
+        Label label = type.getAnnotation(Label.class);
+        if (label != null) {
+            metadata.setLabel(label.value());
+        }
 
         // Collect this bindable's attribute metadata.
         final Map<String, AttributeMetadata> attributeMetadata = new LinkedHashMap<String, AttributeMetadata>();

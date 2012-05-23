@@ -37,7 +37,7 @@ public abstract class SearchEngineBase extends ProcessingComponentBase implement
     IDocumentSource
 {
     /** {@link Group} name. */
-    protected static final String SERVICE = "Service";
+    public static final String SERVICE = "Service";
 
     /** {@link Group} name. */
     protected static final String POSTPROCESSING = "Postprocessing";

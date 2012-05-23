@@ -50,10 +50,9 @@ import com.google.common.collect.Lists;
  * Oren Etzioni, Grouper: A Dynamic Clustering Interface to Web Search Results, 1999.</i>
  * Some liberties were taken wherever STC's description was not clear enough or where we
  * thought some improvements could be made.
- * 
- * @label STC Clustering
  */
 @Bindable(prefix = "STCClusteringAlgorithm", inherit = CommonAttributes.class)
+@Label("STC Clustering")
 public final class STCClusteringAlgorithm extends ProcessingComponentBase implements
     IClusteringAlgorithm
 {
