@@ -36,11 +36,7 @@ import org.carrot2.text.preprocessing.LabelFormatter;
 import org.carrot2.text.preprocessing.PreprocessingContext;
 import org.carrot2.text.preprocessing.pipeline.BasicPreprocessingPipeline;
 import org.carrot2.util.PriorityQueue;
-import org.carrot2.util.attribute.Attribute;
-import org.carrot2.util.attribute.Bindable;
-import org.carrot2.util.attribute.Input;
-import org.carrot2.util.attribute.Output;
-import org.carrot2.util.attribute.Required;
+import org.carrot2.util.attribute.*;
 import org.carrot2.util.attribute.constraint.DoubleRange;
 import org.carrot2.util.attribute.constraint.IntRange;
 
@@ -92,14 +88,13 @@ public final class STCClusteringAlgorithm extends ProcessingComponentBase implem
 
     /**
      * Minimum word-document recurrences.
-     * 
-     * @group Word filtering
-     * @level Medium
      */
     @Processing
     @Input
     @Attribute
     @IntRange(min = 2)
+    @Level(AttributeLevel.MEDIUM)
+    @Group(DefaultGroups.WORD_FILTERING)
     public int ignoreWordIfInFewerDocs = 2;
 
     /**
