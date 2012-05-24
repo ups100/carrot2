@@ -17,7 +17,6 @@ import java.util.*;
 
 import org.apache.commons.lang.ObjectUtils;
 import org.carrot2.util.*;
-import org.carrot2.util.attribute.AttributeLevel;
 import org.carrot2.util.resource.FileResource;
 import org.carrot2.util.tests.CarrotTestCase;
 import org.junit.After;
@@ -170,7 +169,6 @@ public class SimpleXmlWrappersTest extends CarrotTestCase
     @Test
     public void testEnum() throws Exception
     {
-        check(AttributeLevel.ADVANCED);
         check(TestEnum.TEST1);
     }
 

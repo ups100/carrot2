@@ -14,13 +14,15 @@ package org.carrot2.util.attribute.constraint;
 
 import java.lang.annotation.Annotation;
 
-import org.carrot2.util.tests.CarrotTestCase;
+import org.fest.assertions.Assertions;
 import org.junit.Test;
+
+import com.carrotsearch.randomizedtesting.RandomizedTest;
 
 /**
  * Base class for {@link Constraint} tests.
  */
-public abstract class ConstraintTestBase<T extends Annotation> extends CarrotTestCase
+public abstract class ConstraintTestBase<T extends Annotation> extends RandomizedTest
 {
     void assertMet(final Object value) throws NoSuchFieldException
     {
@@ -34,13 +36,13 @@ public abstract class ConstraintTestBase<T extends Annotation> extends CarrotTes
 
     void assertMet(final Object value, String fieldName) throws NoSuchFieldException
     {
-        assertThat(ConstraintValidator.isMet(value, getAnnotation(fieldName))).isEmpty();
+        Assertions.assertThat(ConstraintValidator.isMet(value, getAnnotation(fieldName))).isEmpty();
     }
 
     void assertNotMet(final Object value, String fieldName) throws NoSuchFieldException
     {
         final T annotation = getAnnotation(fieldName);
-        assertThat(ConstraintValidator.isMet(value, annotation)).contains(annotation);
+        Assertions.assertThat(ConstraintValidator.isMet(value, annotation)).contains(annotation);
     }
 
     private T getAnnotation(String fieldName) throws NoSuchFieldException

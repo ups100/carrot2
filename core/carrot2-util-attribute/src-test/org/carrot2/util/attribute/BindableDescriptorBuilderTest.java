@@ -29,15 +29,16 @@ import org.carrot2.util.attribute.test.binder.NotBindable;
 import org.carrot2.util.attribute.test.binder.SingleClass;
 import org.carrot2.util.attribute.test.binder.SubClass;
 import org.carrot2.util.attribute.test.binder.SuperClass;
-import org.carrot2.util.tests.CarrotTestCase;
+import org.fest.assertions.Assertions;
 import org.junit.Assert;
 import org.junit.Test;
 import org.simpleframework.xml.core.Persister;
 
+import com.carrotsearch.randomizedtesting.RandomizedTest;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
-public class BindableDescriptorBuilderTest extends CarrotTestCase
+public class BindableDescriptorBuilderTest extends RandomizedTest
 {
     @Test
     public void testSimpleComponent() throws Exception
@@ -48,7 +49,7 @@ public class BindableDescriptorBuilderTest extends CarrotTestCase
         final BindableDescriptor bindableDescriptor = BindableDescriptorBuilder
             .buildDescriptor(instance);
 
-        assertThat(bindableDescriptor.bindableDescriptorsInternal).isEmpty();
+        Assertions.assertThat(bindableDescriptor.bindableDescriptorsInternal).isEmpty();
 
         AttributeAssertions.assertThat(bindableDescriptor).contains(
             AttributeUtils.getKey(SingleClass.class, "initInputInt"),
@@ -70,7 +71,7 @@ public class BindableDescriptorBuilderTest extends CarrotTestCase
                     "Processing input string attribute", "Processing Input String",
                     "Some description.", "Group B", AttributeLevel.ADVANCED)));
 
-        assertThat(bindableDescriptor.attributeDescriptors.keySet()).excludes(
+        Assertions.assertThat(bindableDescriptor.attributeDescriptors.keySet()).excludes(
             clazz.getName() + ".notAnAttribute");
     }
 
@@ -157,7 +158,7 @@ public class BindableDescriptorBuilderTest extends CarrotTestCase
         final BindableDescriptor bindableDescriptor = BindableDescriptorBuilder
             .buildDescriptor(instance);
 
-        assertThat(bindableDescriptor.bindableDescriptorsInternal).isEmpty();
+        Assertions.assertThat(bindableDescriptor.bindableDescriptorsInternal).isEmpty();
         AttributeAssertions.assertThat(bindableDescriptor).contains(
             AttributeUtils.getKey(SuperClass.class, "initInputInt"),
             new AttributeDescriptor(superClass.getDeclaredField("initInputInt"), 5, Lists
@@ -190,7 +191,7 @@ public class BindableDescriptorBuilderTest extends CarrotTestCase
                 "Test Bindable", null, null)));
 
         // Referenced attributes
-        assertThat(bindableDescriptor.bindableDescriptorsInternal).isNotEmpty();
+        Assertions.assertThat(bindableDescriptor.bindableDescriptorsInternal).isNotEmpty();
         AttributeAssertions
             .assertThat(
                 bindableDescriptor.bindableDescriptorsInternal
@@ -233,7 +234,7 @@ public class BindableDescriptorBuilderTest extends CarrotTestCase
                     "Test Bindable", null, null)));
 
         // Referenced attributes -- regular field
-        assertThat(bindableDescriptor.bindableDescriptorsInternal).isNotEmpty();
+        Assertions.assertThat(bindableDescriptor.bindableDescriptorsInternal).isNotEmpty();
         AttributeAssertions.assertThat(
             bindableDescriptor.bindableDescriptorsInternal
                 .get(BindableReferenceContainer.class.getDeclaredField("bindableField")))

@@ -16,11 +16,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.carrot2.util.attribute.test.filtering.*;
-import org.carrot2.util.tests.CarrotTestCase;
+import org.fest.assertions.Assertions;
 import org.junit.Test;
 
+import com.carrotsearch.randomizedtesting.RandomizedTest;
+
 @SuppressWarnings("unchecked")
-public class BindableDescriptorTest extends CarrotTestCase
+public class BindableDescriptorTest extends RandomizedTest
 {
     private final BindableDescriptor descriptor = BindableDescriptorBuilder
         .buildDescriptor(new FilteringSubClass());
@@ -72,11 +74,11 @@ public class BindableDescriptorTest extends CarrotTestCase
     {
         final BindableDescriptor filteredDescriptor = descriptor.only(TestInit.class,
             TestProcessing.class);
-        assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
+        Assertions.assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
             keyFromSubClass("initProcessingInput"),
             keyFromSubClass("initProcessingOutput"),
             keyFromSubClass("initProcessingInputOutput"));
-        assertThat(
+        Assertions.assertThat(
             getDescriptorsFromGroup(filteredDescriptor, FilteringReferenceClass.class))
             .isNull();
     }
@@ -86,11 +88,11 @@ public class BindableDescriptorTest extends CarrotTestCase
     {
         final BindableDescriptor filteredDescriptor = descriptor.only(Input.class,
             Output.class);
-        assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
+        Assertions.assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
             keyFromSuperClass("initInputOutput"),
             keyFromSuperClass("processingInputOutput"),
             keyFromSubClass("initProcessingInputOutput"));
-        assertThat(
+        Assertions.assertThat(
             getDescriptorsFromGroup(filteredDescriptor, FilteringReferenceClass.class))
             .isNull();
     }
@@ -100,9 +102,9 @@ public class BindableDescriptorTest extends CarrotTestCase
     {
         final BindableDescriptor filteredDescriptor = descriptor.only(TestInit.class,
             TestProcessing.class, Input.class, Output.class);
-        assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
+        Assertions.assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
             keyFromSubClass("initProcessingInputOutput"));
-        assertThat(
+        Assertions.assertThat(
             getDescriptorsFromGroup(filteredDescriptor, FilteringReferenceClass.class))
             .isNull();
     }
@@ -112,7 +114,7 @@ public class BindableDescriptorTest extends CarrotTestCase
     {
         final BindableDescriptor filteredDescriptor = descriptor.only(Input.class);
 
-        assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
+        Assertions.assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
             keyFromSuperClass("initInput"), keyFromSuperClass("initInputOutput"),
             keyFromSuperClass("processingInput"),
             keyFromSuperClass("processingInputOutput"),
@@ -127,7 +129,7 @@ public class BindableDescriptorTest extends CarrotTestCase
         final BindableDescriptor filteredDescriptor = descriptor.only(Input.class,
             TestProcessing.class);
 
-        assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
+        Assertions.assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
             keyFromSuperClass("processingInput"),
             keyFromSuperClass("processingInputOutput"),
             keyFromSubClass("initProcessingInput"),
@@ -157,7 +159,7 @@ public class BindableDescriptorTest extends CarrotTestCase
     {
         final BindableDescriptor filteredDescriptor = descriptor.not(Input.class);
 
-        assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
+        Assertions.assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
             keyFromSuperClass("initOutput"), keyFromSuperClass("processingOutput"),
             keyFromSubClass("initProcessingOutput"), keyFromReferenceClass("initOutput"),
             keyFromReferenceClass("processingOutput"));
@@ -169,7 +171,7 @@ public class BindableDescriptorTest extends CarrotTestCase
         final BindableDescriptor filteredDescriptor = descriptor.not(Input.class,
             TestProcessing.class);
 
-        assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
+        Assertions.assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
             keyFromSuperClass("initOutput"), keyFromReferenceClass("initOutput"));
     }
 
@@ -179,14 +181,14 @@ public class BindableDescriptorTest extends CarrotTestCase
         final BindableDescriptor filteredDescriptor = descriptor.only(Input.class,
             TestProcessing.class).flatten();
 
-        assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
+        Assertions.assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
             keyFromSuperClass("processingInput"),
             keyFromSuperClass("processingInputOutput"),
             keyFromSubClass("initProcessingInput"),
             keyFromSubClass("initProcessingInputOutput"),
             keyFromReferenceClass("processingInput"));
 
-        assertThat(filteredDescriptor.attributeGroups).isEmpty();
+        Assertions.assertThat(filteredDescriptor.attributeGroups).isEmpty();
     }
 
     @Test
@@ -195,22 +197,22 @@ public class BindableDescriptorTest extends CarrotTestCase
         final BindableDescriptor filteredDescriptor = descriptor
             .group(BindableDescriptor.GroupingMethod.STRUCTURE);
 
-        assertThat(filteredDescriptor.attributeDescriptors.keySet()).isEmpty();
+        Assertions.assertThat(filteredDescriptor.attributeDescriptors.keySet()).isEmpty();
 
-        assertThat(
+        Assertions.assertThat(
             getDescriptorsFromGroup(filteredDescriptor, FilteringSubClass.class).keySet())
             .containsOnly(keyFromSubClass("initProcessingInput"),
                 keyFromSubClass("initProcessingOutput"),
                 keyFromSubClass("initProcessingInputOutput"));
 
-        assertThat(
+        Assertions.assertThat(
             getDescriptorsFromGroup(filteredDescriptor, FilteringSuperClass.class)
                 .keySet()).containsOnly(keyFromSuperClass("initInput"),
             keyFromSuperClass("initOutput"), keyFromSuperClass("initInputOutput"),
             keyFromSuperClass("processingInput"), keyFromSuperClass("processingOutput"),
             keyFromSuperClass("processingInputOutput"));
 
-        assertThat(
+        Assertions.assertThat(
             getDescriptorsFromGroup(filteredDescriptor, FilteringReferenceClass.class)
                 .keySet()).containsOnly(keyFromReferenceClass("initInput"),
             keyFromReferenceClass("initOutput"),
@@ -225,18 +227,18 @@ public class BindableDescriptorTest extends CarrotTestCase
             BindableDescriptor.GroupingMethod.STRUCTURE).only(Input.class).only(
             Output.class);
 
-        assertThat(filteredDescriptor.attributeDescriptors.keySet()).isEmpty();
+        Assertions.assertThat(filteredDescriptor.attributeDescriptors.keySet()).isEmpty();
 
-        assertThat(
+        Assertions.assertThat(
             getDescriptorsFromGroup(filteredDescriptor, FilteringSubClass.class).keySet())
             .containsOnly(keyFromSubClass("initProcessingInputOutput"));
 
-        assertThat(
+        Assertions.assertThat(
             getDescriptorsFromGroup(filteredDescriptor, FilteringSuperClass.class)
                 .keySet()).containsOnly(keyFromSuperClass("initInputOutput"),
             keyFromSuperClass("processingInputOutput"));
 
-        assertThat(
+        Assertions.assertThat(
             getDescriptorsFromGroup(filteredDescriptor, FilteringReferenceClass.class))
             .isNull();
     }
@@ -247,23 +249,23 @@ public class BindableDescriptorTest extends CarrotTestCase
         final BindableDescriptor filteredDescriptor = descriptor
             .group(BindableDescriptor.GroupingMethod.LEVEL);
 
-        assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
+        Assertions.assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
             keyFromSubClass("initProcessingInputOutput"),
             keyFromSuperClass("processingInput"), keyFromSuperClass("processingOutput"),
             keyFromSuperClass("processingInputOutput"),
             keyFromReferenceClass("processingOutput"));
 
-        assertThat(
+        Assertions.assertThat(
             getDescriptorsFromGroup(filteredDescriptor, AttributeLevel.BASIC).keySet())
             .containsOnly(keyFromSubClass("initProcessingInput"),
                 keyFromSuperClass("initInput"), keyFromReferenceClass("initInput"));
 
-        assertThat(
+        Assertions.assertThat(
             getDescriptorsFromGroup(filteredDescriptor, AttributeLevel.MEDIUM).keySet())
             .containsOnly(keyFromSubClass("initProcessingOutput"),
                 keyFromSuperClass("initOutput"), keyFromReferenceClass("initOutput"));
 
-        assertThat(
+        Assertions.assertThat(
             getDescriptorsFromGroup(filteredDescriptor, AttributeLevel.ADVANCED).keySet())
             .containsOnly(keyFromSuperClass("initInputOutput"),
                 keyFromReferenceClass("processingInput"));
@@ -275,20 +277,20 @@ public class BindableDescriptorTest extends CarrotTestCase
         final BindableDescriptor filteredDescriptor = descriptor.only(Input.class).group(
             BindableDescriptor.GroupingMethod.LEVEL);
 
-        assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
+        Assertions.assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
             keyFromSubClass("initProcessingInputOutput"),
             keyFromSuperClass("processingInput"),
             keyFromSuperClass("processingInputOutput"));
 
-        assertThat(
+        Assertions.assertThat(
             getDescriptorsFromGroup(filteredDescriptor, AttributeLevel.BASIC).keySet())
             .containsOnly(keyFromSubClass("initProcessingInput"),
                 keyFromSuperClass("initInput"), keyFromReferenceClass("initInput"));
 
-        assertThat(getDescriptorsFromGroup(filteredDescriptor, AttributeLevel.MEDIUM))
+        Assertions.assertThat(getDescriptorsFromGroup(filteredDescriptor, AttributeLevel.MEDIUM))
             .isNull();
 
-        assertThat(
+        Assertions.assertThat(
             getDescriptorsFromGroup(filteredDescriptor, AttributeLevel.ADVANCED).keySet())
             .containsOnly(keyFromSuperClass("initInputOutput"),
                 keyFromReferenceClass("processingInput"));
@@ -300,22 +302,22 @@ public class BindableDescriptorTest extends CarrotTestCase
         final BindableDescriptor filteredDescriptor = descriptor
             .group(BindableDescriptor.GroupingMethod.GROUP);
 
-        assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
+        Assertions.assertThat(filteredDescriptor.attributeDescriptors.keySet()).containsOnly(
             keyFromSuperClass("initInput"), keyFromSuperClass("initOutput"),
             keyFromSuperClass("initInputOutput"), keyFromReferenceClass("initInput"),
             keyFromReferenceClass("initOutput"));
 
-        assertThat(getDescriptorsFromGroup(filteredDescriptor, "Group A").keySet())
+        Assertions.assertThat(getDescriptorsFromGroup(filteredDescriptor, "Group A").keySet())
             .containsOnly(keyFromSubClass("initProcessingInputOutput"),
                 keyFromReferenceClass("processingOutput"));
 
-        assertThat(getDescriptorsFromGroup(filteredDescriptor, "Group B").keySet())
+        Assertions.assertThat(getDescriptorsFromGroup(filteredDescriptor, "Group B").keySet())
             .containsOnly(keyFromSubClass("initProcessingOutput"),
                 keyFromSubClass("initProcessingInput"),
                 keyFromSuperClass("processingInputOutput"),
                 keyFromReferenceClass("processingInput"));
 
-        assertThat(getDescriptorsFromGroup(filteredDescriptor, "Group C").keySet())
+        Assertions.assertThat(getDescriptorsFromGroup(filteredDescriptor, "Group C").keySet())
             .containsOnly(keyFromSuperClass("processingInput"),
                 keyFromSuperClass("processingOutput"));
     }
@@ -326,19 +328,19 @@ public class BindableDescriptorTest extends CarrotTestCase
         final BindableDescriptor filteredDescriptor = descriptor.only(
             TestProcessing.class).group(BindableDescriptor.GroupingMethod.GROUP);
 
-        assertThat(filteredDescriptor.attributeDescriptors.keySet()).isEmpty();
+        Assertions.assertThat(filteredDescriptor.attributeDescriptors.keySet()).isEmpty();
 
-        assertThat(getDescriptorsFromGroup(filteredDescriptor, "Group A").keySet())
+        Assertions.assertThat(getDescriptorsFromGroup(filteredDescriptor, "Group A").keySet())
             .containsOnly(keyFromSubClass("initProcessingInputOutput"),
                 keyFromReferenceClass("processingOutput"));
 
-        assertThat(getDescriptorsFromGroup(filteredDescriptor, "Group B").keySet())
+        Assertions.assertThat(getDescriptorsFromGroup(filteredDescriptor, "Group B").keySet())
             .containsOnly(keyFromSubClass("initProcessingOutput"),
                 keyFromSubClass("initProcessingInput"),
                 keyFromSuperClass("processingInputOutput"),
                 keyFromReferenceClass("processingInput"));
 
-        assertThat(getDescriptorsFromGroup(filteredDescriptor, "Group C").keySet())
+        Assertions.assertThat(getDescriptorsFromGroup(filteredDescriptor, "Group C").keySet())
             .containsOnly(keyFromSuperClass("processingInput"),
                 keyFromSuperClass("processingOutput"));
     }

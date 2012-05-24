@@ -12,10 +12,11 @@
 
 package org.carrot2.util.attribute;
 
-import org.carrot2.util.tests.CarrotTestCase;
 import org.junit.Test;
 
-public class BindableDescriptorUtilsTest extends CarrotTestCase
+import com.carrotsearch.randomizedtesting.RandomizedTest;
+
+public class BindableDescriptorUtilsTest extends RandomizedTest
 {
     @Test
     public void testGetDescriptorClassName()

@@ -23,10 +23,11 @@ import org.carrot2.util.attribute.test.constraint.TestConstraint1;
 import org.carrot2.util.attribute.test.constraint.TestConstraint1Constraint;
 import org.carrot2.util.attribute.test.constraint.TestConstraint2;
 import org.carrot2.util.attribute.test.constraint.TestConstraint2Constraint;
-import org.carrot2.util.tests.CarrotTestCase;
 import org.junit.Test;
 
-public class ConstraintCreatorTest extends CarrotTestCase
+import com.carrotsearch.randomizedtesting.RandomizedTest;
+
+public class ConstraintCreatorTest extends RandomizedTest
 {
     static class TestSample
     {

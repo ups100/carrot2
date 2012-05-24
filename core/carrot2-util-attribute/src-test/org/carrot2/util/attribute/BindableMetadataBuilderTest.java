@@ -24,10 +24,11 @@ import org.carrot2.util.attribute.test.metadata.AttributeLevels;
 import org.carrot2.util.attribute.test.metadata.AttributeTitles;
 import org.carrot2.util.attribute.test.metadata.NoJavadoc;
 import org.carrot2.util.attribute.test.metadata.TestBindable;
-import org.carrot2.util.tests.CarrotTestCase;
 import org.junit.Test;
 
-public class BindableMetadataBuilderTest extends CarrotTestCase
+import com.carrotsearch.randomizedtesting.RandomizedTest;
+
+public class BindableMetadataBuilderTest extends RandomizedTest
 {
     @Test
     public void testEmptyJavadoc()

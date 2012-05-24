@@ -16,8 +16,7 @@ import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.carrot2.util.ExceptionUtils;
-
+import com.google.common.base.Throwables;
 import com.google.common.collect.Lists;
 
 /**
@@ -72,7 +71,7 @@ public class ConstraintFactory
         }
         catch (Exception e)
         {
-            throw ExceptionUtils.wrapAsRuntimeException(e);
+            throw Throwables.propagate(e);
         }
         instance.populate(ann);
 

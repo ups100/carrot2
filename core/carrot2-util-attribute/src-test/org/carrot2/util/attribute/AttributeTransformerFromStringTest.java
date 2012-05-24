@@ -18,15 +18,16 @@ import java.net.URL;
 
 import org.carrot2.util.attribute.AttributeBinder.AttributeTransformerFromString;
 import org.carrot2.util.attribute.constraint.ImplementingClasses;
-import org.carrot2.util.resource.*;
-import org.carrot2.util.tests.CarrotTestCase;
+import org.fest.assertions.Assertions;
 import org.junit.Test;
+
+import com.carrotsearch.randomizedtesting.RandomizedTest;
 
 /**
  * Test cases for {@link AttributeTransformerFromString}.
  */
 @SuppressWarnings("unused")
-public class AttributeTransformerFromStringTest extends CarrotTestCase
+public class AttributeTransformerFromStringTest extends RandomizedTest
 {
     private Integer integerField;
 
@@ -59,18 +60,12 @@ public class AttributeTransformerFromStringTest extends CarrotTestCase
     }, strict = true)
     private Object stringNotAssignable;
 
-    @ImplementingClasses(classes =
-    {
-        FileResource.class, URLResourceWithParams.class, URLResource.class
-    })
-    private IResource resource;
-
     @Test
     public void testNonStringValue()
     {
         final Integer integer = Integer.valueOf(10);
 
-        assertThat(
+        Assertions.assertThat(
             AttributeTransformerFromString.INSTANCE.transform(integer, null, null))
             .isSameAs(integer);
     }
@@ -131,28 +126,12 @@ public class AttributeTransformerFromStringTest extends CarrotTestCase
         check("stringNotAssignable", string, Object.class);
     }
 
-    @Test
-    public void testFileResourceFile() throws Exception
-    {
-        final File file = File.createTempFile(AttributeTransformerFromStringTest.class
-            .getSimpleName(), "");
-        file.deleteOnExit();
-        check("resource", file.getAbsolutePath(), new FileResource(file));
-    }
-
-    @Test
-    public void testFileResourceUrlWithParameters() throws Exception
-    {
-        String url = "http://search.carrot2.org?q=test";
-        check("resource", url, new URLResourceWithParams(new URL(url)));
-    }
-
     private void check(String fieldName, String stringValue,
         Object expectedTransformedValue) throws Exception
     {
         final Field field = AttributeTransformerFromStringTest.class
             .getDeclaredField(fieldName);
-        assertThat(
+        Assertions.assertThat(
             AttributeTransformerFromString.INSTANCE.transform(stringValue, null, field)).isEqualTo(expectedTransformedValue);
     }
 }

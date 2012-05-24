@@ -18,16 +18,17 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.Map;
 
-import org.carrot2.util.tests.CarrotTestCase;
+import org.fest.assertions.Assertions;
 import org.junit.Test;
 
+import com.carrotsearch.randomizedtesting.RandomizedTest;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 
 /**
  * Test cases for {@link AttributeBinderInjector}.
  */
-public class AttributeBinderInjectorTest extends CarrotTestCase
+public class AttributeBinderInjectorTest extends RandomizedTest
 {
     static class A
     {
@@ -80,8 +81,8 @@ public class AttributeBinderInjectorTest extends CarrotTestCase
 
         AttributeBinderInjector.injectByType(TestInjectionMarker.class,
             ImmutableMap.<Class<?>, Object> of(), object);
-        assertThat(object.a).isSameAs(a);
-        assertThat(object.string).isNull();
+        Assertions.assertThat(object.a).isSameAs(a);
+        Assertions.assertThat(object.string).isNull();
     }
 
     @Test
@@ -93,8 +94,8 @@ public class AttributeBinderInjectorTest extends CarrotTestCase
 
         AttributeBinderInjector.injectByType(TestInjectionMarker.class,
             ImmutableMap.<Class<?>, Object> of(Integer.class, 1), object);
-        assertThat(object.a).isSameAs(a);
-        assertThat(object.string).isNull();
+        Assertions.assertThat(object.a).isSameAs(a);
+        Assertions.assertThat(object.string).isNull();
     }
 
     @Test
@@ -105,8 +106,8 @@ public class AttributeBinderInjectorTest extends CarrotTestCase
 
         AttributeBinderInjector.injectByType(TestInjectionMarker.class,
             ImmutableMap.<Class<?>, Object> of(A.class, a, String.class, "x"), object);
-        assertThat(object.a).isSameAs(a);
-        assertThat(object.string).isEqualTo("x");
+        Assertions.assertThat(object.a).isSameAs(a);
+        Assertions.assertThat(object.string).isEqualTo("x");
     }
 
     @Test
@@ -121,8 +122,8 @@ public class AttributeBinderInjectorTest extends CarrotTestCase
         values.put(String.class, null);
         values.put(A.class, null);
         AttributeBinderInjector.injectByType(TestInjectionMarker.class, values, object);
-        assertThat(object.a).isNull();
-        assertThat(object.string).isNull();
+        Assertions.assertThat(object.a).isNull();
+        Assertions.assertThat(object.string).isNull();
     }
 
     @Test
@@ -134,9 +135,9 @@ public class AttributeBinderInjectorTest extends CarrotTestCase
 
         AttributeBinderInjector.injectByType(TestInjectionMarker.class,
             ImmutableMap.<Class<?>, Object> of(A.class, a, String.class, "x"), object);
-        assertThat(object.a).isSameAs(a);
-        assertThat(object.values.a).isSameAs(a);
-        assertThat(object.values.string).isEqualTo("x");
+        Assertions.assertThat(object.a).isSameAs(a);
+        Assertions.assertThat(object.values.a).isSameAs(a);
+        Assertions.assertThat(object.values.string).isEqualTo("x");
     }
 
     @Test
@@ -149,7 +150,7 @@ public class AttributeBinderInjectorTest extends CarrotTestCase
 
         AttributeBinderInjector.injectByType(TestInjectionMarker.class,
             ImmutableMap.<Class<?>, Object> of(A.class, newA, String.class, "x"), object);
-        assertThat(InjectionReceiverWithStaticFields.a).isSameAs(oldA);
-        assertThat(object.string).isEqualTo("x");
+        Assertions.assertThat(InjectionReceiverWithStaticFields.a).isSameAs(oldA);
+        Assertions.assertThat(object.string).isEqualTo("x");
     }
 }

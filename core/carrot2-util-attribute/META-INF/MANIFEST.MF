@@ -5,16 +5,14 @@ Bundle-SymbolicName: org.carrot2.util.attribute
 Bundle-Version: 0.0.0.QUALIFIER
 Export-Package: org.carrot2.util.attribute,
  org.carrot2.util.attribute.constraint,
- org.carrot2.util.attribute.metadata,
- org.carrot2.util.attribute.test.binder,
- org.carrot2.util.attribute.test.filtering,
- org.carrot2.util.attribute.test.metadata,
- org.carrot2.util.simplexml
-Require-Bundle: org.carrot2.util.common;visibility:=reexport,
- org.simpleframework.xml;visibility:=reexport,
+ org.carrot2.util.attribute.metadata
+Require-Bundle: org.simpleframework.xml;visibility:=reexport,
+ com.google.guava;bundle-version="10.0.1";visibility:=reexport,
  com.thoughtworks.qdox;resolution:=optional,
- org.apache.ant;bundle-version="1.7.0";resolution:=optional,
- org.apache.velocity;bundle-version="1.6.4";resolution:=optional;visibility:=reexport
+ org.apache.velocity;bundle-version="1.6.4";resolution:=optional;visibility:=reexport,
+ com.carrotsearch.randomizedtesting;bundle-version="1.5.0";resolution:=optional,
+ org.junit4.ext;bundle-version="4.10.0";resolution:=optional,
+ org.fest;bundle-version="0.0.0";resolution:=optional
 Bundle-Vendor: Carrot2.org
 Eclipse-BuddyPolicy: registered
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

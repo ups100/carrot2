@@ -15,15 +15,15 @@ package org.carrot2.util.attribute;
 import java.util.Map;
 
 import org.carrot2.util.attribute.constraint.ImplementingClasses;
-import org.carrot2.util.tests.CarrotTestCase;
 import org.junit.Test;
 
+import com.carrotsearch.randomizedtesting.RandomizedTest;
 import com.google.common.collect.Maps;
 
 /**
  * Test cases for constraints.
  */
-public class ConstraintTest extends CarrotTestCase
+public class ConstraintTest extends RandomizedTest
 {
     @Bindable
     @SuppressWarnings("unused")

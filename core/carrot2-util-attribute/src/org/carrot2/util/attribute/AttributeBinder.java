@@ -24,16 +24,13 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang.ClassUtils;
-import org.carrot2.util.ExceptionUtils;
-import org.carrot2.util.Pair;
-import org.carrot2.util.ReflectionUtils;
 import org.carrot2.util.attribute.constraint.ConstraintValidator;
 import org.carrot2.util.attribute.constraint.ConstraintViolationException;
 import org.carrot2.util.attribute.constraint.ImplementingClasses;
-import org.carrot2.util.resource.IResource;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
+import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -456,7 +453,8 @@ public class AttributeBinder
                 // Try loading the class indicated by this string.
                 try
                 {
-                    return ReflectionUtils.classForName(stringValue);
+                    return Class.forName(stringValue, true, 
+                        Thread.currentThread().getContextClassLoader());
                 }
                 catch (ClassNotFoundException e)
                 {
@@ -492,7 +490,7 @@ public class AttributeBinder
                 }
                 else
                 {
-                    throw ExceptionUtils.wrapAsRuntimeException(target);
+                    throw Throwables.propagate(target);
                 }
             }
         }
@@ -736,7 +734,7 @@ public class AttributeBinder
         static Set<Class<?>> ALLOWED_PLAIN_TYPES = ImmutableSet.<Class<?>> of(File.class);
 
         static Set<Class<?>> ALLOWED_ASSIGNABLE_TYPES = ImmutableSet.<Class<?>> of(
-            Enum.class, IResource.class, Collection.class, Map.class);
+            Enum.class, IAssignable.class, Collection.class, Map.class);
 
         @Override
         public boolean apply(Field field)

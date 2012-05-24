@@ -17,10 +17,13 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.carrot2.util.attribute.constraint.*;
-import org.carrot2.util.tests.CarrotTestCase;
 import org.fest.assertions.MapAssert;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.carrotsearch.randomizedtesting.RandomizedTest;
+
+import org.fest.assertions.Assertions;
 
 /**
  * Test cases for {@link AttributeBinder}.
@@ -29,7 +32,7 @@ import org.junit.Test;
 {
     "unchecked", "unused"
 })
-public class AttributeBinderTest extends CarrotTestCase
+public class AttributeBinderTest extends RandomizedTest
 {
     private Map<String, Object> attributes;
 
@@ -898,7 +901,7 @@ public class AttributeBinderTest extends CarrotTestCase
             10
         });
 
-        assertThat(remaining).hasSize(2).includes(MapAssert.entry("remaining", 20),
+        Assertions.assertThat(remaining).hasSize(2).includes(MapAssert.entry("remaining", 20),
             MapAssert.entry(getKey(SingleClass.class, "processingInput"), 6));
     }
 
@@ -948,7 +951,7 @@ public class AttributeBinderTest extends CarrotTestCase
         instance.int1 = 19;
         instance.child.int1 = 8;
         AttributeBinder.get(instance, attributes, Output.class);
-        assertThat(attributes).hasSize(1).includes(MapAssert.entry("int", 19));
+        Assertions.assertThat(attributes).hasSize(1).includes(MapAssert.entry("int", 19));
     }
 
     @Test
@@ -958,7 +961,7 @@ public class AttributeBinderTest extends CarrotTestCase
         NonprimitiveOutputAttribute instance = new NonprimitiveOutputAttribute();
         AttributeBinder.get(instance, attributes, Output.class);
         int [] array = (int []) attributes.get("array");
-        assertThat(array).isEqualTo(new int []
+        Assertions.assertThat(array).isEqualTo(new int []
         {
             10
         });
@@ -978,7 +981,7 @@ public class AttributeBinderTest extends CarrotTestCase
         }
         catch (AttributeBindingException e)
         {
-            assertThat(e.getCause().getMessage()).contains("is not public");
+            Assertions.assertThat(e.getCause().getMessage()).contains("is not public");
         }
     }
 
@@ -994,7 +997,7 @@ public class AttributeBinderTest extends CarrotTestCase
         }
         catch (AttributeBindingException e)
         {
-            assertThat(e.getCause().getMessage()).contains("is not static");
+            Assertions.assertThat(e.getCause().getMessage()).contains("is not static");
         }
     }
 
@@ -1010,7 +1013,7 @@ public class AttributeBinderTest extends CarrotTestCase
         }
         catch (AttributeBindingException e)
         {
-            assertThat(e.getCause().getMessage()).contains("must have a public parameterless constructor.");
+            Assertions.assertThat(e.getCause().getMessage()).contains("must have a public parameterless constructor.");
         }
     }
 
@@ -1026,7 +1029,7 @@ public class AttributeBinderTest extends CarrotTestCase
         }
         catch (AttributeBindingException e)
         {
-            assertThat(e.getCause().getCause().getMessage()).isEqualTo("(original exception)");
+            Assertions.assertThat(e.getCause().getCause().getMessage()).isEqualTo("(original exception)");
         }
     }
 

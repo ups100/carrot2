@@ -17,7 +17,6 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 import org.apache.commons.lang.ClassUtils;
-import org.carrot2.util.ListUtils;
 import org.carrot2.util.attribute.constraint.*;
 import org.carrot2.util.attribute.metadata.AttributeMetadata;
 import org.simpleframework.xml.*;
@@ -259,15 +258,18 @@ public class AttributeDescriptor
         // purpose is to expose the ValueHintEnum annotation in the API, we filter it out
         // here and put the values provided by ValueHintEnum in the allowed values list in
         // the same way as for proper enums.
-        constraintInstances = ListUtils.asArrayList(Collections2.filter(ConstraintFactory
-            .createConstraints(attributeField.getAnnotations()),
-            new Predicate<Constraint>()
-            {
-                public boolean apply(Constraint constraint)
-                {
-                    return !(constraint instanceof ValueHintEnumConstraint);
-                }
-            }));
+        constraintInstances = 
+            Lists.newArrayList(
+                Collections2.filter(
+                    ConstraintFactory.createConstraints(attributeField.getAnnotations()),
+                    new Predicate<Constraint>()
+                    {
+                        public boolean apply(Constraint constraint)
+                        {
+                            return !(constraint instanceof ValueHintEnumConstraint);
+                        }
+                    }));
+
         // Remove empty element from serialized output
         if (constraintInstances.isEmpty())
         {

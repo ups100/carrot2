@@ -17,12 +17,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Map;
 
-import org.carrot2.util.ExceptionUtils;
 import org.carrot2.util.attribute.AttributeBinder.BindingTracker;
 import org.carrot2.util.attribute.AttributeBinder.IAttributeBinderAction;
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
+import com.google.common.base.Throwables;
 
 /**
  * A very simple field value injector based on the {@link AttributeBinder}. The injector
@@ -65,7 +65,7 @@ public class AttributeBinderInjector
         }
         catch (Exception e)
         {
-            throw ExceptionUtils.wrapAsRuntimeException(e);
+            throw Throwables.propagate(e);
         }
     }
 

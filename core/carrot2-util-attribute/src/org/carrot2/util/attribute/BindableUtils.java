@@ -19,8 +19,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 
-import org.carrot2.util.Pair;
-
 import com.google.common.collect.Maps;
 
 /**

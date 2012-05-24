@@ -15,10 +15,11 @@ package org.carrot2.util.attribute;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-import org.carrot2.util.tests.CarrotTestCase;
 import org.junit.Test;
 
-public class BindableDescriptorGeneratorTest extends CarrotTestCase
+import com.carrotsearch.randomizedtesting.RandomizedTest;
+
+public class BindableDescriptorGeneratorTest extends RandomizedTest
 {
     @Bindable
     public static class D

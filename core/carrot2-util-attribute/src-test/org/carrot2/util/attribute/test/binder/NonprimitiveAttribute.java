@@ -16,8 +16,6 @@ import java.io.File;
 
 import org.carrot2.util.attribute.*;
 import org.carrot2.util.attribute.constraint.ImplementingClasses;
-import org.carrot2.util.resource.FileResource;
-import org.carrot2.util.resource.IResource;
 
 @Bindable
 @SuppressWarnings("unused")
