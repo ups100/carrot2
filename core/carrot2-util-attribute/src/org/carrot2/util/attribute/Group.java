@@ -23,8 +23,7 @@ import java.lang.annotation.*;
 public @interface Group
 {
     /**
-     * Name of the target user interface group. Constants from
-     * {@link DefaultGroups} are encouraged.
+     * Name of the target user interface group.
      * 
      * We don't care about i18n. This could also be the key to a localized
      * resource at some point.
