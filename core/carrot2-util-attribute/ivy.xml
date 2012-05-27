@@ -4,30 +4,37 @@
   <info module="attributes" organisation="org.carrot2" />
 
   <configurations>
-    <conf name="test" />
+    <conf name="build" />
+    <conf name="test" extends="build" />
     <conf name="tools" />
   </configurations>
+  
+  <publications defaultconf="build">
+    <artifact name="foo" type="jar"  />
+  </publications>
 
   <dependencies>
-    <dependency name="simple-xml" org="org.simpleframework" rev="2.6.4">
+    <dependency name="simple-xml" org="org.simpleframework" rev="2.6.4" conf="build->default">
       <exclude module="xpp3" />
       <exclude module="stax-api" />
       <exclude module="stax" />
     </dependency>
 
-    <dependency name="guava" org="com.google.guava" rev="12.0">
+    <dependency name="guava" org="com.google.guava" rev="12.0" conf="build->default">
       <exclude module="jsr305" />
     </dependency>
 
-    <dependency name="qdox" org="com.thoughtworks.qdox" rev="1.12">
+    <dependency name="qdox" org="com.thoughtworks.qdox" rev="1.12" conf="build->default">
       <exclude module="junit" />
       <exclude module="ant" />
     </dependency>
 
-    <dependency name="commons-lang" org="commons-lang" rev="2.6" />
+    <dependency name="commons-lang" org="commons-lang" rev="2.6" conf="build->default" />
 
-    <dependency name="velocity" org="org.apache.velocity" rev="1.7" transitive="false" />
-    <dependency name="velocity-tools" org="org.apache.velocity" rev="2.0" transitive="false" />
+    <dependency name="velocity" org="org.apache.velocity" rev="1.7" transitive="false" conf="build->default" />
+    <dependency name="velocity-tools" org="org.apache.velocity" rev="2.0" transitive="false" conf="build->default" />
+
+    <dependency name="junit" org="junit" rev="4.10" conf="test->default" />
 
     <!-- Tools. -->
 
