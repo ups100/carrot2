@@ -1,0 +1,12 @@
+<ivy-module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  version="2.0" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+  <info module="attributes.test" organisation="org.carrot2" />
+
+  <dependencies>
+    <dependency name="attributes.binder" org="org.carrot2" rev="latest.integration" />
+    <dependency name="junit" org="junit" rev="4.10" />
+    <dependency name="fest-assert" org="org.easytesting" rev="1.4" />
+    <dependency name="randomizedtesting-runner" org="com.carrotsearch.randomizedtesting" rev="1.5.0" />
+  </dependencies>
+</ivy-module>

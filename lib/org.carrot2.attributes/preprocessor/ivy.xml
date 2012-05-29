@@ -1,0 +1,24 @@
+<ivy-module xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  version="2.0" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+  <info module="attributes.preprocessor" organisation="org.carrot2" />
+
+  <configurations>
+    <conf name="build" />
+    <conf name="test" extends="build" />
+  </configurations>
+
+  <dependencies>
+    <dependency name="attributes.binder" org="org.carrot2" rev="latest.integration" />
+
+    <dependency name="qdox" org="com.thoughtworks.qdox" rev="1.12" conf="build->default">
+      <exclude module="junit" />
+      <exclude module="ant" />
+    </dependency>
+
+    <dependency name="commons-collections" org="commons-collections" rev="3.2.1" conf="build->default" />
+
+    <dependency name="velocity" org="org.apache.velocity" rev="1.7" transitive="false" conf="build->default" />
+    <dependency name="velocity-tools" org="org.apache.velocity" rev="2.0" transitive="false" conf="build->default" />
+  </dependencies>
+</ivy-module>
