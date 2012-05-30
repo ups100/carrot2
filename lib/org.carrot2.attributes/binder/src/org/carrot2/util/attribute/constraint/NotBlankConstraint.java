@@ -12,7 +12,6 @@
 
 package org.carrot2.util.attribute.constraint;
 
-import org.apache.commons.lang.StringUtils;
 import org.simpleframework.xml.Root;
 
 /**
@@ -34,7 +33,7 @@ class NotBlankConstraint extends Constraint
 
         if (value instanceof CharSequence)
         {
-            return StringUtils.isNotBlank(value.toString());
+            return value.toString().trim().isEmpty();
         }
         else
         {

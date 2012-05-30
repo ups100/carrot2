@@ -12,8 +12,7 @@
 
 package org.carrot2.util.attribute;
 
-import static org.apache.commons.lang.ClassUtils.*;
-import static org.apache.commons.lang.StringUtils.*;
+import com.google.common.reflect.Reflection;
 
 /**
  * Utilities related to generated bindable descriptors.
@@ -31,14 +30,22 @@ public final class BindableDescriptorUtils
      */
     public static String getDescriptorClassName(String className)
     {
-        String packageName = getPackageName(className);
+        String packageName = Reflection.getPackageName(className);
 
-        // We apply getShortClassName() twice; the first call returns .-separated class nesting,
-        // the second call removes outer classes (considered packages).
-        String shortClassName = getShortClassName(getShortClassName(className));
+        // Nested classes will get a separate descriptor.
+        String shortClassName;
+        if (packageName.isEmpty())
+        {
+            shortClassName = className;
+        }
+        else
+        {
+            shortClassName = className.substring(packageName.length() + 1);
+        }
+        shortClassName = shortClassName.replace('$', '_');
 
         return packageName
-             + (isEmpty(packageName) ? "" : ".")
+             + (packageName.isEmpty() ? "" : ".")
              + shortClassName
              + "Descriptor";
     }

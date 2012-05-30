@@ -1,0 +1,26 @@
+
+<ivysettings>
+    <property name="dist.dir" value="${basedir}/repo" />
+
+    <settings defaultResolver="default" />
+
+    <include url="${ivy.default.settings.dir}/ivysettings-public.xml"/>
+    <include url="${ivy.default.settings.dir}/ivysettings-shared.xml"/>
+    <include url="${ivy.default.settings.dir}/ivysettings-local.xml"/>
+    <include url="${ivy.default.settings.dir}/ivysettings-main-chain.xml"/>
+
+    <resolvers>
+      <ibiblio name="sonatype-releases" root="http://oss.sonatype.org/content/repositories/releases" m2compatible="true" />
+
+      <filesystem name="dist">
+        <ivy pattern="${dist.dir}/[module]/ivy-[revision].xml" />
+        <artifact pattern="${dist.dir}/[module]/[artifact]-[revision].[ext]" />
+      </filesystem>
+
+      <chain name="default" returnFirst="true" checkmodified="true">
+        <resolver ref="local"/>
+        <resolver ref="main"/>
+        <resolver ref="sonatype-releases" />
+      </chain>
+    </resolvers>
+</ivysettings>

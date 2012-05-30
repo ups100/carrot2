@@ -30,8 +30,7 @@ public final class BindableUtils
      * Caches the sets of declared fields determined for class hierarchies by the
      * {@link #getFieldsFromBindableHierarchy(Class)} method.
      */
-    private static final HashMap<Pair<Class<? extends Annotation>, Class<?>>, Collection<Field>> FIELD_CACHE = Maps
-        .newHashMap();
+    private static final HashMap<Pair<Class<? extends Annotation>, Class<?>>, Collection<Field>> FIELD_CACHE = Maps.newHashMap();
 
     /**
      * Returns all fields from all {@link Bindable} types in the hierarchy of the provided

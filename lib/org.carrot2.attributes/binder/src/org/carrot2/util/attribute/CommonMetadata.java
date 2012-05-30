@@ -12,8 +12,9 @@
 
 package org.carrot2.util.attribute;
 
-import org.apache.commons.lang.StringUtils;
 import org.simpleframework.xml.Element;
+
+import com.google.common.base.Strings;
 
 /**
  * Common metadata items for {@link BindableMetadata} and {@link AttributeMetadata}.
@@ -62,7 +63,7 @@ public class CommonMetadata
      */
     public String getLabelOrTitle()
     {
-        return StringUtils.isNotBlank(label) ? label : title;
+        return Strings.isNullOrEmpty(label) ? title : label;
     }
     
     /**

@@ -13,9 +13,8 @@
 package org.carrot2.util.attribute.constraint;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.*;
 
-import org.apache.commons.lang.reflect.MethodUtils;
 import org.simpleframework.xml.Root;
 
 @Root(name = "passes-value-of")
@@ -38,17 +37,23 @@ public class PassesValueOfConstraint extends Constraint
     {
         if (value != null && value instanceof String)
         {
+            final String valueOfClassSimple = value.getClass().getSimpleName();
+            final String valueOfName = "valueOf(" + valueOfClassSimple + ")";
             try
             {
-                MethodUtils.invokeExactStaticMethod(clazz, "valueOf", value);
+                Method m = clazz.getMethod("valueOf", value.getClass());
+                if (Modifier.isStatic(m.getModifiers())) {
+                    throw new NoSuchMethodError(valueOfName + " not static.");
+                }
+                m.invoke(null, value);
             }
             catch (NoSuchMethodException e)
             {
-                throw new RuntimeException("No valueOf method in class: " + clazz);
+                throw new RuntimeException("No " + valueOfName + " method in class: " + clazz);
             }
             catch (IllegalAccessException e)
             {
-                throw new RuntimeException("Illegal access to valueOf in class: " + clazz);
+                throw new RuntimeException("Illegal access to " + valueOfName + " in class: " + clazz);
             }
             catch (InvocationTargetException e)
             {

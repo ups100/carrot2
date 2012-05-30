@@ -1,6 +1,6 @@
 package org.carrot2.util.attribute;
 
-import org.apache.commons.lang.ObjectUtils;
+import com.google.common.base.Objects;
 
 /**
  * An immutable pair of objects.
@@ -25,14 +25,13 @@ final class Pair<I, J>
         }
 
         final Pair<?, ?> other = (Pair<?, ?>) obj;
-
-        return ObjectUtils.equals(other.objectA, objectA)
-            && ObjectUtils.equals(other.objectB, objectB);
+        return Objects.equal(other.objectA, objectA) &&
+               Objects.equal(other.objectB, objectB);
     }
 
     @Override
     public int hashCode()
     {
-        return ObjectUtils.hashCode(objectA) ^ ObjectUtils.hashCode(objectB);
+        return Objects.hashCode(objectA, objectB);
     }
 }

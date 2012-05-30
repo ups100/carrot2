@@ -12,8 +12,7 @@
 
 package org.carrot2.util.attribute;
 
-import org.apache.commons.lang.ObjectUtils;
-import org.apache.commons.lang.StringUtils;
+import com.google.common.base.Objects;
 
 /**
  * Description of an {@link Attribute} of a {@link Bindable} type, including
@@ -89,13 +88,13 @@ public final class AttributeInfo
         }
         else
         {
-            this.javaDoc = StringUtils.defaultString(javaDoc, inheritFrom.javaDoc);
-            this.label = StringUtils.defaultString(label, inheritFrom.label);
-            this.title = StringUtils.defaultString(title, inheritFrom.title);
-            this.description = StringUtils.defaultString(description, inheritFrom.description);
-    
-            this.group = StringUtils.defaultString(group, inheritFrom.group);
-            this.level = (AttributeLevel) ObjectUtils.defaultIfNull(level, inheritFrom.level);
+            this.javaDoc = Objects.firstNonNull(javaDoc, inheritFrom.javaDoc);
+            this.label = Objects.firstNonNull(label, inheritFrom.label);
+            this.title = Objects.firstNonNull(title, inheritFrom.title);
+            this.description = Objects.firstNonNull(description, inheritFrom.description);
+
+            this.group = Objects.firstNonNull(group, inheritFrom.group);
+            this.level = Objects.firstNonNull(level, inheritFrom.level);
         }
     }
 }

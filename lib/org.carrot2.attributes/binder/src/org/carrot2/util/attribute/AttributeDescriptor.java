@@ -16,15 +16,14 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.*;
 
-import org.apache.commons.lang.ClassUtils;
 import org.carrot2.util.attribute.constraint.*;
+import org.carrot2.util.attribute.constraint.Constraint;
 import org.simpleframework.xml.*;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.collect.BiMap;
-import com.google.common.collect.Collections2;
-import com.google.common.collect.Lists;
+import com.google.common.collect.*;
+import com.google.common.primitives.Primitives;
 
 /**
  * Provides a full description of an individual attribute, including its {@link #key},
@@ -138,7 +137,7 @@ public class AttributeDescriptor
         this.attributeDeclaringClassString = field.getDeclaringClass().getName();
 
         this.key = BindableUtils.getKey(field);
-        this.type = ClassUtils.primitiveToWrapper(field.getType());
+        this.type = Primitives.wrap(field.getType());
         this.defaultValue = defaultValue;
         this.constraints = constraints;
         this.metadata = metadata;

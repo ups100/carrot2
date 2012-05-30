@@ -14,26 +14,14 @@ package org.carrot2.util.attribute;
 
 import java.io.File;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.lang.reflect.*;
+import java.util.*;
 
-import org.apache.commons.lang.ClassUtils;
-import org.carrot2.util.attribute.constraint.ConstraintValidator;
-import org.carrot2.util.attribute.constraint.ConstraintViolationException;
-import org.carrot2.util.attribute.constraint.ImplementingClasses;
+import org.carrot2.util.attribute.constraint.*;
 
-import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-import com.google.common.base.Throwables;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
+import com.google.common.base.*;
+import com.google.common.collect.*;
+import com.google.common.primitives.Primitives;
 
 /**
  * Provides methods for binding (setting and getting) values of attributes defined by the
@@ -400,7 +388,7 @@ public class AttributeBinder
             }
 
             final String stringValue = (String) value;
-            final Class<?> fieldType = ClassUtils.primitiveToWrapper(field.getType());
+            final Class<?> fieldType = Primitives.wrap(field.getType());
             if (String.class.equals(fieldType))
             {
                 // Return Strings unchanged
@@ -744,7 +732,7 @@ public class AttributeBinder
                 return true;
             }
 
-            final Class<?> attributeType = ClassUtils.primitiveToWrapper(field.getType());
+            final Class<?> attributeType = Primitives.wrap(field.getType());
             if (Modifier.isFinal(attributeType.getModifiers()))
             {
                 return true;

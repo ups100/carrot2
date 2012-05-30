@@ -19,6 +19,5 @@
       <exclude module="jsr305" />
     </dependency>
 
-    <dependency name="commons-lang" org="commons-lang" rev="2.6" conf="build->default" />
   </dependencies>
 </ivy-module>
