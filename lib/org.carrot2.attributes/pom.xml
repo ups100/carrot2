@@ -5,11 +5,11 @@
 
   <!-- Project info. -->
   <groupId>org.carrot2.attributes</groupId>
-  <artifactId>aggregator</artifactId>
+  <artifactId>parent</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Module aggregator</name>
+  <name>Attributes parent POM</name>
   <url>http://www.carrot2.org</url>
 
   <licenses>
@@ -25,9 +25,21 @@
     <url>http://www.carrot2.org/</url>
   </organization>
 
+  <prerequisites>
+    <maven>3.0.2</maven>
+  </prerequisites>
+
+  <properties>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+    <gpg.passphrase></gpg.passphrase>
+  </properties>
+
   <modules>
-    <module>attribute-binder</module>
-    <module>attribute-processor</module>
-    <module>integration-tests</module>
+    <module>attributes-binder</module>
+    <module>attributes-processor</module>
+    <module>attributes-tests</module>
   </modules>
 </project>
