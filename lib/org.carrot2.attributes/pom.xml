@@ -35,6 +35,8 @@
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
     <gpg.passphrase></gpg.passphrase>
+    
+    <ver.randomizedtesting>1.5.0</ver.randomizedtesting>
   </properties>
 
   <modules>
