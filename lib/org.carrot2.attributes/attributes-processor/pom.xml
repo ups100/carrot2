@@ -131,24 +131,62 @@
         </configuration>
       </plugin>
 
-      <!--
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>1.6</version>
-        <configuration>
-          <minimizeJar>false</minimizeJar>
-        </configuration>
+        <version>1.7</version>
         <executions>
           <execution>
             <phase>package</phase>
             <goals>
               <goal>shade</goal>
             </goals>
+            <configuration>
+              <minimizeJar>false</minimizeJar>
+              <artifactSet>
+                <excludes>
+                  <exclude>org.simpleframework:*</exclude>
+                </excludes>
+              </artifactSet>
+              <filters>
+                <filter>
+                  <artifact>org.apache.velocity:velocity</artifact>
+                  <excludes>
+                    <exclude>org/apache/velocity/runtime/defaults/*.properties</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+              <relocations>
+                <relocation>
+                  <pattern>com.google</pattern>
+                  <shadedPattern>org.carrot2.util.attribute.shaded.guava</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>com.thoughtworks</pattern>
+                  <shadedPattern>org.carrot2.util.attribute.shaded.qdox</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>org.apache</pattern>
+                  <shadedPattern>org.carrot2.util.attribute.shaded.apache</shadedPattern>
+                </relocation>
+              </relocations>
+            </configuration>
           </execution>
         </executions>
       </plugin>
-      -->
     </plugins>
   </build>
+
+  <pluginRepositories>
+    <pluginRepository>
+        <id>apache-releases</id>
+        <url>https://repository.apache.org/content/repositories/releases</url>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+    </pluginRepository>
+  </pluginRepositories>
 </project>
