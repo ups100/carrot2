@@ -13,7 +13,7 @@ Export-Package: org.carrot2.util,
  org.carrot2.util.simplexml,
  org.carrot2.util.tests,
  org.carrot2.util.xslt
-Require-Bundle: org.carrot2.util.attribute;bundle-version="0.0.0";visibility:=reexport,
+Require-Bundle: org.carrot2.attributes;bundle-version="0.0.0";visibility:=reexport,
  org.apache.commons;visibility:=reexport,
  org.apache.http;bundle-version="4.1.0";visibility:=reexport,
  com.google.guava;visibility:=reexport,
