@@ -1,4 +1,3 @@
-
 /*
  * Carrot2 project.
  *
@@ -72,7 +71,7 @@ public final class Cluster
      */
     @Attribute(required = false)
     Integer id;
-
+    
     /** Phrases describing this cluster. */
     @ElementList(required = false, name = "title", entry = "phrase")
     private ArrayList<String> phrases = new ArrayList<String>();
@@ -121,14 +120,14 @@ public final class Cluster
     @Root(name = "document")
     static class DocumentRefid
     {
-        @Attribute
-        Integer refid;
+        @Attribute(required = false)
+        String refid;
 
         DocumentRefid()
         {
         }
 
-        DocumentRefid(Integer refid)
+        DocumentRefid(String refid)
         {
             this.refid = refid;
         }
@@ -417,10 +416,10 @@ public final class Cluster
         attributes.put(key, value);
         return this;
     }
-    
+
     /**
-     * Unconditionally remove an attribute from this cluster, if it exists. If there
-     * is no such attribute, nothing happens.
+     * Unconditionally remove an attribute from this cluster, if it exists. If there is no
+     * such attribute, nothing happens.
      */
     public <T> Cluster removeAttribute(String key)
     {
@@ -501,9 +500,12 @@ public final class Cluster
      */
     public Cluster setOtherTopics(boolean isOtherTopics)
     {
-        if (isOtherTopics) {
+        if (isOtherTopics)
+        {
             setAttribute(OTHER_TOPICS, Boolean.TRUE).setScore(0.0);
-        } else {
+        }
+        else
+        {
             removeAttribute(OTHER_TOPICS);
         }
         return this;
@@ -685,7 +687,8 @@ public final class Cluster
     /*
      * Recursive descent into subclusters.
      */
-    private static List<Cluster> flatten(Collection<Cluster> hierarchical, List<Cluster> flat)
+    private static List<Cluster> flatten(Collection<Cluster> hierarchical,
+        List<Cluster> flat)
     {
         for (Cluster c : hierarchical)
         {
@@ -807,7 +810,7 @@ public final class Cluster
         {
             public DocumentRefid apply(Document document)
             {
-                return new DocumentRefid(document.getId());
+                return new DocumentRefid(document.getRefId());
             }
         });
 
@@ -840,9 +843,16 @@ public final class Cluster
      */
     @JsonProperty("documents")
     @SuppressWarnings("unused")
-    private List<Integer> getDocumentIds()
+    private List<String> getDocumentIds()
     {
-        return Lists.transform(documents, Document.DocumentToId.INSTANCE);
+        return Lists.transform(documents, new Function<Document, String>()
+        {
+            @Override
+            public String apply(Document doc)
+            {
+                return doc.getRefId();
+            }
+        });
     }
 
     /**

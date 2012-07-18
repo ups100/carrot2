@@ -21,12 +21,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.output.NullOutputStream;
 import org.carrot2.core.attribute.AttributeNames;
 import org.carrot2.util.CloseableUtils;
 import org.carrot2.util.CollectionUtils;
+import org.carrot2.util.StringUtils;
 import org.carrot2.util.tests.CarrotTestCase;
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonNode;
@@ -36,6 +41,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.fest.assertions.Assertions;
 import org.junit.Test;
 
+import com.google.common.base.Charsets;
+import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -121,6 +128,69 @@ public class ProcessingResultTest extends CarrotTestCase
             ProcessingResult.deserialize(documentXml(language.name())).getDocuments()
                 .get(0).getLanguage()).isEqualTo(language);
 
+    }
+    
+    @Test
+    public void customDataInXmlDocumentReferences() throws Exception
+    {
+        final ProcessingResult processingResult = prepareSimpleResult();
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        processingResult.serialize(out, false, true, false, "title");
+        final String xml = out.toString(Charsets.UTF_8.name());
+        
+        for (Document doc : processingResult.getDocuments())
+        {
+            assertThat(xml).contains("<document refid=\"" + doc.getTitle() + "\"/>");
+        }
+    }
+    
+    @Test
+    public void customDataInJsonDocumentReferences() throws Exception
+    {
+        final ProcessingResult processingResult = prepareSimpleResult();
+        final StringWriter out = new StringWriter();
+        processingResult.serializeJson(out, null, false, false, true, false, "title");
+        final String json = out.toString();
+
+        for (Cluster cluster : processingResult.getClusters())
+        {
+            final List<String> titles = Lists.transform(cluster.getAllDocuments(),
+                new Function<Document, String>()
+                {
+                    @Override
+                    public String apply(Document doc)
+                    {
+                        return doc.getTitle();
+                    }
+                });
+            assertThat(json).contains(
+                "[\"" + StringUtils.join("\",\"", titles.toArray()) + "\"]");
+
+        }
+    }
+
+    private ProcessingResult prepareSimpleResult()
+    {
+        final Map<String, Object> attributes = Maps.newHashMap();
+        final List<String> titles = Lists.newArrayList("Title1", "Title2", "Title3");
+        
+        final List<Document> documents = Lists.newArrayList(Lists.transform(titles,
+            new Function<String, Document>()
+            {
+                @Override
+                public Document apply(String title)
+                {
+                    return new Document(title);
+                }
+            }));
+        final List<Cluster> clusters = Lists.newArrayList(new Cluster("Cluster1",
+            documents.get(0), documents.get(1)), new Cluster("Cluster2",
+                documents.get(1), documents.get(2)));
+        attributes.put(AttributeNames.DOCUMENTS, documents);
+        attributes.put(AttributeNames.CLUSTERS, clusters);
+        
+        final ProcessingResult processingResult = new ProcessingResult(attributes);
+        return processingResult;
     }
 
     private InputStream documentXml(String language) throws Exception

@@ -260,7 +260,15 @@ public final class ProcessingResult
         {
             for (Cluster.DocumentRefid documentRefid : cluster.documentIds)
             {
-                cluster.addDocuments(documents.get(documentRefid.refid));
+                try
+                {
+                    cluster.addDocuments(documents.get(Integer
+                        .parseInt(documentRefid.refid)));
+                }
+                catch (NumberFormatException e)
+                {
+                    // Ignored. We got a custom refid and we don't resolve those.
+                }
             }
         }
 
@@ -344,16 +352,42 @@ public final class ProcessingResult
     public void serialize(OutputStream stream, boolean saveDocuments,
         boolean saveClusters, boolean saveOtherAttributes) throws Exception
     {
+        serialize(stream, saveDocuments, saveClusters, saveOtherAttributes, null);
+    }
+    
+    /**
+     * Serializes this {@link ProcessingResult} to a byte stream. Documents, clusters and
+     * other attributes can be included or skipped in the output as requested.
+     * <p>
+     * This method is not thread-safe, external synchronization must be applied if needed.
+     * </p>
+     * 
+     * @param stream the stream to serialize this {@link ProcessingResult} to. The stream
+     *            will <strong>not</strong> be closed.
+     * @param saveDocuments if <code>false</code>, documents will not be serialized.
+     *            Notice that when deserializing XML containing clusters but not
+     *            documents, document references in {@link Cluster#getDocuments()} will
+     *            not be restored.
+     * @param saveClusters if <code>false</code>, clusters will not be serialized
+     * @param saveOtherAttributes if <code>false</code>, other attributes will not be
+     *            serialized
+     * @param refIdField the document field to use when referencing documents inside clusters.
+     *            If <code>null</code> is provided, the Carrot2-generated id will be output.
+     * @throws Exception in case of any problems with serialization
+     */
+    public void serialize(OutputStream stream, boolean saveDocuments,
+        boolean saveClusters, boolean saveOtherAttributes, String refIdField) throws Exception
+    {
         final Map<String, Object> backupAttributes = attributes;
 
         attributes = prepareAttributesForSerialization(saveDocuments, saveClusters,
-            saveOtherAttributes);
+            saveOtherAttributes, refIdField);
 
         new Persister().write(this, stream);
 
         attributes = backupAttributes;
     }
-    
+
     /**
      * Deserialize from an input stream of characters.
      */
@@ -464,13 +498,38 @@ public final class ProcessingResult
      * @param indent if <code>true</code>, the output JSON will be pretty-printed
      * @param saveDocuments if <code>false</code>, documents will not be serialized.
      * @param saveClusters if <code>false</code>, clusters will not be serialized
-     * @param saveOtherAttributes if <code>false</code>, other attributes will not be
-     *            serialized
      * @throws IOException in case of any problems with serialization
      */
     public void serializeJson(Writer writer, String callback, boolean indent,
         boolean saveDocuments, boolean saveClusters, boolean saveOtherAttributes)
         throws IOException
+    {
+        serializeJson(writer, callback, indent, saveDocuments, saveClusters,
+            saveOtherAttributes, null);
+    }
+
+    /**
+     * Serializes this processing result as JSON to the provided <code>writer</code>.
+     * Documents, clusters and other attributes can be included or skipped in the output
+     * as requested.
+     * 
+     * @param writer the writer to serialize this processing result to. The writer will
+     *            <strong>not</strong> be closed.
+     * @param callback JavaScript function name in which to wrap the JSON response or
+     *            <code>null</code>.
+     * @param indent if <code>true</code>, the output JSON will be pretty-printed
+     * @param saveDocuments if <code>false</code>, documents will not be serialized.
+     * @param saveClusters if <code>false</code>, clusters will not be serialized
+     * @param saveOtherAttributes if <code>false</code>, other attributes will not be
+     *            serialized
+     * @param refIdField the document field to use when referencing documents inside
+     *            clusters. If <code>null</code> is provided, the Carrot2-generated id
+     *            will be output.
+     * @throws IOException in case of any problems with serialization
+     */
+    public void serializeJson(Writer writer, String callback, boolean indent,
+        boolean saveDocuments, boolean saveClusters, boolean saveOtherAttributes,
+        String refIdField) throws IOException
     {
         final ObjectMapper mapper = new ObjectMapper();
         final JsonGenerator generator = new JsonFactory().createJsonGenerator(writer);
@@ -484,20 +543,20 @@ public final class ProcessingResult
             writer.write(callback + "(");
         }
         final Map<String, Object> attrs = prepareAttributesForSerialization(
-            saveDocuments, saveClusters, saveOtherAttributes);
+            saveDocuments, saveClusters, saveOtherAttributes, refIdField);
         mapper.writeValue(generator, attrs);
         if (StringUtils.isNotBlank(callback))
         {
             writer.write(");");
         }
     }
-
+    
     /**
      * Prepares a temporary attributes map for serialization purposes. Includes only the
      * requested elements in the map.
      */
     private Map<String, Object> prepareAttributesForSerialization(boolean saveDocuments,
-        boolean saveClusters, boolean saveOtherAttributes)
+        boolean saveClusters, boolean saveOtherAttributes, String refIdFieldName)
     {
         final Map<String, Object> tempAttributes = Maps.newHashMap();
 
@@ -523,6 +582,12 @@ public final class ProcessingResult
             tempAttributes.put(AttributeNames.CLUSTERS, getClusters());
         }
 
+        // Set the refid field name on documents
+        for (Document document: getDocuments())
+        {
+            document.setRefIdFieldName(refIdFieldName);
+        }
+        
         return tempAttributes;
     }
 }

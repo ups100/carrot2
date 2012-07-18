@@ -36,6 +36,7 @@ import org.simpleframework.xml.ElementMap;
 import org.simpleframework.xml.Root;
 
 import com.google.common.base.Function;
+import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Ordering;
@@ -124,6 +125,11 @@ public final class Document
      */
     @Attribute(required = false)
     Integer id;
+    
+    /**
+     * The field to output instead of {@link #id} in document references inside clusters.
+     */
+    String refIdField;
 
     /**
      * Listeners to be notified before this document gets serialized.
@@ -594,6 +600,23 @@ public final class Document
                     listener.beforeSerialization(this, otherFieldsForSerialization);
                 }
             }
+        }
+    }
+    
+    void setRefIdFieldName(String refIdField)
+    {
+        this.refIdField = refIdField;
+    }
+    
+    String getRefId()
+    {
+        if (refIdField != null)
+        {
+            return Objects.firstNonNull(getField(refIdField), "").toString();
+        }
+        else
+        {
+            return id != null ? id.toString() : null;
         }
     }
 }
