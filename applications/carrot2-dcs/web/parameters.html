@@ -102,6 +102,18 @@
           If a non-empty value is provided and output format is <tt>JSON</tt>, the response
           data will be wrapped with a function name as specified by the parameter value.
         </dd>
+
+        <dt>dcs.refid.field</dt>
+        <dd>
+          Name of the document field to output in document references inside clusters.
+          If not provided, the default Carrot<sup>2</sup>-generated id will be used.
+          <p>
+            If you do not need the full text of all documents in the response but only
+            e.g. the title field or a custom application-specific identifier,
+            consider setting <tt>dcs.clusters.only</tt> to <tt>true</tt>, which will
+            significantly decrease the size of the response. 
+          </p>
+        </dd>
         
         <dt>MultilingualClustering.defaultLanguage</dt>
         <dd>

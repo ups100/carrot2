@@ -39,6 +39,10 @@ public class DcsRequestModel
     @Input
     @Attribute(key = "dcs.json.callback")
     public String jsonCallback;
+    
+    @Input
+    @Attribute(key = "dcs.refid.field")
+    public String refIdField;
 
     /**
      * Output format requested from DCS,

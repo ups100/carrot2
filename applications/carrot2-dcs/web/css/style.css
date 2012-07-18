@@ -10,6 +10,7 @@ body, input, select, label, button {
 
 sup {
   font-size: 90%;
+  vertical-align: 10%;
 }
 
 .hide {

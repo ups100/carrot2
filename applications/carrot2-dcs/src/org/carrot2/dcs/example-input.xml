@@ -15,5 +15,8 @@
     <title>Document 3 Title</title>
     <snippet>Document 3 Content.</snippet>
     <url>http://document.url/3</url>
+    <field key="custom">
+      <value value="custom-value" />
+    </field>
   </document>
 </searchresult>

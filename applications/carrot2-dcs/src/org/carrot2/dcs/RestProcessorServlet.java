@@ -157,7 +157,7 @@ public final class RestProcessorServlet extends HttpServlet
         put("output-example-xml", new CommandAction() {
             public void handle(HttpServletRequest request, HttpServletResponse response) throws Exception
             {
-                transformAndSerializeOutputXml(response, EXAMPLE_OUTPUT, true, true);
+                transformAndSerializeOutputXml(response, EXAMPLE_OUTPUT, true, true, null);
             }
         });
         put("output-example-json", new CommandAction() {
@@ -537,13 +537,14 @@ public final class RestProcessorServlet extends HttpServlet
             if (OutputFormat.XML.equals(requestModel.outputFormat))
             {
                 transformAndSerializeOutputXml(response, result,
-                    !requestModel.clustersOnly, true);
+                    !requestModel.clustersOnly, true, requestModel.refIdField);
             }
             else if (OutputFormat.JSON.equals(requestModel.outputFormat))
             {
                 response.setContentType(MIME_JSON_UTF8);
                 result.serializeJson(response.getWriter(), requestModel.jsonCallback,
-                    !requestModel.clustersOnly, true);
+                    false, !requestModel.clustersOnly, true, true,
+                    requestModel.refIdField);
             }
             else
             {
@@ -563,8 +564,8 @@ public final class RestProcessorServlet extends HttpServlet
      * transformation.
      */
     private void transformAndSerializeOutputXml(HttpServletResponse response,
-        ProcessingResult result, boolean includeDocuments, boolean includeClusters)
-        throws Exception, IOException
+        ProcessingResult result, boolean includeDocuments, boolean includeClusters,
+        String refIdFieldName) throws Exception, IOException
     {
         response.setContentType(MIME_XML_UTF8);
         if (xsltTemplates != null)
@@ -579,7 +580,7 @@ public final class RestProcessorServlet extends HttpServlet
         else
         {
             result.serialize(response.getOutputStream(), includeDocuments,
-                includeClusters);
+                includeClusters, true, refIdFieldName);
         }
     }
 
