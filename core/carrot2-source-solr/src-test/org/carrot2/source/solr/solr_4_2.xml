@@ -1,0 +1,2035 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response>
+
+<lst name="responseHeader">
+  <int name="status">0</int>
+  <int name="QTime">2225</int>
+</lst>
+<result name="response" numFound="130" start="0" maxScore="3.1369333">
+  <doc>
+    <str name="title">Quadra 700 Memory Install FAQ</str>
+    <str name="name">51749</str>
+    <float name="score">3.1369333</float></doc>
+  <doc>
+    <str name="title">Occupational Injuries and Disease: Workers Memorial Day</str>
+    <str name="name">59337</str>
+    <float name="score">2.6888</float></doc>
+  <doc>
+    <str name="title">Re: Available memory to the Xserver. How to get the actual size?</str>
+    <str name="name">67107</str>
+    <float name="score">2.2406669</float></doc>
+  <doc>
+    <str name="title">Re: Challenge to Microsoft supporters.</str>
+    <str name="name">10178</str>
+    <float name="score">0.09843681</float></doc>
+  <doc>
+    <str name="title">[NEWS]Re:List or image processing systems?</str>
+    <str name="name">38726</str>
+    <float name="score">0.09843681</float></doc>
+  <doc>
+    <str name="title">Mac 800 numbers</str>
+    <str name="name">51870</str>
+    <float name="score">0.09843681</float></doc>
+  <doc>
+    <str name="title">Galileo Update - 04/15/93</str>
+    <str name="name">60784</str>
+    <float name="score">0.08804456</float></doc>
+  <doc>
+    <str name="title">Summary: ATI Graphics Ultra Questions etc</str>
+    <str name="name">9741</str>
+    <float name="score">0.08804456</float></doc>
+  <doc>
+    <str name="title">Kubota vs. E&amp;S Freedome</str>
+    <str name="name">38944</str>
+    <float name="score">0.08524878</float></doc>
+  <doc>
+    <str name="title">Re: Laser vs Bubblejet?</str>
+    <str name="name">54244</str>
+    <float name="score">0.08524878</float></doc>
+  <doc>
+    <str name="title">BMW 49'r Rally</str>
+    <str name="name">103553</str>
+    <float name="score">0.0835264</float></doc>
+  <doc>
+    <str name="title"> Self-modifying hardware</str>
+    <str name="name">52782</str>
+    <float name="score">0.0835264</float></doc>
+  <doc>
+    <str name="title">Re: IDE vs SCSI, DMA and detach</str>
+    <str name="name">60771</str>
+    <float name="score">0.0835264</float></doc>
+  <doc>
+    <str name="title">Re: Looking for X windows on a PC (long list of known servers)</str>
+    <str name="name">68012</str>
+    <float name="score">0.07974293</float></doc>
+  <doc>
+    <str name="title">Re: Problem with Adaptec 1542B SCSI and Jumbo Tape Drive</str>
+    <str name="name">60207</str>
+    <float name="score">0.07874945</float></doc>
+  <doc>
+    <str name="title">disp135 [0/7]</str>
+    <str name="name">38682</str>
+    <float name="score">0.078131795</float></doc>
+  <doc>
+    <str name="title">disp140 [0/7]</str>
+    <str name="name">39642</str>
+    <float name="score">0.078131795</float></doc>
+  <doc>
+    <str name="title">Mac &amp; IBM Info-Version 1.7.7</str>
+    <str name="name">51892</str>
+    <float name="score">0.07233599</float></doc>
+  <doc>
+    <str name="title">Guzzi 850-T tires, plus fairing question</str>
+    <str name="name">104947</str>
+    <float name="score">0.069605336</float></doc>
+  <doc>
+    <str name="title">Re: ATARI 2600 Processors</str>
+    <str name="name">54212</str>
+    <float name="score">0.069605336</float></doc>
+  <doc>
+    <str name="title">Re: IDE vs SCSI</str>
+    <str name="name">60367</str>
+    <float name="score">0.06890577</float></doc>
+  <doc>
+    <str name="title">New Method For Diagnosing Alzheimer's Disease Discovered</str>
+    <str name="name">59435</str>
+    <float name="score">0.06819902</float></doc>
+  <doc>
+    <str name="title">Orchid P9000 vs Fahrenheit (mini review)</str>
+    <str name="name">60275</str>
+    <float name="score">0.06819902</float></doc>
+  <doc>
+    <str name="title">Re: 66DX2 ISA,VLB xor 50DX EISA ??  Advice wanted...</str>
+    <str name="name">60884</str>
+    <float name="score">0.06819902</float></doc>
+  <doc>
+    <str name="title">DANA WEICK he is still out there</str>
+    <str name="name">76808</str>
+    <float name="score">0.06819902</float></doc>
+  <doc>
+    <str name="title">Mathcad 4.0 swap file?</str>
+    <str name="name">9730</str>
+    <float name="score">0.06819902</float></doc>
+  <doc>
+    <str name="title">Re: Clipper considered harmful</str>
+    <str name="name">15722</str>
+    <float name="score">0.059062086</float></doc>
+  <doc>
+    <str name="title">Re: Overreacting (was Re: Once tapped, your code is no good any more)</str>
+    <str name="name">15834</str>
+    <float name="score">0.059062086</float></doc>
+  <doc>
+    <str name="title">Re: When are two people married in God's eyes?</str>
+    <str name="name">20816</str>
+    <float name="score">0.059062086</float></doc>
+  <doc>
+    <str name="title">Re: Morality? (was Re: &lt;Political Atheists?)</str>
+    <str name="name">53224</str>
+    <float name="score">0.059062086</float></doc>
+  <doc>
+    <str name="title">Re: Gun Control (was Re: We're Mad as Hell at the TV News)</str>
+    <str name="name">53318</str>
+    <float name="score">0.059062086</float></doc>
+  <doc>
+    <str name="title">Re: Is MSG sensitivity superstition?</str>
+    <str name="name">58849</str>
+    <float name="score">0.059062086</float></doc>
+  <doc>
+    <str name="title">Re: IDE vs SCSI</str>
+    <str name="name">60858</str>
+    <float name="score">0.059062086</float></doc>
+  <doc>
+    <str name="title">Re: Soundblaster IRQ and Port settings</str>
+    <str name="name">61144</str>
+    <float name="score">0.059062086</float></doc>
+  <doc>
+    <str name="title">Armenians were also partners in Nazi practices.</str>
+    <str name="name">76315</str>
+    <float name="score">0.059062086</float></doc>
+  <doc>
+    <str name="title">computer stuff for sale</str>
+    <str name="name">76372</str>
+    <float name="score">0.059062086</float></doc>
+  <doc>
+    <str name="title">Re: Who's next?  Mormons and Jews?</str>
+    <str name="name">83706</str>
+    <float name="score">0.059062086</float></doc>
+  <doc>
+    <str name="title">Hail Stan!</str>
+    <str name="name">84066</str>
+    <float name="score">0.059062086</float></doc>
+  <doc>
+    <str name="title">Re: Permanaent Swap File with DOS 6.0 dbldisk</str>
+    <str name="name">9450</str>
+    <float name="score">0.059062086</float></doc>
+  <doc>
+    <str name="title">Re: Permanaent Swap File with DOS 6.0 dbldisk</str>
+    <str name="name">9482</str>
+    <float name="score">0.059062086</float></doc>
+  <doc>
+    <str name="title">Re: Challenge to Microsoft supporters.</str>
+    <str name="name">10173</str>
+    <float name="score">0.05568427</float></doc>
+  <doc>
+    <str name="title">Kubota Kenai/Denali specs</str>
+    <str name="name">38861</str>
+    <float name="score">0.05568427</float></doc>
+  <doc>
+    <str name="title">Plus minus stat</str>
+    <str name="name">53702</str>
+    <float name="score">0.05568427</float></doc>
+  <doc>
+    <str name="title">Re: Orchid P9000 vs Fahrenheit (mini review)</str>
+    <str name="name">60701</str>
+    <float name="score">0.05568427</float></doc>
+  <doc>
+    <str name="title">Galileo Update - 04/29/93</str>
+    <str name="name">61416</str>
+    <float name="score">0.05568427</float></doc>
+  <doc>
+    <str name="title">DESTROYING ETHNIC IDENTITY: TURKS OF GREECE (&amp; Macedonians...)</str>
+    <str name="name">76204</str>
+    <float name="score">0.05568427</float></doc>
+  <doc>
+    <str name="title">Is it good that Jesus died?</str>
+    <str name="name">83884</str>
+    <float name="score">0.05568427</float></doc>
+  <doc>
+    <str name="title">comp.windows.x: Getting more performance out of X.  FAQ</str>
+    <str name="name">66868</str>
+    <float name="score">0.052087862</float></doc>
+  <doc>
+    <str name="title">comp.windows.x: Getting more performance out of X.  FAQ</str>
+    <str name="name">67961</str>
+    <float name="score">0.052087862</float></doc>
+  <doc>
+    <str name="title">Introductory Macintosh frequently asked questions (FAQ)</str>
+    <str name="name">52004</str>
+    <float name="score">0.051149268</float></doc>
+  <doc>
+    <str name="title">Re: Too fast</str>
+    <str name="name">103064</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Boom! Dog attack!</str>
+    <str name="name">104943</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Upgrading to Windows NT</str>
+    <str name="name">10694</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: Overreacting (was Re: Once tapped, your code is no good any more)</str>
+    <str name="name">15810</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">library of congress to host dead sea scroll symposium april 21-22</str>
+    <str name="name">20970</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: Christianity and repeated lives</str>
+    <str name="name">21472</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: Rumours about 3DO ???</str>
+    <str name="name">38363</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: Rumours about 3DO ???</str>
+    <str name="name">38392</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: Rumours about 3DO ???</str>
+    <str name="name">38452</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">SUMMARY: ZyXEL Strings</str>
+    <str name="name">51723</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: HELP! Duo 230 problems</str>
+    <str name="name">51750</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: Amusing atheists and agnostics</str>
+    <str name="name">53257</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: Amusing atheists and agnostics</str>
+    <str name="name">53267</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">AHL Season in review (off ice stuff)</str>
+    <str name="name">53690</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: I don't understand SI</str>
+    <str name="name">58915</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">From Srebrenica: "Doctoring" in Hell</str>
+    <str name="name">59245</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: IDE vs SCSI (here we go again.....)</str>
+    <str name="name">60297</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: Recommendations for a Local BUS (Cache</str>
+    <str name="name">60564</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">66DX2 ISA,VLB xor 50DX EISA ??  Advice wanted...</str>
+    <str name="name">60850</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Galileo Update - 04/22/93</str>
+    <str name="name">61096</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: Animation</str>
+    <str name="name">67165</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: Israeli Expansion-lust</str>
+    <str name="name">75974</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Split A4000, scanner, RAM, ..., Toaster, TBC, SVHS VCR, scope, ...</str>
+    <str name="name">76851</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: Christians above the Law? was Clarification of pe</str>
+    <str name="name">84195</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: RE: Win NT - what is it???</str>
+    <str name="name">9497</str>
+    <float name="score">0.049218405</float></doc>
+  <doc>
+    <str name="title">Re: The 1964 Phillies: deja vu?</str>
+    <str name="name">104564</str>
+    <float name="score">0.048723735</float></doc>
+  <doc>
+    <str name="title">Great Canadian Scientists</str>
+    <str name="name">59478</str>
+    <float name="score">0.048723735</float></doc>
+  <doc>
+    <str name="title">X on Intel-based Unix Frequently Asked Questions [FAQ]</str>
+    <str name="name">66189</str>
+    <float name="score">0.048223995</float></doc>
+  <doc>
+    <str name="title">X on Intel-based Unix Frequently Asked Questions [FAQ]</str>
+    <str name="name">67582</str>
+    <float name="score">0.048223995</float></doc>
+  <doc>
+    <str name="title">comp.windows.x.intrinsics Frequently Asked Questions (FAQ)</str>
+    <str name="name">66322</str>
+    <float name="score">0.04436487</float></doc>
+  <doc>
+    <str name="title">It is sickening to think that the Armenians are capable of such...</str>
+    <str name="name">75984</str>
+    <float name="score">0.0417632</float></doc>
+  <doc>
+    <str name="title">Re: Young Catchers</str>
+    <str name="name">102604</str>
+    <float name="score">0.039374724</float></doc>
+  <doc>
+    <str name="title">Re: Athiests and Hell</str>
+    <str name="name">21323</str>
+    <float name="score">0.039374724</float></doc>
+  <doc>
+    <str name="title">the ancient canon of the Roman rite</str>
+    <str name="name">21421</str>
+    <float name="score">0.039374724</float></doc>
+  <doc>
+    <str name="title">Re: Hollywood Hits, Virtual Reality</str>
+    <str name="name">38257</str>
+    <float name="score">0.039374724</float></doc>
+  <doc>
+    <str name="title">PHIGS User Group Conference</str>
+    <str name="name">38933</str>
+    <float name="score">0.039374724</float></doc>
+  <doc>
+    <str name="title">Re: Amusing atheists and anarchists</str>
+    <str name="name">53351</str>
+    <float name="score">0.039374724</float></doc>
+  <doc>
+    <str name="title">Re: That silly outdated Bill (was Re: Koresh and Miranda)</str>
+    <str name="name">54261</str>
+    <float name="score">0.039374724</float></doc>
+  <doc>
+    <str name="title">Luser!</str>
+    <str name="name">54448</str>
+    <float name="score">0.039374724</float></doc>
+  <doc>
+    <str name="title">Re: Science and methodology (was: Homeopathy ... tradition?)</str>
+    <str name="name">58910</str>
+    <float name="score">0.039374724</float></doc>
+  <doc>
+    <str name="title">Re: Why not give $1 billion to first year-lo</str>
+    <str name="name">61019</str>
+    <float name="score">0.039374724</float></doc>
+  <doc>
+    <str name="title">Re: DESQview/X on a PC and network Traffic</str>
+    <str name="name">67480</str>
+    <float name="score">0.039374724</float></doc>
+  <doc>
+    <str name="title">Legality of the Jewish Purchase (was Re: Israeli Expansion-lust)</str>
+    <str name="name">76159</str>
+    <float name="score">0.039374724</float></doc>
+  <doc>
+    <str name="title">PC, NETWORK and OFFICE EQUIPMENT - LONG (Repost, Lower Prices!)</str>
+    <str name="name">76505</str>
+    <float name="score">0.039374724</float></doc>
+  <doc>
+    <str name="title">Re: Christians above the Law? was Clarification of pe</str>
+    <str name="name">84138</str>
+    <float name="score">0.039374724</float></doc>
+  <doc>
+    <str name="title">Save my hard disk?!  (allocation error, cross-linked)</str>
+    <str name="name">9642</str>
+    <float name="score">0.039374724</float></doc>
+  <doc>
+    <str name="title">Latest SoCal Rides -- 4/14</str>
+    <str name="name">104312</str>
+    <float name="score">0.034802668</float></doc>
+  <doc>
+    <str name="title">REVIEW: Audi S4 quattro</str>
+    <str name="name">103450</str>
+    <float name="score">0.034452885</float></doc>
+  <doc>
+    <str name="title">Re: DAVE KINGMAN FOR THE HALL OF FAME</str>
+    <str name="name">104510</str>
+    <float name="score">0.034452885</float></doc>
+  <doc>
+    <str name="title">CLINTON: Press Availability With Russian Press 4.4.93</str>
+    <str name="name">176941</str>
+    <float name="score">0.034452885</float></doc>
+</result>
+<lst name="highlighting">
+  <lst name="51749">
+    <arr name="content">
+      <str>From: guykuo@carson.u.washington.edu (Guy Kuo)
+Subject: Quadra 700 Memory Install FAQ
+Organization: University of Washington
+Lines: 69
+NNTP-Posting-Host: carson.u.washington.edu
+Summary: Instructions</str>
+      <str> for Quadra 700 memory installation
+Keywords: memory,quadra,700,install
+
+This is turning into a FAQ
+
+
+Here is how to violate your Quadra 700 warranty and install your own
+memory.
+
+1)  Insert usual disclaimer</str>
+    </arr>
+  </lst>
+  <lst name="59337">
+    <arr name="content">
+      <str>From: "nigel allen" &lt;nigel.allen@canrem.com&gt;
+Subject: Occupational Injuries and Disease: Workers Memorial Day
+Reply-To: "nigel allen" &lt;nigel.allen@canrem.com&gt;
+Organization: Canada Remote Systems</str>
+      <str> Memorial Day
+ To: National Desk, Labor Writer
+ Contact: Janet Rivera of the American Federation of State, County
+and Municipal Employees, AFL-CIO, 202-429-1130
+
+   WASHINGTON, April 23 -- The American</str>
+      <str> Federation of State, 
+County and Municipal Employees (AFSCME) and other unions
+of the AFL-CIO on Wednesday, April 28, will commemorate the fifth
+annual Workers Memorial Day -- a day to pay homage to the 6</str>
+    </arr>
+  </lst>
+  <lst name="67107">
+    <arr name="content">
+      <str>From: pfuetz@igd.fhg.de (Matthias Pfuetzner)
+Subject: Re: Available memory to the Xserver. How to get the actual size?
+Reply-To: pfuetz@igd.fhg.de (Matthias Pfuetzner)
+Organization: Zentrum fuer</str>
+      <str>@igd.fhg.de (Matthias Pfuetzner) writes:
+&gt;
+&gt;&gt; Is there a possibility to determine via X protocol calls the size of
+&gt;&gt; free memory available to the Xserver?
+&gt;
+&gt;No.  Even if you could, the answer could be out of date even</str>
+      <str> server memory is available.
+&gt;
+&gt;					der Mouse
+
+This isn't of much help! Especially when doing Phigs (PEX) via the libphigs as
+supplied by MIT, I have much trouble together with PEX-terminals that don</str>
+    </arr>
+  </lst>
+  <lst name="10178">
+    <arr name="content">
+      <str>  on fractint for dos whenever I wanted to do a fractal
+computation in the background.
+
+&gt;&gt; and not being able to address your memory better than DOS,
+
+&gt;	Not sure what you mean here.
+
+The idea is  that OS/2's DOS</str>
+      <str> sessions can see more memory than Windows
+DOS  sessions.  I  let  XPL (a  shareware calculus program) see around
+720KB of free _conventional_ memory, which lets me  do bigger symbolic
+manipulations than</str>
+      <str> data sets, simulate for more iterations, etc. Of course,
+the  point is  now moot,  since  the OS/2 programs I now write  simply
+_never_ run into memory limitations.  I never programmed  for Windows,
+so I</str>
+    </arr>
+  </lst>
+  <lst name="38726">
+    <arr name="content">
+      <str>
+       other analog signal (including signals from slow-speed scanning
+       devices).
+       The controller has the following technical characteristics:
+       - memory volume - from 256 K to 2 Mb</str>
+      <str> time - 40 ms.
+       - maximum size of a screen when memory volume is 2Mb - 2048x1024
+       pixels ;
+       - number of gray level - 256 ;
+       - clock rate for input - up to 30 MHz ;
+       - 4 input</str>
+      <str> elements
+       including user programmable gate arrays and designed as a board
+       for PC.
+            Memory volume allows write to the 256 frames with 512*512*8
+       format. It is possible</str>
+    </arr>
+  </lst>
+  <lst name="51870">
+    <arr name="content">
+      <str>-800-999-1593
+  * Diamond					1-800-541-7126
+  * Dynamic Electronics		1-800-845-8228
+  * ETC						1-800-882-2863
+  * Global Village Telecom.	1-800-736-4821
+    Mac ADB modems
+  * Lifetime Memory			1-800-233-6233
+  * LLB</str>
+      <str>						1-800-848-8967
+  * Macproducts USA			1-800 MAC DISK
+  * MacProducts:   			1-800-MAC-USA1
+  * Megabyte Memory			1-800-748-5766
+    Products
+  * Memory International	1-800-266-0488
+  * Memory Plus				1</str>
+    </arr>
+  </lst>
+  <lst name="60784">
+    <arr name="content">
+      <str> (LGA-2)
+swing/Dual Drive Actuator (DDA) hammer activities.
+
+2.  On April 9, the EJ-1 (Earth-Jupiter #1) sequence memory load was uplinked
+to the spacecraft without incident.  This sequence covers</str>
+      <str> of this sequence memory load.
+
+3.  On April 12 and 15, a NO-OP command was sent to reset the command loss
+timer to 264 hours, its planned value during this mission phase.
+
+4.  On April 12, cruise science Memory</str>
+      <str>-launch selected modulation
+index is near the optimal level.
+
+7.  On April 15, cruise science Memory Readouts (MROs) were performed for the
+Extreme Ultraviolet Spectrometer (EUV) and Magnetometer (MAG) instrument</str>
+    </arr>
+  </lst>
+  <lst name="9741">
+    <arr name="content">
+      <str>. Thanks to all of you that
+replied.
+
+
+&gt; 1) The card does not work in a system with 32M RAM.
+
+a) The higher memory limits apply to ISA cards only, as far as I know.  The VLB
+   and EISA version should have</str>
+      <str> no problems.
+ 
+b) I'm pretty sure from my experience that the ISA version doesn't
+   work in systems with over 16M Ram.  There is supposed to be way
+   of switching the "memory aperture" feature off to prevent</str>
+      <str>, allows you to set memory aperture over 32M
+   by using their configuration software.  No messing with jumpers necessary.
+
+   The 32M problem is probably valid only for ISA cards.
+
+
+&gt; 2) The card works</str>
+    </arr>
+  </lst>
+  <lst name="38944">
+    <arr name="content">
+      <str> number of pixel processors that
+support a broader variety of color blending functions.  The Freedom
+design treats its entire image memory as general-purpose memory, allowing
+developers to allocate</str>
+      <str>.
+Aside from being much more affordable, KPC solutions deliver more parallelism
+for texture processing and more off-screen memory for general graphics
+data storage.  By implementing texture mapping on its</str>
+    </arr>
+  </lst>
+  <lst name="54244">
+    <arr name="content">
+      <str> dialect used in the Laserjet IIIP allows compression that
+permits a full page 300 dpi image to be rendered with only one
+megabyte of memory.  An uncompressed image could be as large as
+about 909 Kbytes</str>
+      <str>, but the printer needs about 300K of memory for
+its internal house-keeping.  Laserjet IV models support banded
+printing that allows incrmental download of the image with
+compression in limited memory situations</str>
+    </arr>
+  </lst>
+  <lst name="103553">
+    <arr name="content">
+      <str>From: jeff@mri.com (Jonathan Jefferies)
+Subject: BMW 49'r Rally
+Summary: Memorial Day Weekend Rally
+Keywords: BMW, RALLY, 49'r
+Article-I.D.: mri.1993Apr9.011743.1903
+Expires: Tue, 1 Jun 1993 07</str>
+      <str> CALIFORNIA
+ 
+ BMW 49'ER RALLY, MAY 27-31  (U.S. Memorial Day Weekend)
+ San Francisco Bay Area - 20th annual BMW 49'er Rally, sponsored by
+ The BMW Club of Northern Califronia,  will be held at the Quincy</str>
+    </arr>
+  </lst>
+  <lst name="52782">
+    <arr name="content">
+      <str> substitutions into orders,
+i.e. the machine's ability to modify its own orders
+(under the control of other ones among its orders)
+is absolutely necessary for a flexible code. Thus, if
+part of the memory is used</str>
+      <str>, the reference to the memory in the order which
+controls this "looking up", and the machine can only make this
+modification after it has already calculated the value of the 
+variable in question.
+	On the other</str>
+    </arr>
+  </lst>
+  <lst name="60771">
+    <arr name="content">
+      <str> of these make it
+&gt; &gt;possible for I/O devices to move their data into and out of memory
+&gt; &gt;without interrupting the CPU.  The alternative is for the CPU to move
+&gt; &gt;the data.  There are several SCSI interface cards</str>
+      <str> a copy of IBM's AT reference book,
+&gt; but from their PC technical manual (page 2-93):
+&gt; 
+&gt; "The (FDD) adapter is buffered on the I.O bus and uses the System Board
+&gt; direct memory access (DMA) for record</str>
+    </arr>
+  </lst>
+  <lst name="68012">
+    <arr name="content">
+      <str> Monica, CA 90405
+        TEL: (310)392-9851
+        FAX: (310)399-3802
+Price:
+        $275
+Latest Version:
+        1.0
+CPU:
+        386SX or higher (286 version available)
+Memory:
+        4 Mbytes</str>
+      <str>:
+        IBM
+        part #5765-025
+Price:
+
+Latest Version:
+        2.1
+CPU:
+
+Memory:
+
+Operating System:
+        DOS
+Mouse:
+
+Graphics:
+
+Ethernet Card:
+
+Network Software:
+
+Disk Space:
+
+Features:
+
+===DOS===DOS</str>
+      <str>
+        $225.00 ea. 5 pack (greater discount for larger quantities)
+        upgrades at 25% of original price
+        educational discount of 10%
+Latest Version:
+        1.6.1
+CPU:
+        386, 486
+Memory</str>
+    </arr>
+  </lst>
+  <lst name="60207">
+    <arr name="content">
+      <str> for memory
+managers like QEMM/386MAX (only needed if you use such programs).
+
+
+* Windows 3.1 runs slowly:
+
+     Once you do get Windows 3.1 running with the 1542, chances are that
+your system is running much</str>
+      <str> hard disks, etc.), you can add the SCSIHA.SYS driver to your
+   CONFIG.SYS file, e.g.:
+
+	DRIVER=c:\SCSIHA.SYS /V386
+
+   (Windows needs the "/V386" option.)  This driver MUST be loaded into
+   LOW memory</str>
+      <str> (it cannot be loaded into high memory), and it occupies
+   about 16-20K.  As of November 1992, the SCSIHA.SYS driver could be
+   obtained from the Adaptec BBS at (408)-945-7727 (hopefully, it's
+   still</str>
+    </arr>
+  </lst>
+  <lst name="38682">
+    <arr name="content">
+      <str>(Maybe less memory will also work).
+  (I recommend min 8M bytes for better performance).
+  Hard disk for swapping(virtual memory).
+
+  The following description is borrowed from DJGPP.
+
+  Supported Wares</str>
+      <str>:
+
+  * Up to 128M of extended memory (expanded under VCPI)
+  * Up to 128M of disk space used for swapping
+  * SuperVGA 256-color mode up to 1024x768
+  * 80387
+  * XMS &amp; VDISK memory allocation strategies</str>
+      <str>
+  * VCPI programs, such as QEMM, DESQview, and 386MAX
+
+  Unsupported:
+
+  * DPMI
+  * Microsoft Windows
+
+  Features: 80387 emulator, 32-bit unix-ish environment, flat memory
+  model, SVGA graphics.
+
+
+(3</str>
+    </arr>
+  </lst>
+  <lst name="39642">
+    <arr name="content">
+      <str>).
+
+
+(2) Hardware Requirement:
+  PC 386 or better. MSDOS 3.3 or higher.
+  min amount of ram is 4M bytes(Maybe less memory will also work).
+  (I recommend min 8M bytes for better performance).
+  Hard disk</str>
+      <str> for swapping(virtual memory).
+
+  The following description is borrowed from DJGPP.
+
+  Supported Wares:
+
+  * Up to 128M of extended memory (expanded under VCPI)
+  * Up to 128M of disk space used for swapping</str>
+      <str>
+  * SuperVGA 256-color mode up to 1024x768
+  * 80387
+  * XMS &amp; VDISK memory allocation strategies
+  * VCPI programs, such as QEMM, DESQview, and 386MAX
+
+  Unsupported:
+
+  * DPMI
+  * Microsoft Windows</str>
+    </arr>
+  </lst>
+  <lst name="51892">
+    <arr name="content">
+      <str> 
+the 60000 and 68030 in features and the LC's 16-bit data path strenghthens the 
+286 ~ 68020 comparison.}
+
+386       ~ 68030 {Two 32-bit chips with MMUs, and protected memory.  A/UX 3.0 
+is at present the only</str>
+      <str> Mac OS to use the 68030's protected memory feature for 
+apps.  System 7.x uses this feature to protect a RAM disk created by the 
+Memory control panel but this is supported only on Powerbooks</str>
+      <str> specifications
+ which results in added incompatibilities for SCSI.
+
+Mac
+Memory expansion: with a few exceptions the Mac has used non-parity 30-pin 
+ 8-bit SIMM memory expansion since the Plus.  While 32-pin 9-bit</str>
+    </arr>
+  </lst>
+  <lst name="104947">
+    <arr name="content">
+      <str> that this bike has such potential for _that_ look.)
+
+-----------------------------Edward Walsh----Hewlett-Packard Company-------
+                             edw@boi.hp.com  Disk Memory Division, MS475</str>
+      <str>-------
+                             edw@boi.hp.com  Disk Memory Division, MS475
+                             (208)396-2174   P.O. Box 15  Boise,Idaho 83707
+                             89FJ1200;82XZ550RJ(Vision);75Guzzi850-T;DoD#98
+</str>
+    </arr>
+  </lst>
+  <lst name="54212">
+    <arr name="content">
+      <str>.
+
+&gt;
+&gt;There was also a standard 6532 RAM, I/O, Timer (RIOT), plus a voltage
+&gt;regulator and (if memory serves) a 555 timer.  That's all.
+&gt;
+&gt;&gt;Later model 2600
+&gt;&gt;might have incorporated many of the chips into one</str>
+      <str> the
+&gt;bottom 4K of memory.  TIA registers also sat in this address space.
+&gt;
+&gt;As 128 bytes of RAM was somewhat limiting, some later cartridges also carried
+&gt;RAM themselves, which was interesting as Atari had</str>
+    </arr>
+  </lst>
+  <lst name="60367">
+    <arr name="content">
+      <str> without the data having to go through the CPU or main
+memory, then yes, that is the optimal way to do it.  As far as I know, IDE
+can't do that.  But when the CPU wants data from both drives (data</str>
+      <str> to be stored
+in main memory) are you saying that SCSI can grab data from both drives 
+at the same time *and* store/transfer that data to main memory also at the
+same time?  Working off 1 IRQ and 1 DMA channel</str>
+      <str> conventional (DOS) memory.
+</str>
+    </arr>
+  </lst>
+  <lst name="59435">
+    <arr name="content">
+      <str>.  By comparison, the current "standard of care" in testing
+for Alzheimer's disease calls for lengthy memory function and
+neuropsychological tests, which can be very upsetting to the
+patient, are not definitive</str>
+      <str>
+Alois Alzheimer.  As the disease progresses, it leads to loss of
+memory and mental functioning, followed by changes in personality,
+loss of control of bodily functions, and, eventually, death.
+   How many</str>
+      <str> with familial
+AD, immediate family relatives have a 50 percent chance of
+developing AD.  One of its first symptoms is severe "forgetfulness"
+caused by short-term memory loss.  Dr. Herman Weinreb of the School</str>
+    </arr>
+  </lst>
+  <lst name="60275">
+    <arr name="content">
+      <str>, so the numbers aren't really comparable.  The following numbers
+were all obtained using a 486, 33 MHz, AIR motherboard (UMC chipset), with
+8 MB memory.  I give ranges because the program reports</str>
+      <str>                 S3 805                          Weitek 9000
+DIB to Screen        182K - 190K                     228K - 240K
+Memory to Screen     5.9M - 6.2M                     8.4M - 8.9M
+Screen to Screen     14M</str>
+      <str> - 55K / 1.2M
+
+The DIB to Screen test takes a device independent bitmap of a face and transfers
+it to the screen.  I have no idea what is being done internally as far as
+conversions go.  The memory</str>
+    </arr>
+  </lst>
+  <lst name="60884">
+    <arr name="content">
+      <str> may
+share experience on that.)
+
+Also, the DX2/66 is faster in the operations, that run off internal
+cache, slightly slower off the external and about the same off memory.
+So my advice is the 66/VLB</str>
+      <str>'s not enough memory in the system - DesqView/X and a 1 meg SmartDrive
+| don't leave much room for other apps.  Photostyler will page to disk with
+| medium size images.
+
+Have You tried running Photostyler without</str>
+      <str> the cache? No need to have
+paging and cache both. (Well, you might argue, that the paging is
+cached). My belief (no measurements) is that apps left with more
+memory will manage it better than smartdrv</str>
+    </arr>
+  </lst>
+  <lst name="76808">
+    <arr name="content">
+      <str> was to sell him some memory, in exchang for $100 and a 486-66 cpu.
+I thought the deal was great, so I went on with it.  
+
+I sent him the memory COD FOR $100.  He was then suppose to send me the cpu.
+I receive</str>
+      <str> the deal was being made, he reply to every
+of my message, now that He got my memory, He won't even reply to me.)
+
+Now:  I am still calling him, but he won't pick up the phone.  I am also still
+      emailing</str>
+    </arr>
+  </lst>
+  <lst name="9730">
+    <arr name="content">
+      <str> information or additional comment.
+
+*** THIS IS LONG ***
+
+I have 16MB of memory on my 386SX (25 MHz), an Intel math coprocessor, and
+a 120MB hard drive with 20MB free (no compression).  I have been running</str>
+      <str> memory (less 2MB for a RAMdisk and
+   &gt;&gt; a bit for a DOS session that is opened as part of the startup process),
+   &gt;&gt; which I have been running without any swapfile.  When I installed the
+   &gt;&gt; WIN32s</str>
+      <str>
+   &gt;&gt; (with 8MB swap file).  It will give you a not enough memory error if the
+   &gt;&gt; swap file is less than 8MB.  It is a MAJOR resource hog.  If you do not
+   &gt;&gt; load the symbolic processor or the smart math</str>
+    </arr>
+  </lst>
+  <lst name="15722">
+    <arr name="content">
+      <str> a warrant, put on a
+VR helmet and take a walk down memory lane.
+
+And hey, nobody'll be tracking *you* or *me*, no need to be self-conscious.
+
+After all, if you're not doing anything illegal...
+
+Funny, though</str>
+    </arr>
+  </lst>
+  <lst name="15834">
+    <arr name="content">
+      <str> and frozen member of the Mighty Warriors Band ////////  
+"Memories of those I've left behind, still ringing in my ears."-Genesis-
+</str>
+    </arr>
+  </lst>
+  <lst name="20816">
+    <arr name="content">
+      <str> married when they are *physically*
+married, i.e. when they first have sexual intercourse.
+
+e.g. the end of Genesis 2 (quoted from memory) ``for this reason, a man shall
+leave his parents and be joined</str>
+    </arr>
+  </lst>
+  <lst name="53224">
+    <arr name="content">
+      <str>.  I and other posters have given you many examples of exactly
+|&gt; &gt;this, but you seem to have a very short memory.
+|&gt; 
+|&gt; Those weren't arbitrary killings.  They were slayings related to some 
+|&gt; sort</str>
+    </arr>
+  </lst>
+  <lst name="53318">
+    <arr name="content">
+      <str>, in
+comparison to the 592 homicides. If memory serves, homicides
+make up approximately 1% of the violent crimes the study
+considered, so the fair comparison would be 40 - 250 homicides
+prevented and 592 homicides</str>
+    </arr>
+  </lst>
+  <lst name="58849">
+    <arr name="content">
+      <str> is most important neurotransmitter in the central nervous system. It is involved in not only in daily life like the controling of movement, it is alsoinvolved in develpoment, memory and learn (it</str>
+    </arr>
+  </lst>
+  <lst name="60858">
+    <arr name="content">
+      <str> the device is done, it issues a callback to say that the
+data has arrived or the function has completed.  Most SCSI cards will
+also DMA the data into memory without the interupting the CPU, therefore
+allowing</str>
+    </arr>
+  </lst>
+  <lst name="61144">
+    <arr name="content">
+      <str> far you'll get. :-)
+-- 
+Kenneth R. Ballou				VOICE:		 (617) 494-0990
+Oberon Software, Inc.				FAX:		 (617) 494-0414
+One Memorial Drive, Cambridge, MA  02142	Internet:     ballou@oberon.com
+
+The views</str>
+    </arr>
+  </lst>
+  <lst name="76315">
+    <arr name="content">
+      <str>.
+
+
+ Source: "Mitteilungsblatt, Berlin, December 1939, Nr. 2 and 5-6"
+
+ Yet another historical fact: a fact that for years has been deliberately 
+ forgotten, concealed, and wiped from memory - the fact</str>
+    </arr>
+  </lst>
+  <lst name="76372">
+    <arr name="content">
+      <str> to use
+   - equipment determination routines and access to expanded memory
+   - extensive keyboard and mouse input functions
+   - extremely fast video facilities, including text-graphics
+     routines</str>
+    </arr>
+  </lst>
+  <lst name="83706">
+    <arr name="content">
+      <str> punished for it.
+&gt;  
+You have a short memory.
+
+&gt; |&gt; I'll bet all you cult haters are happy now, right?  Just hope you're not  
+next.
+&gt; 
+&gt; Followups to /dev/null  
+&gt; 
+&gt; Alternative followups set to talk</str>
+    </arr>
+  </lst>
+  <lst name="84066">
+    <arr name="content">
+      <str>=-
+--------------------------------------------------------------------------------
+I like kittens... | E-Mail:                    | Robert Voss            | DIE!!
+Especially with   | rgv9488@ultb.isc.rit.edu   | 25 Andrews Memorial Dr | DIE!!
+a side order of   | RGV9488@RITVAX</str>
+    </arr>
+  </lst>
+  <lst name="9450">
+    <arr name="content">
+      <str> size.  Well...that's what he 
+said!
+
+I call bull@#$#.  If this is true why does windows report the memory is
+available to me if it's not going to use it?
+
+any takers?
+
+James
+
+(if this doesn't get</str>
+    </arr>
+  </lst>
+  <lst name="9482">
+    <arr name="content">
+      <str> report the memory is
+&gt;available to me if it's not going to use it?
+&gt;
+&gt;any takers?
+&gt;
+&gt;James
+
+Well, someone at Microsoft told you wrong.  Windows will use a swap file
+larger than the recommended size.  Last</str>
+    </arr>
+  </lst>
+  <lst name="10173">
+    <arr name="content">
+      <str>_ go do things--slowly--while it's doing 
+	this--I've downloaded with PP+ @9600 while printing).
+
+
+
+&gt; and not being able to adress your memory better than DOS,
+
+
+	Not sure what you mean here.  OS/2 sees</str>
+      <str>.  If memory efficiency 
+	were a big issue, PC GEOS would be the current king of the 
+	Intel desktop.  
+
+
+&gt; some of the
+&gt;key reasons for using OS/2 are gone.  I probably  would still use it, but it
+&gt;would</str>
+    </arr>
+  </lst>
+  <lst name="38861">
+    <arr name="content">
+      <str> 150MHz
+On-chip cache		8k/8k			8k/8k
+Onboard cache		512K			512K
+Word Size		64-bit			64-bit
+Memory ( initial )	32-128MB		32-256MB
+Memory ( future )	512MB			1GB
+SPECMARK89		111			126
+SPECINT92		75			84</str>
+    </arr>
+  </lst>
+  <lst name="53702">
+    <arr name="content">
+      <str> did he win? I think it was four (go
+ahead and refresh my memory).  What about the Conn Smythe?  Was
+that a fluke?  Yeah, not the makings of a hockey superstar, I
+know, but try to have a reason, any</str>
+      <str> individual awards between them? Eight...I don't remember
+(once again, please feel free to refresh my memory...and try to
+be as sarcastic as possible about my "hockey education").
+ 
+&gt;I'm wrong AGAIN...hmmm, let</str>
+    </arr>
+  </lst>
+  <lst name="60701">
+    <arr name="content">
+      <str> (UMC chipset), with
+&gt;8 MB memory.  I give ranges because the program reports the numbers as it
+&gt;computes them, and these tend to jump around a bit.
+
+The SPEEDY benchmark was put out by Hercules and IIT</str>
+      <str> optimization," in which you save the bitmap of the
+most-recently drawn string in off-screen memory, and just do a
+screen-to-screen bitblit if you happen to be given that same string a
+second time in a row.  (We</str>
+    </arr>
+  </lst>
+  <lst name="61416">
+    <arr name="content">
+      <str>.
+
+2.  On April 23, a cruise science Memory Readout (MRO) was performed for the
+Magnetometer (MAG) instrument.  Analysis indicates the data was received
+properly.
+
+3.  On April 23, the spare power relay</str>
+      <str> the possibility at Jupiter of the PPS relays/wiring being a
+source of internal electrostatic charge (IESD).
+
+4.  On April 26, cruise science Memory Readouts (MRO) were performed for the
+Extreme Ultraviolet</str>
+    </arr>
+  </lst>
+  <lst name="76204">
+    <arr name="content">
+      <str>.F84@news.cso.uiuc.edu&gt; ptg2351@uxa.cso.uiuc.edu (Panos Tamamidis ) writes:
+
+&gt;&gt;        Sure your memory is weak. 
+&gt;&gt;        Let me refresh your memory (if that's not to late):
+
+&gt;&gt;        First of all</str>
+    </arr>
+  </lst>
+  <lst name="83884">
+    <arr name="content">
+      <str> and will someday pass; I will be
+content to live on in the memories of my friends, and once they too
+are dead, then I will no longer have any reason to exist.
+
+In short: even if your deity *does* exist, that doesn</str>
+      <str> the same, as well as a few characters from Greek or
+Norse legend, if memory serves.
+
+But still: WHY would I want to rise from the dead?  Why do *you* want to?
+
+&gt;Why did Jesus suffer in his death?  Again, ask</str>
+    </arr>
+  </lst>
+  <lst name="66868">
+    <arr name="content">
+      <str> when it starts.  This process touches a large number of
+    pages.  Any other process running at the same time would fight the
+    server for use of the CPU, and more importantly, memory.  If you
+    put</str>
+      <str>: toolkits registering widgets, resources
+    being fetched, programs initializing state and "databases" and so
+    forth.  All this activity is typically memory intensive.  Once this
+    initialization</str>
+      <str> is done ("The process has reached a steady state"),
+    the memory usage typically settles down to using only a few pages.
+    By using sleeps to stagger the launching of your clients in your
+    .Xinitrc</str>
+    </arr>
+  </lst>
+  <lst name="67961">
+    <arr name="content">
+      <str> would fight the
+    server for use of the CPU, and more importantly, memory.  If you
+    put a sleep in there, you give the Server a chance to get itself
+    sorted out before the clients start up</str>
+      <str>
+    forth.  All this activity is typically memory intensive.  Once this
+    initialization is done ("The process has reached a steady state"),
+    the memory usage typically settles down to using only a few</str>
+      <str> workstation, you
+  should set your DISPLAY variable to "unix:0.0" or ":0.0".  By doing this
+  you access optimized routines that know that the server is on the same
+  machine and use a shared memory method</str>
+    </arr>
+  </lst>
+  <lst name="52004">
+    <arr name="content">
+      <str> and partitioning your hard disk
+
+Other FAQ lists currently available:
+
+B.    comp.sys.mac.system:
+
+I.   Memory
+      1. Why is my system using so much memory?
+      2. What is Mode 32?  the 32-bit enabler?  Do I</str>
+      <str> need them?
+      3. Cache and Carry (How much memory should I allot to my cache?)
+II.  System Software
+      1. Why does Apple charge for System 7.1?
+      2. What does System 7.1 give me for my $35</str>
+      <str> as
+  frequent questions.  Unless you really have something new to add to
+  the traditional answers (such as the recent discovery that fonts in
+  System 7.1 could eat memory) private E-mail is a much better medium</str>
+    </arr>
+  </lst>
+  <lst name="103064">
+    <arr name="content">
+      <str> think Ford could have added that extra
+&gt;bit of safety  and tossed in larger brakes, as the wheels are plenty large
+&gt;enough for them to fit (if memory serves right, which it may very well not)
+&gt;and</str>
+    </arr>
+  </lst>
+  <lst name="104943">
+    <arr name="content">
+      <str> with considerable force, making permanent
+marks on the plastic parts of the bike, and cracking one panel. I think
+I saw the dog spin around when I looked back, but my memory of this
+moment is hazy.
+
+I next turned</str>
+    </arr>
+  </lst>
+  <lst name="10694">
+    <arr name="content">
+      <str> to appeal to the net's NT wizards for a bit of advice.
+
+First a general description of the machine as follows:
+ Motherboard: Utron 33 mhz Opti chipset, 20 meg memory, 256kb cache
+      (soon I hope to drop</str>
+    </arr>
+  </lst>
+  <lst name="15810">
+    <arr name="content">
+      <str> opinions, and my opinions only. \\\\\\\\\\\\\
+&gt;\\\\\\\\\ A proud and frozen member of the Mighty Warriors Band ////////  
+&gt;"Memories of those I've left behind, still ringing in my ears."-Genesis-
+
+uni</str>
+    </arr>
+  </lst>
+  <lst name="20970">
+    <arr name="content">
+      <str>
+will hold a lecture by Esther Boyd-Alkalay, consulting conservator,
+Israel Antiquities Authority, on "Preserving the Dead Sea Scrolls"
+in the Mumford Room, LM-649, James Madison Memorial Building, The
+Library</str>
+    </arr>
+  </lst>
+  <lst name="21472">
+    <arr name="content">
+      <str> then judgement?" I don't have a concordance here but I have
+&gt;some dim memory that this appears *somewhere* in the Bible.
+&gt;Given a fairly specific context for what judgement is, I'd say
+&gt;that more or less decides</str>
+    </arr>
+  </lst>
+  <lst name="38363">
+    <arr name="content">
+      <str>.  And this wasn't even from the hardisk!  This was
+from memory!
+
+   Could it be that you saw either a newer version of quicktime, or some
+hardware assisted Centris, or another software product running</str>
+    </arr>
+  </lst>
+  <lst name="38392">
+    <arr name="content">
+      <str> a 68040 Quadra Mac was having
+&gt;a little bit of trouble.  And this wasn't even from the hardisk!  This was
+&gt;from memory!
+&gt;
+&gt;   Could it be that you saw either a newer version of quicktime, or some
+&gt;hardware</str>
+    </arr>
+  </lst>
+  <lst name="38452">
+    <arr name="content">
+      <str> architecture.
+
+&gt;   Well, I spoiled his claim so to say, since a 68040 Quadra Mac was
+having
+&gt;a little bit of trouble.  And this wasn't even from the hardisk!  This
+was
+&gt;from memory!
+&gt;
+&gt;   Could it be that you</str>
+    </arr>
+  </lst>
+  <lst name="51723">
+    <arr name="content">
+      <str> to ignore the DTR line (necessary for
+hardware
+&gt;handshaking with most, though not all, Mac hardware handshaking cables).
+The
+&gt;second stores this setting in non-volatile memory in the modem, so it</str>
+    </arr>
+  </lst>
+  <lst name="51750">
+    <arr name="content">
+      <str> and
+started to experience these problems.
+
+Apple Australia via my dealer said that this problem has a number of
+potential causes - Faulty applications, faulty third party hardware
+(modems, memory etc), system</str>
+    </arr>
+  </lst>
+  <lst name="53257">
+    <arr name="content">
+      <str> useful in life
+&gt; than some good memory..." -- Alyosha in Brothers Karamazov (Dostoevsky)
+</str>
+    </arr>
+  </lst>
+  <lst name="53267">
+    <arr name="content">
+      <str>, more wholesome and more useful in life
+than some good memory..." -- Alyosha in Brothers Karamazov (Dostoevsky)
+</str>
+    </arr>
+  </lst>
+  <lst name="53690">
+    <arr name="content">
+      <str> violent. Workers attacked a Leafs' bus and
+rocked it and broke windows in the St John's Memorial Stadium.
+Despite the problems, Toronto officials insist that the Leafs
+will return to St John's once</str>
+    </arr>
+  </lst>
+  <lst name="58915">
+    <arr name="content">
+      <str> sizes in one bank.  Why you ask?  
+Simple,  if you understand why there is banks.  Assuming you have a 32-bit 
+CPU ( 386DX or 486 ), the data bus (e.g. the mechanism to retrieve data 
+from memory ) is 32</str>
+    </arr>
+  </lst>
+  <lst name="59245">
+    <arr name="content">
+      <str> soldiers guided and protected him
+through guerrilla terrain, he said.
+    His worst memory was of 10 days ago when seven Serb shells
+landed within one minute in an area half the size of a football
+field</str>
+    </arr>
+  </lst>
+  <lst name="60297">
+    <arr name="content">
+      <str> to the onboard memory
+&gt;cache -&gt; something I can duplicate with a caching IDE controller.
+
+What?  The SCSI-2 FAST,WIDE spec has much more bandwidth than any stupid
+vlbus ide crap....
+
+Stop this thread now, Its just</str>
+    </arr>
+  </lst>
+  <lst name="60564">
+    <arr name="content">
+      <str> variations of the ISA bus speed. I tested it with speed between
+&gt;5.5MHz and 8.33MHz. Not _any_ difference. The problem is not the
+&gt;interface between the controller and the memory.
+&gt;
+
+Chris Brinton (brinton</str>
+    </arr>
+  </lst>
+  <lst name="60850">
+    <arr name="content">
+      <str> in ram).
+
+There's not enough memory in the system - DesqView/X and a 1 meg SmartDrive
+don't leave much room for other apps.  Photostyler will page to disk with
+medium size images.
+
+I have performed</str>
+    </arr>
+  </lst>
+  <lst name="61096">
+    <arr name="content">
+      <str>
+                               POST-LAUNCH
+                           April 16 - 22, 1993
+
+
+SPACECRAFT
+
+1.  On April 19, cruise science Memory Readouts (MROs) were performed for the
+Extreme Ultraviolet Spectrometer (EUV), Dust</str>
+    </arr>
+  </lst>
+  <lst name="67165">
+    <arr name="content">
+      <str> test, and I've found that XPutImage()
+is considerably slower (factor of 2 on average?) than the
+Sunview command pw_rop() which moves image data from memory
+pixrects to a canvas. This was on a Sparc IPX</str>
+    </arr>
+  </lst>
+  <lst name="75974">
+    <arr name="content">
+      <str>.  It is
+&gt;partly the concept of 'le sol natal', native soil.  I know
+&gt;that jews had previous history in the region, but none in
+&gt;recent memory.  I'm talking everyday life not archeology.
+
+	Try again, you tell me</str>
+    </arr>
+  </lst>
+  <lst name="76851">
+    <arr name="content">
+      <str>, $3900 OBO ($2000 less than original)
+
+
+-Amiga 2500/040 Toaster system
+  -Amiga 2500
+  -Zeus 28MHz 68040 (FPU and MMU built in), 1 year warranty
+  -16 megs of RAM
+  -1 meg of video memory
+  -Quantum</str>
+    </arr>
+  </lst>
+  <lst name="84195">
+    <arr name="content">
+      <str>'s death, burial, and resurrection (Rom. 6:3-8),
+The Lord's supper as a memorial to His sacrifice (I Cor. 11:26), and
+Sunday as a day of worship commemorating His resurrection (Matt 28:1ff,
+Acts 20:7)
+
+OK</str>
+    </arr>
+  </lst>
+  <lst name="9497">
+    <arr name="content">
+      <str> swapping, with a 19M
+virtual memory paging file.  It functioned but it crawled.  (this was the OCT
+build)
+
+I upgraded the machine to 16M and the performance is good,
+At that point I installed the March Build</str>
+    </arr>
+  </lst>
+  <lst name="104564">
+    <arr name="content">
+      <str>).
+&gt;September '64 is still a painful thing to remember. But I can tell you
+&gt;that the Phillies never led the league by 15 that year. Going by memory
+&gt;alone, I believe their biggest lead was 7 1/2 games</str>
+      <str>? That has to be
+&gt;one of the closest last minute scrambles ever.
+
+OK, you guys stirred up my childhood memories, so I went and did
+some research on the final month or so of the 1964 season. It turns
+out</str>
+    </arr>
+  </lst>
+  <lst name="59478">
+    <arr name="content">
+      <str>          Lyons, Michael       Medicine
+P.J.E.         Peebles        Vishniac, Ethan      Most important cosmologist
+Wilder         Penfield       Perri, Marie         Anatomical basis for memory
+John</str>
+      <str>          Tulving        Green, Christopher   Psychology of memory
+Bill           Tutte          Royle, Gordon        matroid theory (math)
+I              Uchida         Palmer, Bill         Down's syndrome
+J. Tuzo</str>
+    </arr>
+  </lst>
+  <lst name="66189">
+    <arr name="content">
+      <str> with the release of XFree86 1.2
+   (they were not in XFree86 1.1):
+
+    1) The monochrome server has been enhanced to do bank-switching of
+       available SVGA memory to allow virtual screens up to 1600x1200</str>
+      <str> color and monochrome modes,
+	with the exception of the ATI chipsets, which are only supported in
+	256 color mode.
+
+	The monochrome server also supports generic VGA cards, using 64k of
+	video memory</str>
+      <str> in a single bank, and the Hercules card.  On the
+	ET3000, only 64k of video memory is supported for the monochrome
+	server, and the GVGA has not been tested with more than 64k.
+
+	It appears that some</str>
+    </arr>
+  </lst>
+  <lst name="67582">
+    <arr name="content">
+      <str> has been enhanced to do bank-switching of
+       available SVGA memory to allow virtual screens up to 1600x1200 
+       (see the X386(1) manual page for more information).
+    2) Support</str>
+      <str> chipsets, which are only supported in
+	256 color mode.
+
+	The monochrome server also supports generic VGA cards, using 64k of
+	video memory in a single bank, and the Hercules card.  On the
+	ET3000, only 64k</str>
+      <str> of video memory is supported for the monochrome
+	server, and the GVGA has not been tested with more than 64k.
+
+	It appears that some of the SVGA card manufacturers are going to
+	non-traditional mechanisms</str>
+    </arr>
+  </lst>
+  <lst name="66322">
+    <arr name="content">
+      <str> of widgets to be destroyed.  This way any
+pending X events or further references to that widget can be cleaned
+up before the memory is actually freed.  The second phase is then
+performed after all callbacks</str>
+      <str>, event handlers, and actions have
+completed, before checking for the next X event.  At this point the
+list is traversed and each widget's memory is actually free()'d, among
+other things.
+
+As some further</str>
+      <str> string copies.  Several fields in the class record are
+	  indicated as needing permanent strings.
+	- Using an array of Strings for resources
+	- Callback lists redesigned to use less memory
+	- Translation</str>
+    </arr>
+  </lst>
+  <lst name="75984">
+    <arr name="content">
+      <str> of the past, but we can and we must strive to keep the
+memory of this tragedy alive on this side of the Atlantic, so as
+to help prevent a recurrence of the extermination of a people
+because of their religion</str>
+      <str> brethren...The barbarous and cruel nation ruthlessly
+  oppresses the faithful children of the chosen people...The priests and
+  prelates of Rome have risen. They wish to root out the memory of Jacob</str>
+    </arr>
+  </lst>
+  <lst name="102604">
+    <arr name="content">
+      <str> they used to.  The only thing
+&gt;that shifts is our memories of the "good old days" :-).
+
+Damn.  I was afraid you would say that!
+
+&gt;
+&gt;But all after the fact, which makes it *not* applicable to the current</str>
+    </arr>
+  </lst>
+  <lst name="21323">
+    <arr name="content">
+      <str> there, if we can agree with that, then would
+&gt;you agree that the further back you go the closer you get to people who had a
+&gt;stronger memory of who God was and what He said and commanded?  
+
+Between Adam</str>
+    </arr>
+  </lst>
+  <lst name="21421">
+    <arr name="content">
+      <str>.
+
+                                Haec quotiescumque feceritis    As often as you shall do
+                                in mei memoriam facietis.       these things, in memory</str>
+    </arr>
+  </lst>
+  <lst name="38257">
+    <arr name="content">
+      <str>) shared-memory architecture.
+
+From a graphics perspective, rendering complex virtual environments
+requires advanced rendering techniques like texture mapping and real-time
+multi-sample anti</str>
+    </arr>
+  </lst>
+  <lst name="38933">
+    <arr name="content">
+      <str>
+          internal  state.  G5G  also  described  their Non-Duplicated Data
+          Store that stores pointers to application data in the GPHIGS  CSS
+          for  more  efficient  use  of  memory. In addition, G5G</str>
+    </arr>
+  </lst>
+  <lst name="53351">
+    <arr name="content">
+      <str>
+
+-- "...there's nothing higher, stronger, more wholesome and more useful in life
+than some good memory..." -- Alyosha in Brothers Karamazov (Dostoevsky)
+</str>
+    </arr>
+  </lst>
+  <lst name="54261">
+    <arr name="content">
+      <str> it would have been an Army cover-up.
+
+   Another part of my memories was that while most damaged building
+were burnt, some were in rubble.  Based on what I remember, I was and
+am inclined to believe an old</str>
+    </arr>
+  </lst>
+  <lst name="54448">
+    <arr name="content">
+      <str> filters".  Stating that I *claimed* this is a falsehood.
+  
+Later in the same post:
+     Another part of my memories was that while most damaged building
+  were burnt, some were in rubble.  Based on what I</str>
+    </arr>
+  </lst>
+  <lst name="58910">
+    <arr name="content">
+      <str> is a simple 
+visualization which requires less than 15 minutes.  (NLPers claim that
+it can also be used to neutralize a traumatic memory, and hence is
+useful in treating Post-traumatic Stress Syndrome</str>
+    </arr>
+  </lst>
+  <lst name="61019">
+    <arr name="content">
+      <str> of this magazine. 
+Does this ring a bell to anyone?
+
+Craig Keithley                    |"I don't remember, I don't recall, 
+Apple Computer, Inc.              |I got no memory of anything at all"
+keithley</str>
+    </arr>
+  </lst>
+  <lst name="67480">
+    <arr name="content">
+      <str> and will generate some traffic.  Restoring the screen
+that was covered by that menu may be easy and may not be.  Does the server
+that it's displaying on have backing store?  If so and the server had enough
+memory</str>
+    </arr>
+  </lst>
+  <lst name="76159">
+    <arr name="content">
+      <str>', native soil.  I know
+&gt;that jews had previous history in the region, but none in
+&gt;recent memory.  I'm talking everyday life not archeology.
+
+&gt;	Try again, you tell me what its isn't, but you fail</str>
+    </arr>
+  </lst>
+  <lst name="76505">
+    <arr name="content">
+      <str> floppy, monochrome video
+                                  card, keyboard, and 640 kb of
+                                  memory.
+
+3       IBM PC/AT or Compatible   Some of these are original IBM (WAS</str>
+    </arr>
+  </lst>
+  <lst name="84138">
+    <arr name="content">
+      <str>'s death, burial, and resurrection (Rom. 6:3-8),
+&gt;The Lord's supper as a memorial to His sacrifice (I Cor. 11:26), and
+&gt;Sunday as a day of worship commemorating His resurrection (Matt 28:1ff,
+&gt;Acts 20</str>
+    </arr>
+  </lst>
+  <lst name="9642">
+    <arr name="content">
+      <str> units on disk
+       764 available allocation units on disk
+
+    655360 total bytes memory
+    579712 bytes free
+-- 
+Brad Banko;  Dept of Physics;  U of Illinois;  b</str>
+    </arr>
+  </lst>
+  <lst name="104312">
+    <arr name="content">
+      <str> at the
+		Vietnam Veterans Memorial Wall in Washington, DC.  
+		100,000 bikes are expected to meet there.  Call
+		Rod Coffey @ 310/425-3145.  Alt Info: send $1 p/h to
+		John Anderson, 5920 Deer Creek Way, Paso Robles</str>
+      <str>,
+		CA  93446 or call him @ 805/237-0790. 
+May 23		Long Beach MC Parts Exchange, LB Veterans Memorial Stadium.
+		310/323-9611.
+May 28-31	US MC Jamboree. Tulare Cnty Fairgnds, Tulare. ride in 
+		mc show</str>
+    </arr>
+  </lst>
+  <lst name="103450">
+    <arr name="content">
+      <str> memory, power this
+and that.  The glaring ommision was the trip computer, which was removed
+because Audi hasn't gotten it to work reliably yet.. That means that the
+car has no boost gauge.  A real</str>
+    </arr>
+  </lst>
+  <lst name="104510">
+    <arr name="content">
+      <str> Niedenfuer
+:-|), but still, a definite asset offensively.
+	Yount?  3,000 hits, MVP at two different positions, uh-huh, a real
+stiff.  His '82 was one of the great years EVER by a player in recent memory</str>
+    </arr>
+  </lst>
+  <lst name="176941">
+    <arr name="content">
+      <str>, for coming here and talking to us.  In the memory 
+of the living correspondents, this is the first time an American 
+President is doing this to the Russian press corps, so it's kind 
+of a very measured</str>
+    </arr>
+  </lst>
+</lst>
+<arr name="clusters">
+  <lst>
+    <arr name="labels">
+      <str>Start up an X Server</str>
+    </arr>
+    <double name="score">61.63879559047123</double>
+    <arr name="docs">
+      <str>68012</str>
+      <str>38682</str>
+      <str>39642</str>
+      <str>51892</str>
+      <str>60367</str>
+      <str>66868</str>
+      <str>67961</str>
+      <str>52004</str>
+      <str>67165</str>
+      <str>66189</str>
+      <str>67582</str>
+      <str>66322</str>
+      <str>67480</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>Microsoft Windows</str>
+    </arr>
+    <double name="score">59.944348898538834</double>
+    <arr name="docs">
+      <str>10178</str>
+      <str>68012</str>
+      <str>60207</str>
+      <str>38682</str>
+      <str>39642</str>
+      <str>51892</str>
+      <str>9450</str>
+      <str>9482</str>
+      <str>10173</str>
+      <str>60701</str>
+      <str>52004</str>
+      <str>9497</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>ISA Bus</str>
+    </arr>
+    <double name="score">29.55223070793923</double>
+    <arr name="docs">
+      <str>9741</str>
+      <str>60771</str>
+      <str>51892</str>
+      <str>60367</str>
+      <str>60884</str>
+      <str>61144</str>
+      <str>60297</str>
+      <str>60564</str>
+      <str>60850</str>
+      <str>66189</str>
+      <str>67582</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>Memory to the Tape</str>
+    </arr>
+    <double name="score">40.39473223452831</double>
+    <arr name="docs">
+      <str>60771</str>
+      <str>60207</str>
+      <str>60367</str>
+      <str>15722</str>
+      <str>60858</str>
+      <str>61144</str>
+      <str>52004</str>
+      <str>10694</str>
+      <str>60297</str>
+      <str>66189</str>
+      <str>67582</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>Good Idea</str>
+    </arr>
+    <double name="score">39.21516403984257</double>
+    <arr name="docs">
+      <str>10173</str>
+      <str>53702</str>
+      <str>66868</str>
+      <str>67961</str>
+      <str>52004</str>
+      <str>53257</str>
+      <str>66322</str>
+      <str>38933</str>
+      <str>53351</str>
+      <str>67480</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>Mac Hardware</str>
+    </arr>
+    <double name="score">51.697243868338376</double>
+    <arr name="docs">
+      <str>68012</str>
+      <str>38682</str>
+      <str>39642</str>
+      <str>51892</str>
+      <str>52004</str>
+      <str>38363</str>
+      <str>38392</str>
+      <str>38452</str>
+      <str>51723</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>SCSI Drive</str>
+    </arr>
+    <double name="score">84.13774668787612</double>
+    <arr name="docs">
+      <str>51749</str>
+      <str>60771</str>
+      <str>60207</str>
+      <str>51892</str>
+      <str>60367</str>
+      <str>60858</str>
+      <str>10694</str>
+      <str>60297</str>
+      <str>76851</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>ATI Graphics Ultra</str>
+    </arr>
+    <double name="score">38.26721887009409</double>
+    <arr name="docs">
+      <str>9741</str>
+      <str>60884</str>
+      <str>60850</str>
+      <str>66189</str>
+      <str>67582</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>Jesus Christ</str>
+    </arr>
+    <double name="score">44.48721586905985</double>
+    <arr name="docs">
+      <str>20816</str>
+      <str>53702</str>
+      <str>84195</str>
+      <str>21421</str>
+      <str>84138</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>Ride</str>
+    </arr>
+    <double name="score">31.604743977039604</double>
+    <arr name="docs">
+      <str>103064</str>
+      <str>104943</str>
+      <str>61019</str>
+      <str>104312</str>
+      <str>103450</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>Amusing Atheists and Agnostics</str>
+    </arr>
+    <double name="score">52.87662852601847</double>
+    <arr name="docs">
+      <str>53257</str>
+      <str>53267</str>
+      <str>53351</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>Galileo MISSION Director</str>
+    </arr>
+    <double name="score">52.54984737477945</double>
+    <arr name="docs">
+      <str>60784</str>
+      <str>61416</str>
+      <str>61096</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>Incompatible with NT</str>
+    </arr>
+    <double name="score">55.86181345648242</double>
+    <arr name="docs">
+      <str>9741</str>
+      <str>51892</str>
+      <str>10694</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>PHIGS PEX</str>
+    </arr>
+    <double name="score">49.27429606354152</double>
+    <arr name="docs">
+      <str>67107</str>
+      <str>38257</str>
+      <str>38933</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>Scientists</str>
+    </arr>
+    <double name="score">21.371726343259738</double>
+    <arr name="docs">
+      <str>58849</str>
+      <str>59478</str>
+      <str>58910</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>Able to Approach Full-screen Full-motion Animation</str>
+    </arr>
+    <double name="score">42.80319182192149</double>
+    <arr name="docs">
+      <str>38363</str>
+      <str>38392</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>Ethnic Composition</str>
+    </arr>
+    <double name="score">25.55020392112618</double>
+    <arr name="docs">
+      <str>53318</str>
+      <str>76159</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>Fired their main Guns</str>
+    </arr>
+    <double name="score">51.954443325657685</double>
+    <arr name="docs">
+      <str>54261</str>
+      <str>54448</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>Jews are the Masters of the Land</str>
+    </arr>
+    <double name="score">56.885624008118874</double>
+    <arr name="docs">
+      <str>75974</str>
+      <str>76159</str>
+    </arr>
+  </lst>
+  <lst>
+    <arr name="labels">
+      <str>Other Topics</str>
+    </arr>
+    <double name="score">0.0</double>
+    <bool name="other-topics">true</bool>
+    <arr name="docs">
+      <str>59337</str>
+      <str>38726</str>
+      <str>51870</str>
+      <str>38944</str>
+      <str>54244</str>
+      <str>103553</str>
+      <str>52782</str>
+      <str>104947</str>
+      <str>54212</str>
+      <str>59435</str>
+      <str>60275</str>
+      <str>76808</str>
+      <str>9730</str>
+      <str>15834</str>
+      <str>53224</str>
+      <str>76315</str>
+      <str>76372</str>
+      <str>83706</str>
+      <str>84066</str>
+      <str>38861</str>
+      <str>76204</str>
+      <str>83884</str>
+      <str>15810</str>
+      <str>20970</str>
+      <str>21472</str>
+      <str>51750</str>
+      <str>53690</str>
+      <str>58915</str>
+      <str>59245</str>
+      <str>104564</str>
+      <str>75984</str>
+      <str>102604</str>
+      <str>21323</str>
+      <str>76505</str>
+      <str>9642</str>
+      <str>104510</str>
+      <str>176941</str>
+    </arr>
+  </lst>
+</arr>
+</response>

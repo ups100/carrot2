@@ -31,8 +31,11 @@ import org.carrot2.util.resource.IResource;
 @Bindable
 public abstract class RemoteXmlSimpleSearchEngineBase extends SimpleSearchEngine
 {
-    /** A helper class that groups common functionality for XML/XSLT based data sources. */
-    private final XmlDocumentSourceHelper xmlDocumentSourceHelper = new XmlDocumentSourceHelper();
+    /** 
+     * A helper class that groups common functionality for XML/XSLT based data sources. 
+     */
+    protected XmlDocumentSourceHelper xmlDocumentSourceHelper = 
+        new XmlDocumentSourceHelper();
 
     /** XSLT transformation to Carrot2 DTD */
     private Templates toCarrot2Xslt;
@@ -61,8 +64,11 @@ public abstract class RemoteXmlSimpleSearchEngineBase extends SimpleSearchEngine
         final String serviceURL = buildServiceUrl();
         final SearchEngineResponse response = new SearchEngineResponse();
 
-        final ProcessingResult processingResult = xmlDocumentSourceHelper
-            .loadProcessingResult(serviceURL, toCarrot2Xslt, getXsltParameters(),
+        final ProcessingResult processingResult = 
+            xmlDocumentSourceHelper.loadProcessingResult(
+                serviceURL, 
+                toCarrot2Xslt, 
+                getXsltParameters(),
                 response.metadata, getUser(), getPassword());
 
         final List<Document> documents = processingResult.getDocuments();
@@ -71,9 +77,10 @@ public abstract class RemoteXmlSimpleSearchEngineBase extends SimpleSearchEngine
             response.results.addAll(documents);
             final Map<String, Object> resultAttributes = processingResult.getAttributes();
             response.metadata
-                .put(SearchEngineResponse.RESULTS_TOTAL_KEY, resultAttributes
-                    .containsKey(AttributeNames.RESULTS_TOTAL) ? resultAttributes
-                    .get(AttributeNames.RESULTS_TOTAL) : (long) documents.size());
+                .put(SearchEngineResponse.RESULTS_TOTAL_KEY, 
+                    resultAttributes.containsKey(AttributeNames.RESULTS_TOTAL) 
+                        ? resultAttributes.get(AttributeNames.RESULTS_TOTAL) 
+                        : (long) documents.size());
         }
         else
         {

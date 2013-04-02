@@ -14,10 +14,18 @@ package org.carrot2.source.solr;
 
 import java.util.Map;
 
+import org.carrot2.core.ProcessingException;
 import org.carrot2.core.attribute.Init;
 import org.carrot2.core.attribute.Processing;
 import org.carrot2.source.xml.RemoteXmlSimpleSearchEngineBase;
-import org.carrot2.util.attribute.*;
+import org.carrot2.source.xml.XmlDocumentSourceHelper;
+import org.carrot2.util.attribute.Attribute;
+import org.carrot2.util.attribute.AttributeLevel;
+import org.carrot2.util.attribute.Bindable;
+import org.carrot2.util.attribute.Group;
+import org.carrot2.util.attribute.Input;
+import org.carrot2.util.attribute.Label;
+import org.carrot2.util.attribute.Level;
 import org.carrot2.util.attribute.constraint.ImplementingClasses;
 import org.carrot2.util.resource.ClassLoaderResource;
 import org.carrot2.util.resource.ClassResource;
@@ -41,6 +49,7 @@ public class SolrDocumentSource extends RemoteXmlSimpleSearchEngineBase
      * for example: <tt>http://localhost:8983/solr/select?fq=timestemp:[NOW-24HOUR TO NOW]</tt>
      */
     @Input
+    @Init
     @Processing
     @Attribute
     @Label("Service URL")
@@ -52,6 +61,7 @@ public class SolrDocumentSource extends RemoteXmlSimpleSearchEngineBase
      * Title field name. Name of the Solr field that will provide document titles.
      */
     @Input
+    @Init
     @Processing
     @Attribute
     @Label("Title field name")
@@ -63,6 +73,7 @@ public class SolrDocumentSource extends RemoteXmlSimpleSearchEngineBase
      * Summary field name. Name of the Solr field that will provide document summary.
      */
     @Input
+    @Init
     @Processing
     @Attribute
     @Label("Summary field name")
@@ -74,12 +85,26 @@ public class SolrDocumentSource extends RemoteXmlSimpleSearchEngineBase
      * URL field name. Name of the Solr field that will provide document URLs.
      */
     @Input
+    @Init
     @Processing
     @Attribute
     @Label("URL field name")
     @Level(AttributeLevel.MEDIUM)
     @Group(FIELD_MAPPING)
     public String solrUrlFieldName = "url";
+
+    /**
+     * Document ID field name. The ID field is required to allow referencing 
+     * highlighter's output and existing clusters retrieved from Solr.
+     */
+    @Input
+    @Init
+    @Processing
+    @Attribute
+    @Label("ID field name")
+    @Level(AttributeLevel.MEDIUM)
+    @Group(FIELD_MAPPING)
+    public String idFieldName;
 
     /**
      * Provides a custom XSLT stylesheet for converting from Solr's output to
@@ -101,11 +126,23 @@ public class SolrDocumentSource extends RemoteXmlSimpleSearchEngineBase
     public IResource solrXsltAdapter = new ClassResource(SolrDocumentSource.class, "solr-to-c2.xsl");
 
     @Override
+    public void beforeProcessing() throws ProcessingException
+    {
+        super.xmlDocumentSourceHelper = 
+            new XmlDocumentSourceHelper(new InjectDocReferences(idFieldName));
+
+        super.beforeProcessing();
+    }
+
+    @Override
     protected String buildServiceUrl()
     {
-        return serviceUrlBase + (serviceUrlBase.contains("?") ? "&" : "?") 
-            + "q=" + urlEncode(query) + "&start=" + start + "&rows="
-            + results + "&indent=off";
+        return serviceUrlBase 
+            + (serviceUrlBase.contains("?") ? "&" : "?") 
+            + "q=" + urlEncode(query) 
+            + "&start=" + start 
+            + "&rows=" + results 
+            + "&indent=off";
     }
 
     @Override

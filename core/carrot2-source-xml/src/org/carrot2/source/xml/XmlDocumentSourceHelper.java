@@ -18,13 +18,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Templates;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.URIResolver;
+import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
 
 import org.apache.http.HttpStatus;
 import org.carrot2.core.IDocumentSource;
@@ -33,7 +34,6 @@ import org.carrot2.core.attribute.Processing;
 import org.carrot2.source.SearchEngineResponse;
 import org.carrot2.source.SimpleSearchEngine;
 import org.carrot2.util.CloseableUtils;
-import org.carrot2.util.StreamUtils;
 import org.carrot2.util.attribute.Attribute;
 import org.carrot2.util.attribute.AttributeLevel;
 import org.carrot2.util.attribute.Bindable;
@@ -46,8 +46,7 @@ import org.carrot2.util.httpclient.HttpUtils;
 import org.carrot2.util.resource.IResource;
 import org.carrot2.util.xslt.NopURIResolver;
 import org.carrot2.util.xslt.TemplatesPool;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 /**
@@ -74,23 +73,30 @@ public class XmlDocumentSourceHelper
     /** Precompiled XSLT templates. */
     private final TemplatesPool pool;
 
+    /** DOM decorator, optional. */
+    private IDomDecoratorCallback domDecorator;
+
     /**
      * URI resolver. Does nothing.
      */
     private final static URIResolver uriResolver = new NopURIResolver();
     
-    private final static Logger log = LoggerFactory.getLogger(XmlDocumentSourceHelper.class);
+    public XmlDocumentSourceHelper()
+    {
+        this(null);
+    }
 
     /**
      *
      */
-    public XmlDocumentSourceHelper()
+    public XmlDocumentSourceHelper(IDomDecoratorCallback cb)
     {
         try
         {
             // No template caching.
             this.pool = new TemplatesPool(false);
             this.pool.tFactory.setURIResolver(uriResolver);
+            this.domDecorator = cb;
         }
         catch (Exception e)
         {
@@ -162,7 +168,6 @@ public class XmlDocumentSourceHelper
         InputStream carrot2XmlInputStream;
         if (stylesheet != null)
         {
-            byte [] debugInput = null;
             try
             {
                 // Initialize transformer
@@ -178,25 +183,26 @@ public class XmlDocumentSourceHelper
                     }
                 }
 
-                if (log.isDebugEnabled())
-                {
-                    debugInput = StreamUtils.readFullyAndClose(xmlInputStream);
-                    xmlInputStream = new ByteArrayInputStream(debugInput);
-                }
+                try {
+                    Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+                        .parse(xmlInputStream);
+                    
+                    if (domDecorator != null) {
+                        domDecorator.apply(doc);
+                    }
 
-                // Perform transformation
-                transformer.transform(new StreamSource(xmlInputStream), new StreamResult(
-                    outputStream));
-                carrot2XmlInputStream = new ByteArrayInputStream(
-                    outputStream.toByteArray());
-            }
-            catch (TransformerException e)
-            {
-                if (debugInput != null)
-                {
-                    log.debug("Transformer input: " + new String(debugInput, "UTF-8"));
+                    // Perform transformation
+                    transformer.transform(
+                        new DOMSource(doc), 
+                        new StreamResult(outputStream));
+                    
+                    carrot2XmlInputStream = new ByteArrayInputStream(
+                        outputStream.toByteArray());
+                } catch (TransformerException e) {
+                    throw e;
+                } catch (Exception e) {
+                    throw new TransformerException(e);
                 }
-                throw e;
             }
             finally
             {

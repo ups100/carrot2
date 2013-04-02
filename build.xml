@@ -167,6 +167,7 @@
     <exclude name="lib/com.google.guava/ri*" />
     <exclude name="lib/org.slf4j/slf4j-log4j12*" />
     <exclude name="lib/org.apache.log4j/*" />
+    <exclude name="lib/org.simpleframework/**" />
   </patternset>
 
   <patternset id="lib.core">

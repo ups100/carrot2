@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Simple Framework
+Bundle-SymbolicName: org.simpleframework
+Bundle-Version: 5.0.7
+Bundle-ClassPath: simple-5.0.7.jar
+Bundle-Vendor: simple.sourceforge.net
+Export-Package: org.simpleframework.http,
+ org.simpleframework.http.core,
+ org.simpleframework.http.message,
+ org.simpleframework.http.parse,
+ org.simpleframework.transport,
+ org.simpleframework.transport.connect,
+ org.simpleframework.transport.reactor,
+ org.simpleframework.transport.trace,
+ org.simpleframework.util,
+ org.simpleframework.util.buffer,
+ org.simpleframework.util.lease,
+ org.simpleframework.util.parse,
+ org.simpleframework.util.thread
+Eclipse-BuddyPolicy: dependent
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
