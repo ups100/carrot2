@@ -186,16 +186,13 @@ body, input, select, label {
   padding-top: 6px;
 }
 
+#splitContainer {
+}
+
 #clusters-panel {
-  left: 7px;
-  top: 22px;
-  bottom: 24px;
 }
 
 #documents-panel {
-  top: 7px;
-  bottom: 24px;
-  right: 7px;
 }
 
 #results #main-area-inside > .glow-small {

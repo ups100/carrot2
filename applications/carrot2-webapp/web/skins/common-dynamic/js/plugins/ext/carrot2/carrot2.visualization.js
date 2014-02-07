@@ -12,8 +12,16 @@
       }
 
       var containerId = "clusters-panel";
+
       var visualization;
       if ($.visualization.visualization == 'foamtree') {
+        var containerElement = document.getElementById(containerId);
+        if (containerElement.clientWidth == 0 ||
+            containerElement.clientHeight == 0) {
+          window.setTimeout(arguments.callee, 100);
+          return;
+        }
+
         visualization = new CarrotSearchFoamTree({
           id: containerId,
           captureMouseEvents: false,
@@ -104,14 +112,6 @@
 
       window.addEventListener("resize", resizer);
       resizer();
-
-      // Add a timeout-based check for container size. Unfortunately
-      // there seems to be no other event-based way to do it (hacks with overflow/underflow don't work in IE11).
-      var dimensions = {};
-      (function() {
-
-        window.setTimeout(arguments.callee, 1000);
-      })();
 
       // Load the data model (convert from legacy XML).
       function convert(clusters) {

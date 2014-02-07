@@ -393,17 +393,21 @@ input[type=checkbox] {
 }
 
 #clusters-panel {
-  width: 258px;
   position: absolute;
   overflow-y: auto;
   overflow-x: hidden;
   left: 7px;
 }
 
+.vsplitbar {
+    width: 3px;
+    background: none;
+    border-left: 1px dotted #d3d3d3;
+}
+
 #documents-panel {
   position: absolute;
-  left: 275px;
-  top: 7px;
+  top: 0px;
 }
 
 #documents {
@@ -411,9 +415,9 @@ input[type=checkbox] {
   overflow-x: hidden;
   position: absolute;
   top: 0;
-  bottom: 0;
+  bottom: 2px;
   left: 0;
-  right: 0;
+  right: 5px;
 }
 
 #split-panel {

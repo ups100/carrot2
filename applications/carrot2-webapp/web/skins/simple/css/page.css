@@ -198,9 +198,6 @@ body, input, select, label, button {
 }
 
 #clusters-panel {
-  top: 22px;
-  bottom: 24px;
-  -height: expression(document.documentElement.clientHeight - 130 - 15);
 }
 
 #documents-panel {

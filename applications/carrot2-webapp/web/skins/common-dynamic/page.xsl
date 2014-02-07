@@ -14,7 +14,8 @@
   <xsl:template match="/page" mode="js">
     <!-- JavaScripts -->
     <xsl:apply-templates select="/page/asset-urls/js-urls/js-url" />
-  
+
+    <script type="text/javascript" src="{$skin-path}/common-dynamic/js/plugins/splitter.js"><xsl:comment></xsl:comment></script>
     <xsl:if test="contains('circles foamtree', /page/request/@view)">
         <script type="text/javascript" src="{$skin-path}/common-dynamic/js/carrotsearch.circles.js"><xsl:comment></xsl:comment></script>
         <script type="text/javascript" src="{$skin-path}/common-dynamic/js/carrotsearch.foamtree.js"><xsl:comment></xsl:comment></script>
@@ -44,6 +45,42 @@
 
       <!-- Common initialization -->
       $(document).ready(function() {
+        $("#splitPanel").splitter({
+          <xsl:choose>
+            <xsl:when test="contains('circles foamtree', /page/request/@view)">
+              sizeLeft: 658
+            </xsl:when>
+            <xsl:otherwise>
+              sizeLeft: 258
+            </xsl:otherwise>
+          </xsl:choose>
+        });
+
+        // Add a timeout-based check for container size. Unfortunately
+        // there seems to be no other event-based way to do it (hacks with
+        // overflow/underflow don't work in IE11).
+        var resizer = (function() {
+          var container = document.getElementById("results-area");
+          var dimensions = {
+            width: container.clientWidth,
+            height: container.clientHeight
+          };
+          var timeout;
+          return function() {
+            if (timeout) window.clearTimeout(timeout);
+            timeout = window.setTimeout(arguments.callee, 500);
+
+            if (container.clientWidth != dimensions.width ||
+                container.clientHeight != dimensions.height) {
+              dimensions.width = container.clientWidth;
+              dimensions.height = container.clientHeight;
+              $("#splitPanel").trigger("resize");
+            }
+          };
+        })();
+        window.addEventListener("resize", resizer);
+        resizer();
+
         $("body").trigger("carrot2-loaded");
       });
     </script>
@@ -72,29 +109,39 @@
           <xsl:apply-templates select="/page/config/views/view" />
         </ul>
       </xsl:if>
-      
-      <div id="clusters-panel">
-        <xsl:if test="count(/page/config/views/view) &lt; 2">
-          <xsl:attribute name="class">single-view</xsl:attribute>
-        </xsl:if>
-        <xsl:comment></xsl:comment>
-      </div>
 
-      <div id="split-panel"><xsl:comment></xsl:comment></div>
-      
-      <div id="documents-panel">
-        <div id="documents-status">
-          <span id="documents-status-overall" class="hide">
-            Top&#160;<span id="status-fetched-documents"><xsl:comment></xsl:comment></span> results 
-            <span id="status-total" class="hide">of about <span id="status-total-documents"><xsl:comment></xsl:comment></span></span>&#160;for&#160;<span id="status-query"><xsl:comment></xsl:comment></span> 
-          </span>
-          <span id="documents-status-cluster" class="hide">
-            Cluster <span id="status-cluster-label"><xsl:comment></xsl:comment></span>
-            with <span id="status-cluster-size"><xsl:comment></xsl:comment></span> documents
-          </span>
+      <div style="
+        position: absolute;
+        left: 0px;
+        top: 21px;
+        bottom: 19px;
+        width: 100%;">
+        <div id="splitPanel" style="
+          position: relative;
+          width: 100%;
+          height: 100%;
+        ">
+          <div id="clusters-panel">
+              <xsl:if test="count(/page/config/views/view) &lt; 2">
+                <xsl:attribute name="class">single-view</xsl:attribute>
+              </xsl:if>
+              <xsl:comment></xsl:comment>
+          </div>
+          <div id="documents-panel">
+            <div id="documents-status">
+              <span id="documents-status-overall" class="hide">
+                Top&#160;<span id="status-fetched-documents"><xsl:comment></xsl:comment></span> results
+                <span id="status-total" class="hide">of about <span id="status-total-documents"><xsl:comment></xsl:comment></span></span>&#160;for&#160;<span id="status-query"><xsl:comment></xsl:comment></span>
+              </span>
+              <span id="documents-status-cluster" class="hide">
+                Cluster <span id="status-cluster-label"><xsl:comment></xsl:comment></span>
+                with <span id="status-cluster-size"><xsl:comment></xsl:comment></span> documents
+              </span>
+            </div>
+
+            <xsl:apply-templates select="." mode="documents-panel-extra" />
+          </div>
         </div>
-        
-        <xsl:apply-templates select="." mode="documents-panel-extra" />
       </div>
 
       <div id="status-bar">
