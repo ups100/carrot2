@@ -1,0 +1,10 @@
+<!-- Components included in all applications -->
+<component-suite>
+  <algorithms>
+    <algorithm component-class="org.carrot2.clustering.suffixtree.SuffixTreeClusteringAlgorithm" id="suffixtree"
+               attribute-sets-resource="algorithm-suffixtree-attributes.xml">
+      <label>SuffixTree</label>
+      <title>SuffixTree Clustering)</title>
+    </algorithm>
+  </algorithms>
+</component-suite>

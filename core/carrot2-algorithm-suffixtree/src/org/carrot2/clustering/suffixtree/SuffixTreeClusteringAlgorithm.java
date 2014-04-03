@@ -1,4 +1,4 @@
-package org.carrot2.clustering.dbscan;
+package org.carrot2.clustering.suffixtree;
 
 import java.util.List;
 
@@ -20,8 +20,8 @@ import org.carrot2.util.attribute.Input;
 import org.carrot2.util.attribute.Output;
 import org.carrot2.util.attribute.Required;
 
-@Bindable(prefix = "DbscanClusteringAlgorithm", inherit = CommonAttributes.class)
-public class DbscanClusteringAlgorithm extends ProcessingComponentBase
+@Bindable(prefix = "SuffixTreeClusteringAlgorithm", inherit = CommonAttributes.class)
+public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 		implements IClusteringAlgorithm {
 
 	@Processing

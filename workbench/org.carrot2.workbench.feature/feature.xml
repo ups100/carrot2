@@ -146,6 +146,13 @@
          unpack="false"/>
 
    <plugin
+         id="org.carrot2.algorithm.suffixtree"
+         download-size="0"
+         install-size="0"
+         version="1.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.carrot2.source.idol"
          download-size="0"
          install-size="0"
