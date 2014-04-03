@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DBSCAN long name TODO
+Bundle-SymbolicName: org.carrot2.algorithm.dbscan;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Carrot2.org
+Require-Bundle: org.carrot2.core,
+ org.carrot2.util.common,
+ org.carrot2.text;visibility:=reexport,
+ org.carrot2.util.matrix;visibility:=reexport,
+ org.apache.mahout;bundle-version="0.3.0";visibility:=reexport,
+ org.carrot2.algorithm.lingo;bundle-version="0.0.0"
+Bundle-ClassPath: META-INF/,
+ .
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.carrot2.clustering.dbscan

@@ -981,6 +981,7 @@
         <include name="suites/algorithm-lingo*.xml" />
         <include name="suites/algorithm-stc*.xml" />
 	<include name="suites/algorithm-kmeans*.xml" />
+	<include name="suites/algorithm-dbscan*.xml" />
       </fileset>
       <fileset dir="${carrot2.master.basedir}/applications/carrot2-examples/">
 	<include name="pom.xml" />

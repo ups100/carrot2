@@ -1,0 +1,10 @@
+<!-- Components included in all applications -->
+<component-suite>
+  <algorithms>
+    <algorithm component-class="org.carrot2.clustering.dbscan.DbscanClusteringAlgorithm" id="dbscan"
+               attribute-sets-resource="algorithm-dbscan-attributes.xml">
+      <label>DBSCAN</label>
+      <title>Density-based spatial clustering of applications with noise</title>
+    </algorithm>
+  </algorithms>
+</component-suite>

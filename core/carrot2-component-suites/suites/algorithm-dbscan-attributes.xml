@@ -1,0 +1,8 @@
+<attribute-sets default="overridden-attributes">
+  <attribute-set id="overridden-attributes">
+    <value-set>
+      <label>overridden-attributes</label>
+
+    </value-set>
+  </attribute-set>
+</attribute-sets>
