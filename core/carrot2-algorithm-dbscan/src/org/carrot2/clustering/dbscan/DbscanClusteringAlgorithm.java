@@ -68,11 +68,11 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 	@Processing
 	@Input
 	@Attribute
-	@IntRange(min = 0)
+	@DoubleRange(min = 0)
 	@Group(DefaultGroups.CLUSTERS)
 	@Level(AttributeLevel.BASIC)
 	@Label("Eps")
-	public int epsAttribute = 4;
+	public double epsAttribute = 4.0;
 
 	/**
 	 * Minimum points in region (neighborhood) to classify them as cluster
@@ -80,11 +80,23 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 	@Processing
 	@Input
 	@Attribute
-	@DoubleRange(min = 0)
+	@IntRange(min = 0)
 	@Group(DefaultGroups.CLUSTERS)
 	@Level(AttributeLevel.BASIC)
 	@Label("MinPts")
-	public double minPtsAttribute = 2.0;
+	public int minPtsAttribute = 2;
+
+	/**
+	 * Whether determine {@link #epsAttribute} and {@link #minPtsAttribute}
+	 * automatically
+	 */
+	@Processing
+	@Input
+	@Attribute
+	@Group(DefaultGroups.CLUSTERS)
+	@Level(AttributeLevel.BASIC)
+	@Label("Determine algorithm attributes")
+	public boolean determineAlgorithmAttributes = true;
 
 	/**
 	 * Common preprocessing tasks handler.
@@ -129,6 +141,10 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 
 		List<DoubleSetPoint> setOfPoints = prepareSetOfPoints(vsmContext.termDocumentMatrix);
 
+		if (determineAlgorithmAttributes == true) {
+			calculateParameters();
+		}
+
 		dbscan(setOfPoints, epsAttribute, minPtsAttribute);
 
 		// Put into clusters
@@ -150,6 +166,11 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 
 		clusters = Lists.newArrayList();
 		clusters.addAll(clusterMap.values());
+	}
+
+	private void calculateParameters() {
+		epsAttribute = 0;
+		minPtsAttribute = 1;
 	}
 
 	/**
@@ -174,13 +195,13 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 	 * @param setOfPoints
 	 *            Entire set of points
 	 * @param eps
-	 *            Minimum distance between points to make them in same cluster
+	 *            Maximum distance between points to make them in same cluster
 	 * @param minPts
 	 *            Minimum points in region (neighborhood) to classify them as
 	 *            cluster
 	 */
-	private <T> void dbscan(List<? extends SetPoint<T>> setOfPoints, int eps,
-			double minPts) {
+	private <T> void dbscan(List<? extends SetPoint<T>> setOfPoints,
+			double eps, int minPts) {
 		int clusterId = SetPoint.NOISE + 1;
 
 		for (int i = 0; i < setOfPoints.size(); ++i) {
@@ -205,14 +226,14 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 	 * @param clId
 	 *            Next cluster Id
 	 * @param eps
-	 *            Minimum distance between points to make them in same cluster
+	 *            Maximum distance between points to make them in same cluster
 	 * @param minPts
 	 *            Minimum points in region (neighborhood) to classify them as
 	 *            cluster
 	 * @return
 	 */
 	private <T> boolean expandCluster(List<? extends SetPoint<T>> setOfPoints,
-			SetPoint<T> point, int clId, double eps, double minPts) {
+			SetPoint<T> point, int clId, double eps, int minPts) {
 		List<SetPoint<T>> seeds = regionQuery(setOfPoints, point, eps);
 
 		if (seeds.size() < minPts) { // no core point
@@ -261,7 +282,7 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 	 * @param point
 	 *            Center point
 	 * @param eps
-	 *            Minimum distance between points to it add to region
+	 *            Maximum distance between points to it add to region
 	 * @return New set of points containing center point and points in distance
 	 *         between them and center point which is less than eps value
 	 */

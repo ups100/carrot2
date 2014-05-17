@@ -4,10 +4,13 @@
       <label>overridden-attributes</label>
 
       <attribute key="DbscanClusteringAlgorithm.epsAttribute">
-        <value type="java.lang.Integer" value="4"/>
+        <value type="java.lang.Double" value="4.0"/>
       </attribute>
       <attribute key="DbscanClusteringAlgorithm.minPtsAttribute">
-        <value type="java.lang.Double" value="2.0"/>
+        <value type="java.lang.Integer" value="2"/>
+      </attribute>
+      <attribute key="DbscanClusteringAlgorithm.determineAlgorithmAttributes">
+        <value type="java.lang.Boolean" value="true"/>
       </attribute>
 
     </value-set>
