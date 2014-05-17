@@ -1,5 +1,6 @@
 package org.carrot2.clustering.dbscan;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -142,7 +143,7 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 		List<DoubleSetPoint> setOfPoints = prepareSetOfPoints(vsmContext.termDocumentMatrix);
 
 		if (determineAlgorithmAttributes == true) {
-			calculateParameters();
+			calculateParameters(setOfPoints);
 		}
 
 		dbscan(setOfPoints, epsAttribute, minPtsAttribute);
@@ -168,9 +169,73 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 		clusters.addAll(clusterMap.values());
 	}
 
-	private void calculateParameters() {
-		epsAttribute = 0;
-		minPtsAttribute = 1;
+	/**
+	 * Determine DBSCAN parameters based on simply heuristic
+	 * 
+	 * @param setOfPoints
+	 *            Entire points
+	 */
+	// TODO proper impl. has to be done, now at the bottom is hardcoded
+	private void calculateParameters(List<DoubleSetPoint> setOfPoints) {
+		/**
+		 * List of distances:
+		 * 
+		 * <pre>
+		 * [
+		 * 	A->A, A->B, A->C, .., A->Z
+		 *  B->A, B->B, B->C, .., B->Z
+		 *  ..
+		 *  Z->A, Z->B, Z->C, .., Z->Z
+		 * ]
+		 * </pre>
+		 * 
+		 * Then sorted by distances
+		 */
+		List<List<Double>> kDist = Lists.newArrayList();
+
+		for (DoubleSetPoint a : setOfPoints) {
+			List<Double> distances = Lists.newArrayList();
+			for (DoubleSetPoint b : setOfPoints) {
+				distances.add(a.distance(b));
+			}
+
+			Collections.sort(distances);
+			kDist.add(distances);
+		}
+
+		// 1st neighbor k = 1
+		// nth neighbor k = n
+		// for (int k = 1; k < 5; ++k) {
+		// List<Double> kDim = Lists.newArrayList();
+		//
+		// for (List<Double> distances : kDist) {
+		// kDim.add(distances.get(k));
+		// }
+		//
+		// Collections.sort(kDim);
+		// Collections.reverse(kDim);
+		// }
+
+		// Hardcoded
+		try {
+			int k = 3;
+			int p = 3;
+			List<Double> kDim = Lists.newArrayList();
+
+			for (List<Double> distances : kDist) {
+				kDim.add(distances.get(k));
+			}
+
+			Collections.sort(kDim);
+			Collections.reverse(kDim);
+
+			epsAttribute = kDim.get(p);
+			minPtsAttribute = k;
+		} catch (Exception e) {
+			// When out of bounds..
+			epsAttribute = 0;
+			minPtsAttribute = 1;
+		}
 	}
 
 	/**
