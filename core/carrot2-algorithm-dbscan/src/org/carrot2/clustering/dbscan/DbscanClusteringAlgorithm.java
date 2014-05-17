@@ -71,7 +71,7 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 	@IntRange(min = 0)
 	@Group(DefaultGroups.CLUSTERS)
 	@Level(AttributeLevel.BASIC)
-	@Label("EPS")
+	@Label("Eps")
 	public int epsAttribute = 4;
 
 	/**
@@ -125,7 +125,7 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 		// matrixBuilder.buildTermPhraseMatrix(vsmContext);
 		// matrixReducer.reduce(reducedVsmContext, 5);
 
-		printTermMatrixWithStem(vsmContext);
+		// printTermMatrixWithStem(vsmContext);
 
 		List<DoubleSetPoint> setOfPoints = prepareSetOfPoints(vsmContext.termDocumentMatrix);
 
@@ -138,6 +138,8 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 			if (clusterMap.get(spp.clusterId) == null) {
 				// TODO generate meaningful labels
 				String label = "Label: " + spp.clusterId;
+				if (spp.clusterId == SetPoint.NOISE)
+					label = Cluster.OTHER_TOPICS_LABEL;
 				Cluster cluster = new Cluster(label);
 
 				clusterMap.put(spp.clusterId, cluster);
@@ -160,7 +162,7 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 		double[][] tdm = vsmContext.termDocumentMatrix.toArray();
 		for (int y = 0; y < tdm.length; ++y) {
 			for (int x = 0; x < tdm[0].length; ++x)
-				System.out.print(String.format("%.5f\t", tdm[y][x]));
+				System.out.print(String.format("%.4f\t", tdm[y][x]));
 			System.out
 					.println(vsmContext.preprocessingContext.allStems.image[vsmContext.stemToRowIndex.keys[y]]);
 		}
