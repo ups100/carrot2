@@ -64,7 +64,7 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 	public List<Cluster> clusters = null;
 
 	/**
-	 * Minimum distance between points to make them in same cluster
+	 * Maximum distance between points to make them in same cluster
 	 */
 	@Processing
 	@Input
@@ -135,7 +135,7 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 		// vsmContext);
 
 		matrixBuilder.buildTermDocumentMatrix(vsmContext);
-		// matrixBuilder.buildTermPhraseMatrix(vsmContext);
+		 matrixBuilder.buildTermPhraseMatrix(vsmContext);
 		// matrixReducer.reduce(reducedVsmContext, 5);
 
 		// printTermMatrixWithStem(vsmContext);
