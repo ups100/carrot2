@@ -1,9 +1,12 @@
 package org.carrot2.clustering.dbscan;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.mahout.math.matrix.DoubleMatrix2D;
 import org.carrot2.core.Cluster;
@@ -17,9 +20,11 @@ import org.carrot2.core.attribute.CommonAttributes;
 import org.carrot2.core.attribute.Init;
 import org.carrot2.core.attribute.Internal;
 import org.carrot2.core.attribute.Processing;
+import org.carrot2.text.analysis.ITokenizer;
 import org.carrot2.text.preprocessing.PreprocessingContext;
 import org.carrot2.text.preprocessing.pipeline.CompletePreprocessingPipeline;
 import org.carrot2.text.preprocessing.pipeline.IPreprocessingPipeline;
+import org.carrot2.text.vsm.ReducedVectorSpaceModelContext;
 import org.carrot2.text.vsm.TermDocumentMatrixBuilder;
 import org.carrot2.text.vsm.TermDocumentMatrixReducer;
 import org.carrot2.text.vsm.VectorSpaceModelContext;
@@ -38,6 +43,8 @@ import org.carrot2.util.attribute.constraint.ImplementingClasses;
 import org.carrot2.util.attribute.constraint.IntRange;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
 @SuppressWarnings("deprecation")
 @Bindable(prefix = "DbscanClusteringAlgorithm", inherit = CommonAttributes.class)
@@ -150,23 +157,98 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 
 		// Put into clusters
 		Map<Integer, Cluster> clusterMap = new HashMap<Integer, Cluster>();
+		Map<Integer, List<Integer>> documentIdsMap = Maps.newHashMap();
 		for (DoubleSetPoint spp : setOfPoints) {
 			// If no cluster for clusterId, then create one
 			if (clusterMap.get(spp.clusterId) == null) {
-				// TODO generate meaningful labels
-				String label = "Label: " + spp.clusterId;
-				if (spp.clusterId == SetPoint.NOISE)
-					label = Cluster.OTHER_TOPICS_LABEL;
-				Cluster cluster = new Cluster(label);
+				Cluster cluster = null;
+				if (spp.clusterId == SetPoint.NOISE) {
+					String label = Cluster.OTHER_TOPICS_LABEL;
+					cluster = new Cluster(label);
+				} else {
+					cluster = new Cluster();
+				}
 
 				clusterMap.put(spp.clusterId, cluster);
 			}
-			clusterMap.get(spp.clusterId).addDocument(
-					documents.get(spp.documentId));
+			
+			if (!documentIdsMap.containsKey(spp.clusterId)) {
+				documentIdsMap.put(spp.clusterId, new ArrayList<Integer>());
+			}
+			documentIdsMap.get(spp.clusterId).add(spp.documentId);
+			
+			Document document = documents.get(spp.documentId);
+			clusterMap.get(spp.clusterId).addDocument(document);
 		}
 
+		for (Integer clusterId : clusterMap.keySet()) {
+			Cluster cluster = clusterMap.get(clusterId);
+			List<String> phrases = getPhrases(documentIdsMap.get(clusterId), vsmContext);
+			cluster.addPhrases(phrases);
+		}
+		
 		clusters = Lists.newArrayList();
 		clusters.addAll(clusterMap.values());
+	}
+
+	/**
+	 * Finds most frequent stems in all documents which belong to cluster, and returns
+	 * most frequent original words connected to stem.
+	 * 
+	 * @param documentIds
+	 * @param vsmContext
+	 * @return
+	 */
+	private List<String> getPhrases(List<Integer> documentIds, VectorSpaceModelContext vsmContext) {
+		int[][] stemTf = vsmContext.preprocessingContext.allStems.tfByDocument;
+		
+		class Entry implements Comparable<Entry>{
+			public Integer stemIdx;
+			public Integer count;
+			
+			public Entry(Integer stemIdx, Integer count) {
+				super();
+				this.stemIdx = stemIdx;
+				this.count = count;
+			}
+
+			@Override
+			public int compareTo(Entry o) {
+				return -count.compareTo(o.count);
+			}
+		};
+		Map<Integer,Entry> stemClusterTf = Maps.newHashMap();
+		for (int stem = 0; stem < stemTf.length; stem++) {
+			for (int i=0; i< stemTf[stem].length/2; i++) {
+				if (!documentIds.contains(stemTf[stem][2*i])) {
+					continue;
+				}
+				if (!stemClusterTf.containsKey(stem)) {
+					stemClusterTf.put(stem, new Entry(stem,0));
+				}
+				int count = stemClusterTf.get(stem).count + stemTf[stem][2*i+1];
+				stemClusterTf.put(stem, new Entry(stem, count));
+			}
+		}
+		
+		List<Entry> list = Lists.newArrayList(stemClusterTf.values());
+		Collections.sort(list);
+		
+		List<String> result = Lists.newArrayList();
+		int n = 3, i = 0, count = 0;
+		while(count < n && i < list.size()) {
+			int wordIdx = vsmContext.preprocessingContext.allStems.mostFrequentOriginalWordIndex[list.get(i).stemIdx];
+			short flag = vsmContext.preprocessingContext.allWords.type[wordIdx];
+			if ((flag & (ITokenizer.TF_COMMON_WORD | ITokenizer.TF_QUERY_WORD | ITokenizer.TT_NUMERIC)) == 0)
+            {
+				String stem = String.valueOf(vsmContext.preprocessingContext.allWords.image[wordIdx]);
+				result.add(stem);
+				count++;
+            }
+			i++;
+		}
+		
+		return result;
 	}
 
 	/**
@@ -205,20 +287,26 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 
 		// 1st neighbor k = 1
 		// nth neighbor k = n
-		// for (int k = 1; k < 5; ++k) {
-		// List<Double> kDim = Lists.newArrayList();
-		//
-		// for (List<Double> distances : kDist) {
-		// kDim.add(distances.get(k));
-		// }
-		//
-		// Collections.sort(kDim);
-		// Collections.reverse(kDim);
-		// }
+		 for (int k = 1; k < 5; ++k) {
+			 List<Double> kDim = Lists.newArrayList();
+			
+			 for (List<Double> distances : kDist) {
+			 kDim.add(distances.get(k));
+			 }
+			
+			 Collections.sort(kDim);
+			 Collections.reverse(kDim);
+			 
+			 System.out.println("==================");
+			 System.out.println("k="+k);
+			 for(Double dist : kDim) {
+				 System.out.println(dist+" ");
+			 }
+		 }
 
 		// Hardcoded
 		try {
-			int k = 3;
+			int k = 2;
 			int p = 3;
 			List<Double> kDim = Lists.newArrayList();
 
@@ -253,7 +341,7 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 					.println(vsmContext.preprocessingContext.allStems.image[vsmContext.stemToRowIndex.keys[y]]);
 		}
 	}
-
+	
 	/**
 	 * Entry point to DBSCAN clustering algorithm
 	 * 
@@ -378,7 +466,7 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 		// Transpose matrix to have documents as rows
 		double[][] ttdm = tdm.viewDice().toArray();
 
-		for (int i = 0; i < tdm.columns(); ++i) {
+		for (int i = 0; i < ttdm.length; ++i) {
 			set.add(new DoubleSetPoint(ttdm[i], i));
 		}
 
