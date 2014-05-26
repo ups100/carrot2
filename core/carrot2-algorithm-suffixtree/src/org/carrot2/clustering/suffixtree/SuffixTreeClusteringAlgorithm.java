@@ -3,7 +3,6 @@ package org.carrot2.clustering.suffixtree;
 import java.util.List;
 
 import org.carrot2.clustering.lingo.LingoClusteringAlgorithm;
-import org.carrot2.clustering.stc.ClusterCandidate;
 import org.carrot2.core.Cluster;
 import org.carrot2.core.Controller;
 import org.carrot2.core.ControllerFactory;
@@ -92,13 +91,13 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 		ISequence sequence = buildSequence();
 		
 		OurSuffixTree tree = buildSuffixTree(sequence);
-		
+	/*	
 		List<ClusterCandidate> firstCandidates = generateFirstCandidates(tree);
 		
 		List<ClusterCandidate> mergedCandidates = mergeCandidates(firstCandidates);
 		
 		finalRound(mergedCandidates);
-		
+		*/
 		//clusters = controller.process(documents, query, clazz).getClusters();
 	}
 	
@@ -133,11 +132,13 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
             }
         }
         
-        return new IntegerSequence(input.buffer, 0, input.elementsCount);
+       // return new IntegerSequence(input.buffer, 0, input.elementsCount);
+        
+        return null;
 	}
 	
 	OurSuffixTree buildSuffixTree(ISequence seq)
 	{
-		
+		return null;
 	}
 }
