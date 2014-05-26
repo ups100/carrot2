@@ -64,7 +64,6 @@ public class OurSuffixTree {
 		} else {
 			newDocId = m_currentDocId;
 		}
-		System.out.println(m_current + " " + newDocId);
 		return newDocId;
 	}
 
