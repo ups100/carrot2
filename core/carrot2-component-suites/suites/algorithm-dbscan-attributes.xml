@@ -4,13 +4,21 @@
       <label>overridden-attributes</label>
 
       <attribute key="DbscanClusteringAlgorithm.epsAttribute">
-        <value type="java.lang.Double" value="4.0"/>
+        <value type="java.lang.Double" value="13.0"/>
+      </attribute>
+      <attribute key="DbscanClusteringAlgorithm.epsThresholdAttribute">
+        <value type="java.lang.Double" value="0.65"/>
       </attribute>
       <attribute key="DbscanClusteringAlgorithm.minPtsAttribute">
         <value type="java.lang.Integer" value="2"/>
       </attribute>
       <attribute key="DbscanClusteringAlgorithm.determineAlgorithmAttributes">
-        <value type="java.lang.Boolean" value="true"/>
+        <value type="java.lang.Boolean" value="false"/>
+      </attribute>
+      <attribute key="DbscanClusteringAlgorithm.distanceFunction">
+        <value>
+          <wrapper class="org.carrot2.clustering.dbscan.distance.EuclideanFunction"/>
+        </value>
       </attribute>
 
     </value-set>

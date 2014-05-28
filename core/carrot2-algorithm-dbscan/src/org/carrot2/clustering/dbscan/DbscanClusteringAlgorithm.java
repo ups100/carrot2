@@ -1,14 +1,17 @@
 package org.carrot2.clustering.dbscan;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.mahout.math.matrix.DoubleMatrix2D;
+import org.carrot2.clustering.dbscan.distance.CosinusFunction;
+import org.carrot2.clustering.dbscan.distance.DistanceFunction;
+import org.carrot2.clustering.dbscan.distance.EuclideanFunction;
+import org.carrot2.clustering.dbscan.point.DoubleSetPoint;
+import org.carrot2.clustering.dbscan.point.SetPoint;
 import org.carrot2.core.Cluster;
 import org.carrot2.core.Document;
 import org.carrot2.core.IClusteringAlgorithm;
@@ -24,14 +27,12 @@ import org.carrot2.text.analysis.ITokenizer;
 import org.carrot2.text.preprocessing.PreprocessingContext;
 import org.carrot2.text.preprocessing.pipeline.CompletePreprocessingPipeline;
 import org.carrot2.text.preprocessing.pipeline.IPreprocessingPipeline;
-import org.carrot2.text.vsm.ReducedVectorSpaceModelContext;
 import org.carrot2.text.vsm.TermDocumentMatrixBuilder;
 import org.carrot2.text.vsm.TermDocumentMatrixReducer;
 import org.carrot2.text.vsm.VectorSpaceModelContext;
 import org.carrot2.util.attribute.Attribute;
 import org.carrot2.util.attribute.AttributeLevel;
 import org.carrot2.util.attribute.Bindable;
-import org.carrot2.util.attribute.DefaultGroups;
 import org.carrot2.util.attribute.Group;
 import org.carrot2.util.attribute.Input;
 import org.carrot2.util.attribute.Label;
@@ -44,12 +45,14 @@ import org.carrot2.util.attribute.constraint.IntRange;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 
 @SuppressWarnings("deprecation")
 @Bindable(prefix = "DbscanClusteringAlgorithm", inherit = CommonAttributes.class)
 public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 		implements IClusteringAlgorithm {
+
+	/** {@link Group} name. */
+	private static final String DBSCAN = "DBSCAN";
 
 	@Processing
 	@Input
@@ -71,16 +74,61 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 	public List<Cluster> clusters = null;
 
 	/**
-	 * Maximum distance between points to make them in same cluster
+	 * Function which is used when calculating distance between documents.<br />
+	 * Possible functions are {@link EuclideanFunction} and
+	 * {@link CosinusFunction}
+	 */
+	@SuppressWarnings("rawtypes")
+	@Input
+	@Processing
+	@Attribute
+	@Required
+	@ImplementingClasses(classes = { EuclideanFunction.class,
+			CosinusFunction.class }, strict = false)
+	@Label("Distance function")
+	@Level(AttributeLevel.ADVANCED)
+	@Group(DBSCAN)
+	public DistanceFunction distanceFunction = new EuclideanFunction();
+
+	/**
+	 * Whether determine {@link #epsAttribute} and {@link #minPtsAttribute}
+	 * automatically.<br />
+	 * 
+	 * <strong>It's not fully implemented yet due to necessary of user
+	 * interaction</strong>
+	 */
+	@Processing
+	@Input
+	@Attribute
+	@Group(DBSCAN)
+	@Level(AttributeLevel.BASIC)
+	@Label("Determine algorithm attributes")
+	public boolean determineAlgorithmAttributes = false;
+
+	/**
+	 * Maximum distance between points to make them in same cluster. Used when
+	 * {@link EuclideanFunction} is set
 	 */
 	@Processing
 	@Input
 	@Attribute
 	@DoubleRange(min = 0)
-	@Group(DefaultGroups.CLUSTERS)
+	@Group(DBSCAN)
 	@Level(AttributeLevel.BASIC)
 	@Label("Eps")
-	public double epsAttribute = 4.0;
+	public double epsAttribute = 13.0;
+
+	/**
+	 * Threshold used when distance function is set to {@link CosinusFunction}
+	 */
+	@Processing
+	@Input
+	@Attribute
+	@DoubleRange(min = 0, max = 1)
+	@Group(DBSCAN)
+	@Level(AttributeLevel.BASIC)
+	@Label("Eps cosinus threshold")
+	public double epsThresholdAttribute = 0.65;
 
 	/**
 	 * Minimum points in region (neighborhood) to classify them as cluster
@@ -89,22 +137,10 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 	@Input
 	@Attribute
 	@IntRange(min = 0)
-	@Group(DefaultGroups.CLUSTERS)
+	@Group(DBSCAN)
 	@Level(AttributeLevel.BASIC)
 	@Label("MinPts")
 	public int minPtsAttribute = 2;
-
-	/**
-	 * Whether determine {@link #epsAttribute} and {@link #minPtsAttribute}
-	 * automatically
-	 */
-	@Processing
-	@Input
-	@Attribute
-	@Group(DefaultGroups.CLUSTERS)
-	@Level(AttributeLevel.BASIC)
-	@Label("Determine algorithm attributes")
-	public boolean determineAlgorithmAttributes = true;
 
 	/**
 	 * Common preprocessing tasks handler.
@@ -142,7 +178,7 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 		// vsmContext);
 
 		matrixBuilder.buildTermDocumentMatrix(vsmContext);
-		 matrixBuilder.buildTermPhraseMatrix(vsmContext);
+		// matrixBuilder.buildTermPhraseMatrix(vsmContext);
 		// matrixReducer.reduce(reducedVsmContext, 5);
 
 		// printTermMatrixWithStem(vsmContext);
@@ -153,7 +189,12 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 			calculateParameters(setOfPoints);
 		}
 
-		dbscan(setOfPoints, epsAttribute, minPtsAttribute);
+		double epsValue = epsAttribute;
+		if (distanceFunction instanceof CosinusFunction) {
+			epsValue = epsThresholdAttribute;
+		}
+
+		dbscan(setOfPoints, epsValue, minPtsAttribute);
 
 		// Put into clusters
 		Map<Integer, Cluster> clusterMap = new HashMap<Integer, Cluster>();
@@ -171,41 +212,43 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 
 				clusterMap.put(spp.clusterId, cluster);
 			}
-			
+
 			if (!documentIdsMap.containsKey(spp.clusterId)) {
 				documentIdsMap.put(spp.clusterId, new ArrayList<Integer>());
 			}
 			documentIdsMap.get(spp.clusterId).add(spp.documentId);
-			
+
 			Document document = documents.get(spp.documentId);
 			clusterMap.get(spp.clusterId).addDocument(document);
 		}
 
 		for (Integer clusterId : clusterMap.keySet()) {
 			Cluster cluster = clusterMap.get(clusterId);
-			List<String> phrases = getPhrases(documentIdsMap.get(clusterId), vsmContext);
+			List<String> phrases = getPhrases(documentIdsMap.get(clusterId),
+					vsmContext);
 			cluster.addPhrases(phrases);
 		}
-		
+
 		clusters = Lists.newArrayList();
 		clusters.addAll(clusterMap.values());
 	}
 
 	/**
-	 * Finds most frequent stems in all documents which belong to cluster, and returns
-	 * most frequent original words connected to stem.
+	 * Finds most frequent stems in all documents which belong to cluster, and
+	 * returns most frequent original words connected to stem.
 	 * 
 	 * @param documentIds
 	 * @param vsmContext
-	 * @return
+	 * @return List of labels
 	 */
-	private List<String> getPhrases(List<Integer> documentIds, VectorSpaceModelContext vsmContext) {
+	private List<String> getPhrases(List<Integer> documentIds,
+			VectorSpaceModelContext vsmContext) {
 		int[][] stemTf = vsmContext.preprocessingContext.allStems.tfByDocument;
-		
-		class Entry implements Comparable<Entry>{
+
+		class Entry implements Comparable<Entry> {
 			public Integer stemIdx;
 			public Integer count;
-			
+
 			public Entry(Integer stemIdx, Integer count) {
 				super();
 				this.stemIdx = stemIdx;
@@ -216,38 +259,44 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 			public int compareTo(Entry o) {
 				return -count.compareTo(o.count);
 			}
-		};
-		Map<Integer,Entry> stemClusterTf = Maps.newHashMap();
+		}
+
+		Map<Integer, Entry> stemClusterTf = Maps.newHashMap();
 		for (int stem = 0; stem < stemTf.length; stem++) {
-			for (int i=0; i< stemTf[stem].length/2; i++) {
-				if (!documentIds.contains(stemTf[stem][2*i])) {
+			for (int i = 0; i < stemTf[stem].length / 2; i++) {
+				if (!documentIds.contains(stemTf[stem][2 * i])) {
 					continue;
 				}
 				if (!stemClusterTf.containsKey(stem)) {
-					stemClusterTf.put(stem, new Entry(stem,0));
+					stemClusterTf.put(stem, new Entry(stem, 0));
 				}
-				int count = stemClusterTf.get(stem).count + stemTf[stem][2*i+1];
+				int count = stemClusterTf.get(stem).count
+						+ stemTf[stem][2 * i + 1];
 				stemClusterTf.put(stem, new Entry(stem, count));
 			}
 		}
-		
+
 		List<Entry> list = Lists.newArrayList(stemClusterTf.values());
 		Collections.sort(list);
-		
+
 		List<String> result = Lists.newArrayList();
 		int n = 3, i = 0, count = 0;
-		while(count < n && i < list.size()) {
-			int wordIdx = vsmContext.preprocessingContext.allStems.mostFrequentOriginalWordIndex[list.get(i).stemIdx];
+		while (count < n && i < list.size()) {
+			int wordIdx = vsmContext.preprocessingContext.allStems.mostFrequentOriginalWordIndex[list
+					.get(i).stemIdx];
 			short flag = vsmContext.preprocessingContext.allWords.type[wordIdx];
-			if ((flag & (ITokenizer.TF_COMMON_WORD | ITokenizer.TF_QUERY_WORD | ITokenizer.TT_NUMERIC)) == 0)
-            {
-				String stem = String.valueOf(vsmContext.preprocessingContext.allWords.image[wordIdx]);
+			if ((flag & (ITokenizer.TF_COMMON_WORD | ITokenizer.TF_QUERY_WORD | ITokenizer.TT_NUMERIC)) == 0) {
+				String stem = String
+						.valueOf(vsmContext.preprocessingContext.allWords.image[wordIdx]);
+				// Capitalize first letter
+				stem = Character.toUpperCase(stem.charAt(0))
+						+ stem.substring(1);
 				result.add(stem);
 				count++;
-            }
+			}
 			i++;
 		}
-		
+
 		return result;
 	}
 
@@ -257,7 +306,6 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 	 * @param setOfPoints
 	 *            Entire points
 	 */
-	// TODO proper impl. has to be done, now at the bottom is hardcoded
 	private void calculateParameters(List<DoubleSetPoint> setOfPoints) {
 		/**
 		 * List of distances:
@@ -287,23 +335,18 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 
 		// 1st neighbor k = 1
 		// nth neighbor k = n
-		 for (int k = 1; k < 5; ++k) {
-			 List<Double> kDim = Lists.newArrayList();
-			
-			 for (List<Double> distances : kDist) {
-			 kDim.add(distances.get(k));
-			 }
-			
-			 Collections.sort(kDim);
-			 Collections.reverse(kDim);
-			 
-			 System.out.println("==================");
-			 System.out.println("k="+k);
-			 for(Double dist : kDim) {
-				 System.out.println(dist+" ");
-			 }
-		 }
+		for (int k = 1; k < 5; ++k) {
+			List<Double> kDim = Lists.newArrayList();
 
+			for (List<Double> distances : kDist) {
+				kDim.add(distances.get(k));
+			}
+
+			Collections.sort(kDim);
+			Collections.reverse(kDim);
+		}
+
+		// TODO proper impl. has to be done, now at the bottom is hardcoded
 		// Hardcoded
 		try {
 			int k = 2;
@@ -318,10 +361,12 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 			Collections.reverse(kDim);
 
 			epsAttribute = kDim.get(p);
+			epsThresholdAttribute = epsAttribute;
 			minPtsAttribute = k;
 		} catch (Exception e) {
 			// When out of bounds..
-			epsAttribute = 0;
+			epsAttribute = 1;
+			epsThresholdAttribute = 0.5;
 			minPtsAttribute = 1;
 		}
 	}
@@ -332,6 +377,7 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 	 * 
 	 * @param vsmContext
 	 */
+	@SuppressWarnings("unused")
 	private void printTermMatrixWithStem(VectorSpaceModelContext vsmContext) {
 		double[][] tdm = vsmContext.termDocumentMatrix.toArray();
 		for (int y = 0; y < tdm.length; ++y) {
@@ -341,7 +387,7 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 					.println(vsmContext.preprocessingContext.allStems.image[vsmContext.stemToRowIndex.keys[y]]);
 		}
 	}
-	
+
 	/**
 	 * Entry point to DBSCAN clustering algorithm
 	 * 
@@ -461,68 +507,17 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 	 *            Generated term document matrix
 	 * @return List of points
 	 */
+	@SuppressWarnings("unchecked")
 	private List<DoubleSetPoint> prepareSetOfPoints(DoubleMatrix2D tdm) {
 		List<DoubleSetPoint> set = Lists.newArrayList();
 		// Transpose matrix to have documents as rows
 		double[][] ttdm = tdm.viewDice().toArray();
 
 		for (int i = 0; i < ttdm.length; ++i) {
-			set.add(new DoubleSetPoint(ttdm[i], i));
+			set.add(new DoubleSetPoint(ttdm[i], i, distanceFunction));
 		}
 
 		return set;
-	}
-
-	/**
-	 * Document model representation wrapper, used to collect calculated cluster
-	 * id for document
-	 * 
-	 * @param <T>
-	 */
-	public abstract class SetPoint<T> {
-
-		public static final int UNCLASSIFIED = -1;
-		public static final int NOISE = 0;
-
-		public int clusterId = UNCLASSIFIED;
-		public int documentId = -1;
-		public T points;
-
-		public SetPoint(T points, int documentId) {
-			this.points = points;
-			this.documentId = documentId;
-		}
-
-		public abstract double distance(SetPoint<T> another);
-
-		@Override
-		public String toString() {
-			return "[doc=" + documentId + ",cl=" + clusterId + "]";
-		}
-	}
-
-	/**
-	 * Model of document as array of double values (from termDocumentMatrix
-	 * columns)
-	 */
-	public class DoubleSetPoint extends SetPoint<double[]> {
-
-		public DoubleSetPoint(double[] points, int documentId) {
-			super(points, documentId);
-		}
-
-		@Override
-		public double distance(SetPoint<double[]> another) {
-			if (points.length != another.points.length)
-				throw new IllegalArgumentException();
-
-			double ret = 0;
-
-			for (int i = 0; i < points.length; ++i)
-				ret += Math.pow(points[i] - another.points[i], 2.0);
-
-			return Math.sqrt(ret);
-		}
 	}
 
 }
