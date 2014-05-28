@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Map;
 
+import com.carrotsearch.hppc.BitSet;
 import com.carrotsearch.hppc.IntStack;
 
 public class OurSuffixTree {
@@ -168,7 +169,7 @@ public class OurSuffixTree {
 
 	public void build()
 	{
-		m_root = new Node(0, 0, -1, -1);
+		m_root = new Node(0, 0, 0, -1);
 		m_nodes = new ArrayList<Node>();
 		m_nodes.add(m_root);
 		m_activePoint = new ActivePoint();
@@ -215,5 +216,43 @@ public class OurSuffixTree {
 		}
 	}
 
+	public abstract class Visitor {
+		public int minCardinality;
+		public abstract void visit(Node n, BitSet documents, int lenBefore);
+		public Visitor(int minCardinality)
+		{
+			this.minCardinality = minCardinality;
+		}
+	};
+
+	void visitNode(Node n, Visitor v, BitSet my_docs, int len)
+	{
+		BitSet my_childSet = new BitSet();
+		/* Check if we have a leaf or not */
+		if (n.children.isEmpty()) {
+			my_docs.set(n.docId);
+		} else {
+			int lenBefore = len + n.len;
+			for (Node child : n.children.values()) {
+				visitNode(child, v, my_childSet, lenBefore);
+			}
+
+			my_docs.or(my_childSet);
+		}
+
+		if (n != m_root && my_childSet.cardinality() >= v.minCardinality) {
+			v.visit(n, my_childSet, len);
+		}
+	}
+
+	void iterateThroughtTree(Visitor v)
+	{
+		visitNode(m_root, v, new BitSet(), 0);
+	}
+
+	ISequence getSequence()
+	{
+		return m_seq;
+	}
 
 }
