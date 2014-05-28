@@ -81,9 +81,11 @@ public class OurSuffixTree {
 				m_activePoint.currentNode = target;
 				m_activePoint.targetNode = null;
 				m_activePoint.len =  0;
+				System.out.println("Przeszlismy do nowej");
 			} else {
 				m_activePoint.targetNode = target;
 				m_activePoint.len = 1;
+				System.out.println("Wybrana galaz");
 			}
 		} else {
 			/* there is no such child, we insert new one */
@@ -94,6 +96,7 @@ public class OurSuffixTree {
 			m_nodes.add(newOne);
 
 			m_activePoint.currentNode.children.put(m_seq.objectAt(m_current), newOne);
+			System.out.println("Nowe dziecko");
 		}
 	}
 
@@ -105,10 +108,12 @@ public class OurSuffixTree {
 		/* Didn't we get the whole sentence? */
 		if (m_activePoint.len == m_activePoint.targetNode.len) {
 			/* We have whole branch so let's go to next state */
+			System.out.println("jest caly branch");
 			m_activePoint.currentNode = m_activePoint.targetNode;
 			m_activePoint.targetNode = null;
 			m_activePoint.len =  0;
 		}
+		System.out.println("Kolejny na galezi");
 	}
 
 	public void splitOutNodes(int nextToken)
@@ -138,11 +143,13 @@ public class OurSuffixTree {
 
 		/* add as second child */
 		midle.children.put(m_seq.objectAt(m_current), newOne);
+		System.out.println("Wyzielono dla "  + m_seq.objectAt(m_current));
 	}
 
 	void goToNextNode()
 	{
 		if (m_activePoint.currentNode.id == 0) {
+			System.out.println("W roocie");
 			--(m_activePoint.len);
 			m_activePoint.targetNode = m_activePoint.currentNode.children.get(m_seq.objectAt(m_current - m_activePoint.len));
 			if (m_activePoint.targetNode == null) {
@@ -150,13 +157,15 @@ public class OurSuffixTree {
 			}
 		} else {
 			/* Current active node is not a root */
+			System.out.println("Nie w roocie");
 			if (m_activePoint.currentNode.suffixLink != null) {
 				/* we go to that link */
 				m_activePoint.currentNode = m_activePoint.currentNode.suffixLink;
-
+				System.out.println("Idziemy Sufixem");
 			} else {
 				/* we go to root */
 				m_activePoint.currentNode = m_root;
+				System.out.println("Goto root");
 			}
 
 			/* select edge with the same first character */
@@ -175,8 +184,9 @@ public class OurSuffixTree {
 		m_activePoint = new ActivePoint();
 		m_activePoint.currentNode = m_root;
 		m_reminder = 1;
-
+System.out.println("poczatek");
 		for (m_current = 0; m_current < m_seq.size(); ++m_current) {
+			System.out.println("Przypominacz: " + m_reminder+ " token: "+ m_seq.objectAt(m_current));
 			/* do we insert first character of suffix ?*/
 			if (m_activePoint.targetNode == null) {
 				handleNoTargetNode();
@@ -196,6 +206,11 @@ public class OurSuffixTree {
 					goToNextNode();
 
 					while (m_reminder > 1) {
+						System.out.println("Petla: rem: " + m_reminder);
+						m_seq.toString();
+						m_activePoint.toString();
+						m_activePoint.targetNode.toString();
+						
 						nextToken = m_seq.objectAt(m_activePoint.targetNode.start + m_activePoint.len);
 						if (m_seq.objectAt(m_current) == nextToken) {
 							break;

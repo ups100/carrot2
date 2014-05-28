@@ -2,7 +2,7 @@ package org.carrot2.clustering.suffixtree;
 
 public class SuffixTreeTests {
 	public static void main(String[] args) {
-		CharacterSequence seq = new CharacterSequence("abcab#xabcd$");
+		CharacterSequence seq = new CharacterSequence("abcabxabcd$");
 		int[] bounds = new int[5];
 		bounds[0] = 6;
 		bounds[1] = 13;
@@ -18,6 +18,11 @@ public class SuffixTreeTests {
 			printBranch(child.start, child.len, seq);
 			System.out.print(" ID: " + child.id + " GID: " + child.docId);
 			System.out.print('\n');
+			if (child.suffixLink != null) {
+				System.out.print(tabs+ "Sufix: ");
+				printBranch(child.suffixLink.start, child.suffixLink.len, seq);
+				System.out.print('\n');
+			}
 			printNode(child, tabs + '\t', seq);
 		}
 	}
