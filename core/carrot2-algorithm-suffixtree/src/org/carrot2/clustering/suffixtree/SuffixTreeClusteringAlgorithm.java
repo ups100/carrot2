@@ -183,6 +183,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 
 	@Override
 	public void process() throws ProcessingException {
+		 clusters = new ArrayList<Cluster>();
 		// Preprocessing of documents
 		context = preprocessingPipeline.preprocess(
 				documents, query, LanguageCode.ENGLISH);
@@ -420,7 +421,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
         }
 
         final BitSetIterator i = bitset.iterator();
-        for (int d = i.nextSetBit(); d >= 0; d = i.nextSetBit())
+        for (int d = i.nextSetBit(); d >= 0 && d < documents.size(); d = i.nextSetBit())
         {
             l.add(documents.get(d));
         }
