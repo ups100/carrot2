@@ -1,5 +1,9 @@
 package org.carrot2.clustering.suffixtree;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public class SuffixTreeTests {
 	public static void main(String[] args) {
 		CharacterSequence seq = new CharacterSequence("abcabxabcd$");
@@ -9,9 +13,17 @@ public class SuffixTreeTests {
 		OurSuffixTree stree = new OurSuffixTree(seq, bounds);
 		stree.build();
 		printNode(stree.m_root, "", seq);
-		System.out.println("works");
+		//System.out.println("works");
+		try {
+			PrintWriter out = new PrintWriter(new FileWriter("moj.dot"));
+			stree.printTree(out);
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	
+
 	static void printNode(OurSuffixTree.Node n, String tabs, ISequence seq) {
 		for(OurSuffixTree.Node child : n.children.values()) {
 			System.out.print(tabs);
