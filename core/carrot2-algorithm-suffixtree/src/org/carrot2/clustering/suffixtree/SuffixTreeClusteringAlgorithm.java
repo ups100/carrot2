@@ -1,9 +1,14 @@
 package org.carrot2.clustering.suffixtree;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 
 import org.carrot2.clustering.lingo.LingoClusteringAlgorithm;
 import org.carrot2.clustering.suffixtree.OurSuffixTree.Node;
@@ -43,6 +48,8 @@ import com.carrotsearch.hppc.BitSet;
 import com.carrotsearch.hppc.BitSetIterator;
 import com.carrotsearch.hppc.IntStack;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 
 @Bindable(prefix = "SuffixTreeClusteringAlgorithm", inherit = CommonAttributes.class)
 public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
@@ -155,7 +162,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 	private final Controller controller = ControllerFactory.createSimple();
 	private final Class<?> clazz = LingoClusteringAlgorithm.class;
 
-	class ClusterCandidate {
+	static class ClusterCandidate {
 		double score;
 		BitSet documents;
 		ArrayList<Path> paths;
@@ -167,7 +174,104 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 			this.paths = new ArrayList<Path>();
 			this.paths.add(p);
 		}
+		
+		static public ClusterCandidate merge(List<ClusterCandidate> candidates) {
+			ClusterCandidate first = candidates.get(0);
+			BitSet bitSet = new BitSet(first.documents.length());
+			for (ClusterCandidate candidate : candidates) {
+				bitSet.or(candidate.documents);
+			}
+			// TODO set path and score??
+			return new ClusterCandidate(first.paths.get(0), bitSet, first.score);
+		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result
+					+ ((documents == null) ? 0 : documents.hashCode());
+			result = prime * result + ((paths == null) ? 0 : paths.hashCode());
+			long temp;
+			temp = Double.doubleToLongBits(score);
+			result = prime * result + (int) (temp ^ (temp >>> 32));
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			ClusterCandidate other = (ClusterCandidate) obj;
+			if (documents == null) {
+				if (other.documents != null)
+					return false;
+			} else if (!documents.equals(other.documents))
+				return false;
+			if (paths == null) {
+				if (other.paths != null)
+					return false;
+			} else if (!paths.equals(other.paths))
+				return false;
+			if (Double.doubleToLongBits(score) != Double
+					.doubleToLongBits(other.score))
+				return false;
+			return true;
+		}
 	};
+	
+	class UndirectedGraph<T> {
+		private Map<T, List<T>> adjacencyMap;
+		
+		public UndirectedGraph() {
+			adjacencyMap = Maps.newHashMap();
+		}
+		
+		public void addVertex(T vertex) {
+			adjacencyMap.put(vertex, new ArrayList<T>());
+		}
+		
+		public void addEdge(T v1, T v2) {
+			adjacencyMap.get(v1).add(v2);
+			adjacencyMap.get(v2).add(v1);
+		}
+		
+		public List<List<T>> getConnectedComponents() {
+			List<List<T>> result = Lists.newLinkedList();
+			List<T> unvisited = Lists.newLinkedList();
+			for (T vertex : adjacencyMap.keySet()) {
+				unvisited.add(vertex);
+			}
+			
+			while (!unvisited.isEmpty()) {
+				Queue<T> queue = Lists.newLinkedList();
+				List<T> component = Lists.newArrayList();
+				queue.add(unvisited.get(0));
+				component.add(unvisited.get(0));
+				unvisited.remove(0);
+				
+				while(!queue.isEmpty()) {
+					T vertex = queue.poll();
+					List<T> neighbours = adjacencyMap.get(vertex);
+					for(T neighbour : neighbours) {
+						if (unvisited.contains(neighbour)) {
+							unvisited.remove(neighbour);
+							queue.add(neighbour);
+							component.add(neighbour);
+						}
+					}
+				}
+				result.add(component);
+			}
+			
+			return result;
+		}
+	}
+	
 	/**
      * Stores the preprocessing context during {@link #process()}.
      */
@@ -194,12 +298,42 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 		tree = buildSuffixTree(sequence);
 
 		List<ClusterCandidate> firstCandidates = generateFirstCandidates(tree);
-/*
-		List<ClusterCandidate> mergedCandidates = mergeCandidates(firstCandidates);
-*/
+		
+//		firstCandidates = mergeCandidates(firstCandidates);
+
 		postProcessing(firstCandidates);
 
 		//clusters = controller.process(documents, query, clazz).getClusters();
+	}
+
+	private List<ClusterCandidate> mergeCandidates(List<ClusterCandidate> firstCandidates) {
+		UndirectedGraph<ClusterCandidate> graph = new UndirectedGraph<ClusterCandidate>();
+		for (ClusterCandidate candidate : firstCandidates) {
+			graph.addVertex(candidate);
+		}
+		
+		for(int i=0;i<firstCandidates.size(); i++) {
+			for(int j=i+1; j<firstCandidates.size(); j++) {
+				ClusterCandidate clusterI = firstCandidates.get(i);
+				ClusterCandidate clusterJ = firstCandidates.get(j);
+				BitSet documentsI = clusterI.documents;
+				BitSet documentsJ = clusterJ.documents;
+				long intersectionCount = BitSet.intersectionCount(documentsI, documentsJ);
+				double pI = (double)intersectionCount/documentsI.cardinality();
+				double pJ = (double)intersectionCount/documentsJ.cardinality();
+				if (pI > 0.5 && pJ > 0.5) {
+					graph.addEdge(clusterI, clusterJ);
+				}
+			}
+		}
+		
+		List<ClusterCandidate> merged = Lists.newArrayList();
+		List<List<ClusterCandidate>> connectedComponents = graph.getConnectedComponents();
+		for(List<ClusterCandidate> component : connectedComponents) {
+			merged.add(ClusterCandidate.merge(component));
+		}
+		
+		return merged;
 	}
 
 	ISequence buildSequence()
@@ -243,7 +377,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 		return tree;
 	}
 
-	private class Path {
+	private  static class Path {
 		int start;
 		int lastStart;
 		int totalLen;
