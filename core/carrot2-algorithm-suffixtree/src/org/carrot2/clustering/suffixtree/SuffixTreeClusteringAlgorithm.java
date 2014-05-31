@@ -178,11 +178,19 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 		static public ClusterCandidate merge(List<ClusterCandidate> candidates) {
 			ClusterCandidate first = candidates.get(0);
 			BitSet bitSet = new BitSet(first.documents.length());
+			double score = 0;
+			double maxScore = 0;
+			Path path = null;
 			for (ClusterCandidate candidate : candidates) {
 				bitSet.or(candidate.documents);
+				score += candidate.score;
+				if (candidate.score > maxScore) {
+					maxScore = candidate.score;
+					path = candidate.paths.get(0);
+				}
 			}
 			// TODO set path and score??
-			return new ClusterCandidate(first.paths.get(0), bitSet, first.score);
+			return new ClusterCandidate(path, bitSet, score);
 		}
 
 		@Override
@@ -299,7 +307,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 
 		List<ClusterCandidate> firstCandidates = generateFirstCandidates(tree);
 		
-//		firstCandidates = mergeCandidates(firstCandidates);
+		firstCandidates = mergeCandidates(firstCandidates);
 
 		postProcessing(firstCandidates);
 
@@ -321,7 +329,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 				long intersectionCount = BitSet.intersectionCount(documentsI, documentsJ);
 				double pI = (double)intersectionCount/documentsI.cardinality();
 				double pJ = (double)intersectionCount/documentsJ.cardinality();
-				if (pI > 0.5 && pJ > 0.5) {
+				if (pI >= 0.5 && pJ >= 0.5) {
 					graph.addEdge(clusterI, clusterJ);
 				}
 			}
@@ -437,7 +445,8 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 		short [] tokenTypes = context.allWords.type;
 
 		// Ignore nodes that start with a stop word.
-        if (seq.objectAt(p.start) < 0 || seq.objectAt(p.start) >= tokenTypes.length || TokenTypeUtils.isCommon(tokenTypes[seq.objectAt(p.start)]))
+        if (seq.objectAt(p.start) < 0 || seq.objectAt(p.start) >= tokenTypes.length ||
+        		TokenTypeUtils.isCommon(tokenTypes[seq.objectAt(p.start)]))
         {
             return false;
         }
