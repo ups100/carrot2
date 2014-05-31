@@ -74,7 +74,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 	@Input
 	@Attribute
 	@DoubleRange(min = 0)
-	@Group(DefaultGroups.CLUSTERS)
+	@Group("Suffix Tree params")
 	@Level(AttributeLevel.BASIC)
 	@Label("Minimal cardinality")
 	public int minCardinality = 3;
@@ -86,7 +86,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 	@Input
 	@Attribute
 	@DoubleRange(min = 0)
-	@Group(DefaultGroups.CLUSTERS)
+	@Group("Suffix Tree params")
 	@Level(AttributeLevel.BASIC)
 	@Label("Minimal score for base cluster")
 	public double minBaseClusterScore = 2.0d;
@@ -98,7 +98,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 	@Input
 	@Attribute
 	@DoubleRange(min = 0)
-	@Group(DefaultGroups.CLUSTERS)
+	@Group("Suffix Tree params")
 	@Level(AttributeLevel.BASIC)
 	@Label("Max Number of Base Clusters")
 	public int maxBaseClusters = 300;
@@ -110,7 +110,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 	@Input
 	@Attribute
 	@DoubleRange(min = 0)
-	@Group(DefaultGroups.CLUSTERS)
+	@Group("Suffix Tree params")
 	@Level(AttributeLevel.BASIC)
 	@Label("Max Number of Clusters")
 	public int maxClusters = 20;
@@ -122,7 +122,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 	@Input
 	@Attribute
 	@DoubleRange(min = 0)
-	@Group(DefaultGroups.CLUSTERS)
+	@Group("Suffix Tree params")
 	@Level(AttributeLevel.BASIC)
 	@Label("Max label length")
 	public int maxLabelLength = 5;
@@ -134,7 +134,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 	@Input
 	@Attribute
 	@DoubleRange(min = 0)
-	@Group(DefaultGroups.CLUSTERS)
+	@Group("Suffix Tree params")
 	@Level(AttributeLevel.BASIC)
 	@Label("Max word")
 	public double maxWordFrequency = 0.8d;
@@ -303,7 +303,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 		short [] tokenTypes = context.allWords.type;
 
 		// Ignore nodes that start with a stop word.
-        if (seq.objectAt(p.start) < 0 || TokenTypeUtils.isCommon(tokenTypes[seq.objectAt(p.start)]))
+        if (seq.objectAt(p.start) < 0 || seq.objectAt(p.start) >= tokenTypes.length || TokenTypeUtils.isCommon(tokenTypes[seq.objectAt(p.start)]))
         {
             return false;
         }
@@ -312,8 +312,8 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
         int end = p.start + p.totalLen - 1;
         int orginalEnd = end;
         /* Cut of trailing not meaningful tokens */
-        while (start <= end && (seq.objectAt(end) < 0 || TokenTypeUtils.isCommon(
-        		tokenTypes[seq.objectAt(end)]))) {
+        while (start <= end && (seq.objectAt(end) < 0 || seq.objectAt(end) >= tokenTypes.length
+        		|| TokenTypeUtils.isCommon(tokenTypes[seq.objectAt(end)]))) {
         	--end;
         }
 
@@ -442,6 +442,8 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 
         for (int i = 0; i < termsCount; ++i) {
         	int termIndex = seq.objectAt(i + p.start);
+        	if (termIndex < 0)
+        			continue;
         	images[i] = context.allWords.image[termIndex];
         	stopwords[i] = TokenTypeUtils.isCommon(tokenTypes[termIndex]);
         }
