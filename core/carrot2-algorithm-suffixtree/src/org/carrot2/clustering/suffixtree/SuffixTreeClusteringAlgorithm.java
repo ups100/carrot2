@@ -1,20 +1,14 @@
 package org.carrot2.clustering.suffixtree;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Set;
 
-import org.carrot2.clustering.lingo.LingoClusteringAlgorithm;
 import org.carrot2.clustering.suffixtree.OurSuffixTree.Node;
 import org.carrot2.core.Cluster;
-import org.carrot2.core.Controller;
-import org.carrot2.core.ControllerFactory;
 import org.carrot2.core.Document;
 import org.carrot2.core.IClusteringAlgorithm;
 import org.carrot2.core.LanguageCode;
@@ -34,7 +28,6 @@ import org.carrot2.text.preprocessing.pipeline.IPreprocessingPipeline;
 import org.carrot2.util.attribute.Attribute;
 import org.carrot2.util.attribute.AttributeLevel;
 import org.carrot2.util.attribute.Bindable;
-import org.carrot2.util.attribute.DefaultGroups;
 import org.carrot2.util.attribute.Group;
 import org.carrot2.util.attribute.Input;
 import org.carrot2.util.attribute.Label;
@@ -49,11 +42,13 @@ import com.carrotsearch.hppc.BitSetIterator;
 import com.carrotsearch.hppc.IntStack;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 
 @Bindable(prefix = "SuffixTreeClusteringAlgorithm", inherit = CommonAttributes.class)
 public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 		implements IClusteringAlgorithm {
+
+	/** {@link Group} name. */
+	private static final String STC = "Suffix Tree params";
 
 	@Processing
 	@Input
@@ -81,7 +76,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 	@Input
 	@Attribute
 	@DoubleRange(min = 0)
-	@Group("Suffix Tree params")
+	@Group(STC)
 	@Level(AttributeLevel.BASIC)
 	@Label("Minimal cardinality")
 	public int minCardinality = 3;
@@ -93,7 +88,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 	@Input
 	@Attribute
 	@DoubleRange(min = 0)
-	@Group("Suffix Tree params")
+	@Group(STC)
 	@Level(AttributeLevel.BASIC)
 	@Label("Minimal score for base cluster")
 	public double minBaseClusterScore = 2.0d;
@@ -105,7 +100,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 	@Input
 	@Attribute
 	@DoubleRange(min = 0)
-	@Group("Suffix Tree params")
+	@Group(STC)
 	@Level(AttributeLevel.BASIC)
 	@Label("Max Number of Base Clusters")
 	public int maxBaseClusters = 300;
@@ -117,7 +112,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 	@Input
 	@Attribute
 	@DoubleRange(min = 0)
-	@Group("Suffix Tree params")
+	@Group(STC)
 	@Level(AttributeLevel.BASIC)
 	@Label("Max Number of Clusters")
 	public int maxClusters = 20;
@@ -129,7 +124,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 	@Input
 	@Attribute
 	@DoubleRange(min = 0)
-	@Group("Suffix Tree params")
+	@Group(STC)
 	@Level(AttributeLevel.BASIC)
 	@Label("Max label length")
 	public int maxLabelLength = 5;
@@ -141,7 +136,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 	@Input
 	@Attribute
 	@DoubleRange(min = 0)
-	@Group("Suffix Tree params")
+	@Group(STC)
 	@Level(AttributeLevel.BASIC)
 	@Label("Max word")
 	public double maxWordFrequency = 0.8d;
@@ -157,10 +152,6 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 	@ImplementingClasses(classes = {}, strict = false)
 	@Level(AttributeLevel.ADVANCED)
 	public IPreprocessingPipeline preprocessingPipeline = new CompletePreprocessingPipeline();
-
-
-	private final Controller controller = ControllerFactory.createSimple();
-	private final Class<?> clazz = LingoClusteringAlgorithm.class;
 
 	static class ClusterCandidate {
 		double score;
@@ -310,8 +301,6 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 		firstCandidates = mergeCandidates(firstCandidates);
 
 		postProcessing(firstCandidates);
-
-		//clusters = controller.process(documents, query, clazz).getClusters();
 	}
 
 	private List<ClusterCandidate> mergeCandidates(List<ClusterCandidate> firstCandidates) {
@@ -487,7 +476,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 		int effectiveLen = 0;
 		for (int i = 0; i < p.totalLen; ++i) {
 			int termInd = seq.objectAt(p.start + i);
-			if (termInd < 0 || TokenTypeUtils.isCommon(tokenTypes[termInd])) {
+			if (termInd < 0 || termInd > tokenTypes.length || TokenTypeUtils.isCommon(tokenTypes[termInd])) {
 				continue;
 			}
 

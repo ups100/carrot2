@@ -2,6 +2,25 @@
   <attribute-set id="overridden-attributes">
     <value-set>
       <label>overridden-attributes</label>
+      
+      <attribute key="SuffixTreeClusteringAlgorithm.minCardinality">
+        <value type="java.lang.Integer" value="3"/>
+      </attribute>
+      <attribute key="SuffixTreeClusteringAlgorithm.minBaseClusterScore">
+        <value type="java.lang.Double" value="2.0"/>
+      </attribute>
+      <attribute key="SuffixTreeClusteringAlgorithm.maxBaseClusters">
+        <value type="java.lang.Integer" value="300"/>
+      </attribute>
+      <attribute key="SuffixTreeClusteringAlgorithm.maxClusters">
+        <value type="java.lang.Integer" value="20"/>
+      </attribute>
+      <attribute key="SuffixTreeClusteringAlgorithm.maxLabelLength">
+        <value type="java.lang.Integer" value="5"/>
+      </attribute>
+      <attribute key="SuffixTreeClusteringAlgorithm.maxWordFrequency">
+        <value type="java.lang.Double" value="0.8"/>
+      </attribute>
 
     </value-set>
   </attribute-set>
