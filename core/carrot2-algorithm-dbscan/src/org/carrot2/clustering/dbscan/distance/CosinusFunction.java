@@ -1,7 +1,10 @@
 package org.carrot2.clustering.dbscan.distance;
 
 /**
- * Impl. of Cosinus measure between double[] points
+ * Impl. of Cosinus measure between double[] points. Distance is calculated as
+ * <code>
+ * 1 - similarity
+ * </code>
  */
 public class CosinusFunction implements DistanceFunction<double[]> {
 
