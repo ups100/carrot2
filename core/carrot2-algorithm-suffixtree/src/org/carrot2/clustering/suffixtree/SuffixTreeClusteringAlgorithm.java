@@ -344,7 +344,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 		int effectiveLen = 0;
 		for (int i = 0; i < p.totalLen; ++i) {
 			int termInd = seq.objectAt(p.start + i);
-			if (TokenTypeUtils.isCommon(tokenTypes[termInd])) {
+			if (termInd < 0 || TokenTypeUtils.isCommon(tokenTypes[termInd])) {
 				continue;
 			}
 
