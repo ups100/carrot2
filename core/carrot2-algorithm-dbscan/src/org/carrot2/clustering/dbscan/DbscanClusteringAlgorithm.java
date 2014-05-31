@@ -119,7 +119,10 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 	public double epsAttribute = 13.0;
 
 	/**
-	 * Threshold used when distance function is set to {@link CosinusFunction}
+	 * Threshold used when distance function is set to {@link CosinusFunction}. <br />
+	 * Values near 1 means that similarity between documents may be small to
+	 * group them together. Values near 0 mean that similarity has to be pretty
+	 * high to group them together.
 	 */
 	@Processing
 	@Input
@@ -136,7 +139,7 @@ public class DbscanClusteringAlgorithm extends ProcessingComponentBase
 	@Processing
 	@Input
 	@Attribute
-	@IntRange(min = 0)
+	@IntRange(min = 1)
 	@Group(DBSCAN)
 	@Level(AttributeLevel.BASIC)
 	@Label("MinPts")
