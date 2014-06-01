@@ -318,7 +318,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 				long intersectionCount = BitSet.intersectionCount(documentsI, documentsJ);
 				double pI = (double)intersectionCount/documentsI.cardinality();
 				double pJ = (double)intersectionCount/documentsJ.cardinality();
-				if (pI >= 0.5 && pJ >= 0.5) {
+				if (pI > 0.5 && pJ > 0.5) {
 					graph.addEdge(clusterI, clusterJ);
 				}
 			}
