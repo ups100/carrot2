@@ -153,10 +153,10 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 	@Level(AttributeLevel.ADVANCED)
 	public IPreprocessingPipeline preprocessingPipeline = new CompletePreprocessingPipeline();
 
-	static class ClusterCandidate {
+	static private class ClusterCandidate {
 		double score;
 		BitSet documents;
-		ArrayList<Path> paths;
+		List<Path> paths;
 
 		ClusterCandidate(Path p, BitSet doc, double score)
 		{
@@ -166,22 +166,29 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 			this.paths.add(p);
 		}
 		
+		public ClusterCandidate(List<Path> paths, BitSet documents, double score) {
+			this.score = score;
+			this.documents = documents;
+			this.paths = paths;
+		}
+
+
+
 		static public ClusterCandidate merge(List<ClusterCandidate> candidates) {
 			ClusterCandidate first = candidates.get(0);
 			BitSet bitSet = new BitSet(first.documents.length());
 			double score = 0;
 			double maxScore = 0;
-			Path path = null;
+			List<Path> paths =Lists.newArrayList();
 			for (ClusterCandidate candidate : candidates) {
 				bitSet.or(candidate.documents);
 				score += candidate.score;
 				if (candidate.score > maxScore) {
 					maxScore = candidate.score;
-					path = candidate.paths.get(0);
+					paths = candidate.paths;
 				}
 			}
-			// TODO set path and score??
-			return new ClusterCandidate(path, bitSet, score);
+			return new ClusterCandidate(paths, bitSet, score/candidates.size());
 		}
 
 		@Override
@@ -318,7 +325,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 				long intersectionCount = BitSet.intersectionCount(documentsI, documentsJ);
 				double pI = (double)intersectionCount/documentsI.cardinality();
 				double pJ = (double)intersectionCount/documentsJ.cardinality();
-				if (pI >= 0.5 && pJ >= 0.5) {
+				if (pI > 0.5 && pJ > 0.5) {
 					graph.addEdge(clusterI, clusterJ);
 				}
 			}
@@ -422,8 +429,11 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 
 				double score = generateClusterScore(effectiveLen,
 						(int) documents.cardinality());
-				candidates.add(new ClusterCandidate(currentPath,
+
+				if (score >= minBaseClusterScore) {
+					candidates.add(new ClusterCandidate(currentPath,
 						(BitSet)documents.clone(), score));
+				}
 			}
 		});
 
