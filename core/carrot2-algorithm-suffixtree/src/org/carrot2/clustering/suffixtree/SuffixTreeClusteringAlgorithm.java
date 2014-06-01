@@ -429,8 +429,11 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 
 				double score = generateClusterScore(effectiveLen,
 						(int) documents.cardinality());
-				candidates.add(new ClusterCandidate(currentPath,
+
+				if (score >= minBaseClusterScore) {
+					candidates.add(new ClusterCandidate(currentPath,
 						(BitSet)documents.clone(), score));
+				}
 			}
 		});
 
