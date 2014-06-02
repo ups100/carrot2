@@ -458,7 +458,8 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 		short [] tokenTypes = context.allWords.type;
 
 		// Ignore nodes that start with a stop word.
-        if (seq.objectAt(p.start) < 0 || seq.objectAt(p.start) >= tokenTypes.length ||
+        if (p.start < 0 || p.start >= seq.size() || 
+        		seq.objectAt(p.start) < 0 || seq.objectAt(p.start) >= tokenTypes.length ||
         		TokenTypeUtils.isCommon(tokenTypes[seq.objectAt(p.start)]))
         {
             return false;
