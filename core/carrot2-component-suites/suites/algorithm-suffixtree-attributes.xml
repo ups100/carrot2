@@ -1,13 +1,53 @@
 <attribute-sets default="overridden-attributes">
   <attribute-set id="overridden-attributes">
-    <value-set>
+    <value-set based-on="defaults">
       <label>overridden-attributes</label>
-      
-      <attribute key="SuffixTreeClusteringAlgorithm.minCardinality">
-        <value type="java.lang.Integer" value="3"/>
+    </value-set>
+  </attribute-set>
+  <attribute-set id="defaults">
+    <value-set>
+      <label>defaults</label>
+      <attribute key="CaseNormalizer.dfThreshold">
+        <value type="java.lang.Integer" value="1"/>
       </attribute>
-      <attribute key="SuffixTreeClusteringAlgorithm.minBaseClusterScore">
-        <value type="java.lang.Double" value="2.0"/>
+      <attribute key="CompleteLabelFilter.enabled">
+        <value type="java.lang.Boolean" value="true"/>
+      </attribute>
+      <attribute key="CompleteLabelFilter.labelOverrideThreshold">
+        <value type="java.lang.Double" value="0.65"/>
+      </attribute>
+      <attribute key="DocumentAssigner.exactPhraseAssignment">
+        <value type="java.lang.Boolean" value="false"/>
+      </attribute>
+      <attribute key="DocumentAssigner.minClusterSize">
+        <value type="java.lang.Integer" value="2"/>
+      </attribute>
+      <attribute key="GenitiveLabelFilter.enabled">
+        <value type="java.lang.Boolean" value="true"/>
+      </attribute>
+      <attribute key="merge-resources">
+        <value type="java.lang.Boolean" value="true"/>
+      </attribute>
+      <attribute key="MinLengthLabelFilter.enabled">
+        <value type="java.lang.Boolean" value="true"/>
+      </attribute>
+      <attribute key="NumericLabelFilter.enabled">
+        <value type="java.lang.Boolean" value="true"/>
+      </attribute>
+      <attribute key="PhraseExtractor.dfThreshold">
+        <value type="java.lang.Integer" value="1"/>
+      </attribute>
+      <attribute key="QueryLabelFilter.enabled">
+        <value type="java.lang.Boolean" value="true"/>
+      </attribute>
+      <attribute key="reload-resources">
+        <value type="java.lang.Boolean" value="false"/>
+      </attribute>
+      <attribute key="StopLabelFilter.enabled">
+        <value type="java.lang.Boolean" value="true"/>
+      </attribute>
+      <attribute key="StopWordLabelFilter.enabled">
+        <value type="java.lang.Boolean" value="true"/>
       </attribute>
       <attribute key="SuffixTreeClusteringAlgorithm.maxBaseClusters">
         <value type="java.lang.Integer" value="300"/>
@@ -21,7 +61,22 @@
       <attribute key="SuffixTreeClusteringAlgorithm.maxWordFrequency">
         <value type="java.lang.Double" value="0.8"/>
       </attribute>
-
+      <attribute key="SuffixTreeClusteringAlgorithm.minBaseClusterScore">
+        <value type="java.lang.Double" value="2.0"/>
+      </attribute>
+      <attribute key="SuffixTreeClusteringAlgorithm.minCardinality">
+        <value type="java.lang.Integer" value="3"/>
+      </attribute>
+      <attribute key="Tokenizer.documentFields">
+        <value>
+          <wrapper class="org.carrot2.util.simplexml.ListSimpleXmlWrapper">
+            <list>
+              <value value="title"/>
+              <value value="snippet"/>
+            </list>
+          </wrapper>
+        </value>
+      </attribute>
     </value-set>
   </attribute-set>
 </attribute-sets>

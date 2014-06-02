@@ -1,16 +1,20 @@
 <attribute-sets default="overridden-attributes">
   <attribute-set id="overridden-attributes">
-    <value-set>
+    <value-set based-on="defaults">
       <label>overridden-attributes</label>
-
-      <attribute key="DbscanClusteringAlgorithm.epsAttribute">
-        <value type="java.lang.Double" value="13.0"/>
+    </value-set>
+  </attribute-set>
+  <attribute-set id="defaults">
+    <value-set>
+      <label>defaults</label>
+      <attribute key="CaseNormalizer.dfThreshold">
+        <value type="java.lang.Integer" value="1"/>
       </attribute>
-      <attribute key="DbscanClusteringAlgorithm.epsThresholdAttribute">
+      <attribute key="CompleteLabelFilter.enabled">
+        <value type="java.lang.Boolean" value="true"/>
+      </attribute>
+      <attribute key="CompleteLabelFilter.labelOverrideThreshold">
         <value type="java.lang.Double" value="0.65"/>
-      </attribute>
-      <attribute key="DbscanClusteringAlgorithm.minPtsAttribute">
-        <value type="java.lang.Integer" value="2"/>
       </attribute>
       <attribute key="DbscanClusteringAlgorithm.determineAlgorithmAttributes">
         <value type="java.lang.Boolean" value="false"/>
@@ -20,7 +24,80 @@
           <wrapper class="org.carrot2.clustering.dbscan.distance.EuclideanFunction"/>
         </value>
       </attribute>
-
+      <attribute key="DbscanClusteringAlgorithm.epsAttribute">
+        <value type="java.lang.Double" value="13.0"/>
+      </attribute>
+      <attribute key="DbscanClusteringAlgorithm.epsThresholdAttribute">
+        <value type="java.lang.Double" value="0.65"/>
+      </attribute>
+      <attribute key="DbscanClusteringAlgorithm.minPtsAttribute">
+        <value type="java.lang.Integer" value="2"/>
+      </attribute>
+      <attribute key="DocumentAssigner.exactPhraseAssignment">
+        <value type="java.lang.Boolean" value="false"/>
+      </attribute>
+      <attribute key="DocumentAssigner.minClusterSize">
+        <value type="java.lang.Integer" value="2"/>
+      </attribute>
+      <attribute key="GenitiveLabelFilter.enabled">
+        <value type="java.lang.Boolean" value="true"/>
+      </attribute>
+      <attribute key="merge-resources">
+        <value type="java.lang.Boolean" value="true"/>
+      </attribute>
+      <attribute key="MinLengthLabelFilter.enabled">
+        <value type="java.lang.Boolean" value="true"/>
+      </attribute>
+      <attribute key="NumericLabelFilter.enabled">
+        <value type="java.lang.Boolean" value="true"/>
+      </attribute>
+      <attribute key="PhraseExtractor.dfThreshold">
+        <value type="java.lang.Integer" value="1"/>
+      </attribute>
+      <attribute key="QueryLabelFilter.enabled">
+        <value type="java.lang.Boolean" value="true"/>
+      </attribute>
+      <attribute key="reload-resources">
+        <value type="java.lang.Boolean" value="false"/>
+      </attribute>
+      <attribute key="StopLabelFilter.enabled">
+        <value type="java.lang.Boolean" value="true"/>
+      </attribute>
+      <attribute key="StopWordLabelFilter.enabled">
+        <value type="java.lang.Boolean" value="true"/>
+      </attribute>
+      <attribute key="TermDocumentMatrixBuilder.maximumMatrixSize">
+        <value type="java.lang.Integer" value="37500"/>
+      </attribute>
+      <attribute key="TermDocumentMatrixBuilder.maxWordDf">
+        <value type="java.lang.Double" value="0.9"/>
+      </attribute>
+      <attribute key="TermDocumentMatrixBuilder.termWeighting">
+        <value>
+          <wrapper class="org.carrot2.text.vsm.LogTfIdfTermWeighting"/>
+        </value>
+      </attribute>
+      <attribute key="TermDocumentMatrixBuilder.titleWordsBoost">
+        <value type="java.lang.Double" value="2.0"/>
+      </attribute>
+      <attribute key="TermDocumentMatrixReducer.factorizationFactory">
+        <value>
+          <wrapper class="org.carrot2.matrix.factorization.NonnegativeMatrixFactorizationEDFactory"/>
+        </value>
+      </attribute>
+      <attribute key="TermDocumentMatrixReducer.factorizationQuality">
+        <value type="org.carrot2.matrix.factorization.IterationNumberGuesser$FactorizationQuality" value="HIGH"/>
+      </attribute>
+      <attribute key="Tokenizer.documentFields">
+        <value>
+          <wrapper class="org.carrot2.util.simplexml.ListSimpleXmlWrapper">
+            <list>
+              <value value="title"/>
+              <value value="snippet"/>
+            </list>
+          </wrapper>
+        </value>
+      </attribute>
     </value-set>
   </attribute-set>
 </attribute-sets>
