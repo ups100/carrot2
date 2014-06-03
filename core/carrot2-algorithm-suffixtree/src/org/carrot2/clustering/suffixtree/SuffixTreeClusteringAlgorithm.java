@@ -337,20 +337,6 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 			merged.add(ClusterCandidate.merge(component));
 		}
 		
-		/* Sort the list of generated candidates in descending using score */
-		Collections.sort(merged, new Comparator<ClusterCandidate>() {
-
-			@Override
-			public int compare(ClusterCandidate o1, ClusterCandidate o2) {
-				return -Double.compare(o1.score, o2.score);
-			}
-
-		});
-
-		if (merged.size() > maxClusters) {
-			merged.subList(maxClusters, merged.size()).clear();
-		}
-
 		return merged;
 	}
 
@@ -551,6 +537,10 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
         Collections.sort(this.clusters,
             Cluster.byReversedWeightedScoreAndSizeComparator(0.5));
 
+		if (this.clusters.size() > maxClusters) {
+			this.clusters.subList(maxClusters, this.clusters.size()).clear();
+		}
+        
         Cluster.appendOtherTopics(this.documents, this.clusters);
     }
 
