@@ -589,7 +589,7 @@ public class SuffixTreeClusteringAlgorithm extends ProcessingComponentBase
 
         for (int i = 0; i < termsCount; ++i) {
         	int termIndex = seq.objectAt(i + p.start);
-        	if (termIndex < 0)
+        	if (termIndex < 0 || termIndex >= context.allWords.image.length)
         			continue;
         	images[i] = context.allWords.image[termIndex];
         	stopwords[i] = TokenTypeUtils.isCommon(tokenTypes[termIndex]);
